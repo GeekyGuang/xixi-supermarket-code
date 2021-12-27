@@ -4,5 +4,6 @@ import router from './router'
 import store from './store'
 import './style/index.scss'
 import 'normalize.css'
+import Icon from './components/Icon.vue'
 
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).component('Icon', Icon).use(store).use(router).mount('#app')

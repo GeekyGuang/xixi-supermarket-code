@@ -1,35 +1,19 @@
 <template>
   <div class="docker">
     <div class="docker__item docker__item--active">
-      <div class="docker-item__icon" >
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-shouye"></use>
-        </svg>
-      </div>
+      <Icon icon_name="shouye" class="docker-item__icon" />
       <div class="docker-item__title">首页</div>
     </div>
     <div class="docker__item">
-      <div class="docker-item__icon">
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-cart"></use>
-        </svg>
-      </div>
+      <Icon icon_name="cart" class="docker-item__icon" />
       <div class="docker-item__title">购物车</div>
     </div>
     <div class="docker__item">
-      <div class="docker-item__icon">
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-dingdan"></use>
-        </svg>
-      </div>
+      <Icon icon_name="dingdan" class="docker-item__icon" />
       <div class="docker-item__title">订单</div>
     </div>
     <div class="docker__item">
-      <div class="docker-item__icon">
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-wode"></use>
-        </svg>
-      </div>
+      <Icon icon_name="wode" class="docker-item__icon" />
       <div class="docker-item__title">我的</div>
     </div>
   </div>
