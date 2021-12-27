@@ -22,11 +22,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import './style/helpers.scss';
 
 .wrapper{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color:$content-font-color;
 
   > .front-page {
     flex-grow: 1;
@@ -44,9 +46,8 @@ export default {
       }
       .address {
         margin: 0 8px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        @extend %ellipsis;
+        // @include ellipsis;
       }
     }
   }
