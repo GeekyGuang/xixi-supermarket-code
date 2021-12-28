@@ -6,6 +6,7 @@
     <div class="banner">
       <img src="http://www.dell-lee.com/imgs/vue3/banner.jpg" alt="">
     </div>
+    <Categories />
   </div>
   <Docker />
 </div>
@@ -16,13 +17,15 @@
 import Docker from './components/Docker.vue'
 import Search from './components/Search.vue'
 import Position from './components/Position.vue'
+import Categories from './components/Categories.vue'
 
 export default {
   components: {
     Docker,
     Search,
-    Position
-  }
+    Position,
+    Categories
+}
 }
 </script>
 
@@ -52,7 +55,9 @@ export default {
       }
     }
 
-  }
+
+    }
+
 
 }
 </style>
