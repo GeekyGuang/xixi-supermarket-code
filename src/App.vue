@@ -7,6 +7,8 @@
       <img src="http://www.dell-lee.com/imgs/vue3/banner.jpg" alt="">
     </div>
     <Categories />
+    <div class="gap">
+    </div>
   </div>
   <Docker />
 </div>
@@ -55,6 +57,11 @@ export default {
       }
     }
 
+    .gap {
+      height: 10px;
+      background: #f1f1f1;
+      margin: 0 -18px;
+    }
 
     }
 
