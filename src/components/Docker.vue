@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .docker {
   box-shadow: 0 -0.01rem 0.01rem 0 #F1F1F1;
   padding: 0 0.18rem;

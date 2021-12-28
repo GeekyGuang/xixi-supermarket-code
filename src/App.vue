@@ -2,10 +2,11 @@
 <div class="wrapper">
   <div class="front-page">
     <div class="position">
-      <Icon icon_name="position" class="position"/>
+      <Icon icon_name="position"/>
       <span class="address">北京理工大学国防科技园2号楼10层北京理工大学国防科技园2号楼10层</span>
-      <Icon icon_name="bell" class="bell" />
+      <Icon icon_name="bell"/>
     </div>
+    <Search placeholder="山姆商店会员优惠" />
   </div>
   <Docker />
 </div>
@@ -14,9 +15,11 @@
 </template>
 <script lang="ts">
 import Docker from './components/Docker.vue'
+import Search from './components/Search.vue'
 export default {
   components: {
-    Docker
+    Docker,
+    Search
   }
 }
 </script>
@@ -35,6 +38,7 @@ export default {
     padding: 16px 18px 0;
 
     > .position {
+      margin-bottom: 16px;
       .icon {
         width: 18px;
         height: 18px;
@@ -51,5 +55,6 @@ export default {
       }
     }
   }
+
 }
 </style>
