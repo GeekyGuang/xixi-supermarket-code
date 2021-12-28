@@ -3,6 +3,9 @@
   <div class="front-page">
     <Position />
     <Search placeholder="山姆商店会员优惠" />
+    <div class="banner">
+      <img src="http://www.dell-lee.com/imgs/vue3/banner.jpg" alt="">
+    </div>
   </div>
   <Docker />
 </div>
@@ -36,6 +39,16 @@ export default {
 
     .position-wrapper {
       margin-bottom: 16px;
+    }
+
+    .banner {
+      margin-top: 12px;
+      height: 0;
+      overflow: hidden;
+      padding-bottom: 86px;
+      > img {
+        width: 100%;
+      }
     }
 
   }
