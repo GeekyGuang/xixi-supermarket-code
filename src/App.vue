@@ -16,6 +16,7 @@
 import Docker from './components/Docker.vue'
 import Search from './components/Search.vue'
 import Position from './components/Position.vue'
+
 export default {
   components: {
     Docker,

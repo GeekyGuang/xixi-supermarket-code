@@ -1,12 +1,16 @@
 <template>
     <div :class="icon_name">
       <svg class="icon" aria-hidden="true">
-          <use :xlink:href="'#icon-' + icon_name"></use>
+          <use :xlink:href="'#' + icon_name"></use>
       </svg>
     </div>
 </template>
 
 <script lang="ts">
+  // eslint-disable-next-line no-undef
+const importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
+try {importAll(require.context('../assets/icons', true, /\.svg$/));} catch (error) {console.log(error);}
+
   export default {
     props: {
       'icon_name': {
