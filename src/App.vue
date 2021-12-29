@@ -3,58 +3,60 @@
   <div class="front-page">
     <Position />
     <Search placeholder="山姆商店会员优惠" />
-    <div class="banner">
-      <img src="http://www.dell-lee.com/imgs/vue3/banner.jpg" alt="">
-    </div>
-    <Categories />
-    <div class="gap">
-    </div>
-    <div class="nearby">
-      <h1>附近店铺</h1>
-      <ul>
-        <li>
-          <div class="shop-img">
-            <img src="./assets/images/wowmall.png" alt="">
-          </div>
-          <div class="shop-info">
-            <h2 class="shop-name">沃尔玛</h2>
-            <p class="shop-data">
-              <span>月售1万+</span>
-              <span>起送￥0</span>
-              <span>基础运费￥5</span>
-            </p>
-            <p class="discount">VIP尊享满89元减4元运费券 (每月3张)</p>
-          </div>
-        </li>
-        <li>
-          <div class="shop-img">
-            <img src="./assets/images/wowmall.png" alt="">
-          </div>
-          <div class="shop-info">
-            <h2 class="shop-name">沃尔玛</h2>
-            <p class="shop-data">
-              <span>月售1万+</span>
-              <span>起送￥0</span>
-              <span>基础运费￥5</span>
-            </p>
-            <p class="discount">VIP尊享满89元减4元运费券 (每月3张)</p>
-          </div>
-        </li>
-                <li>
-          <div class="shop-img">
-            <img src="./assets/images/wowmall.png" alt="">
-          </div>
-          <div class="shop-info">
-            <h2 class="shop-name">沃尔玛</h2>
-            <p class="shop-data">
-              <span>月售1万+</span>
-              <span>起送￥0</span>
-              <span>基础运费￥5</span>
-            </p>
-            <p class="discount">VIP尊享满89元减4元运费券 (每月3张)</p>
-          </div>
-        </li>
-      </ul>
+    <div class="main">
+      <div class="banner">
+        <img src="http://www.dell-lee.com/imgs/vue3/banner.jpg" alt="">
+      </div>
+      <Categories />
+      <div class="gap">
+      </div>
+      <div class="nearby">
+        <h1>附近店铺</h1>
+        <ul>
+          <li>
+            <div class="shop-img">
+              <img src="./assets/images/wowmall.png" alt="">
+            </div>
+            <div class="shop-info">
+              <h2 class="shop-name">沃尔玛</h2>
+              <p class="shop-data">
+                <span>月售1万+</span>
+                <span>起送￥0</span>
+                <span>基础运费￥5</span>
+              </p>
+              <p class="discount">VIP尊享满89元减4元运费券 (每月3张)</p>
+            </div>
+          </li>
+          <li>
+            <div class="shop-img">
+              <img src="./assets/images/wowmall.png" alt="">
+            </div>
+            <div class="shop-info">
+              <h2 class="shop-name">沃尔玛</h2>
+              <p class="shop-data">
+                <span>月售1万+</span>
+                <span>起送￥0</span>
+                <span>基础运费￥5</span>
+              </p>
+              <p class="discount">VIP尊享满89元减4元运费券 (每月3张)</p>
+            </div>
+          </li>
+                  <li>
+            <div class="shop-img">
+              <img src="./assets/images/wowmall.png" alt="">
+            </div>
+            <div class="shop-info">
+              <h2 class="shop-name">沃尔玛</h2>
+              <p class="shop-data">
+                <span>月售1万+</span>
+                <span>起送￥0</span>
+                <span>基础运费￥5</span>
+              </p>
+              <p class="discount">VIP尊享满89元减4元运费券 (每月3张)</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <Docker />
@@ -81,7 +83,7 @@ export default {
 <style lang="scss">
 @import './style/helpers.scss';
 .wrapper{
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   color:$content-font-color;
@@ -89,6 +91,20 @@ export default {
   > .front-page {
     flex-grow: 1;
     padding: 16px 18px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    overflow: auto;
+
+    .main {
+      flex-shrink: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+            display:none
+        }
+    }
 
     .position-wrapper {
       margin-bottom: 16px;
