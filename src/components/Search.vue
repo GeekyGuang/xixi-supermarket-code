@@ -24,6 +24,7 @@ export default {
     border-radius: 32px;
     align-items: center;
     padding: 0 16px;
+    margin: 0 18px;
     color: $grey-font;
 
     > :deep(.search ){

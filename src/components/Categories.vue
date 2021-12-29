@@ -37,7 +37,7 @@ export default {
       flex-wrap: wrap;
       gap: 16px;
       justify-content: space-between;
-      padding: 16px 0;
+      padding: 16px 18px;
 
       > li {
         display: flex;

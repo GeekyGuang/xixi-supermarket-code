@@ -9,6 +9,7 @@
 <style lang="scss" scoped>
 @import '../style/helpers.scss';
     .position-wrapper {
+      padding: 0 18px;
       :deep(.icon) {
         width: 18px;
         height: 18px;

@@ -90,7 +90,7 @@ export default {
 
   > .front-page {
     flex-grow: 1;
-    padding: 16px 18px 0;
+    padding-top: 16px;
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
@@ -98,7 +98,7 @@ export default {
 
     .main {
       flex-shrink: 1;
-      overflow-x: hidden;
+      overflow-x: auto;
       overflow-y: auto;
 
       &::-webkit-scrollbar {
@@ -114,7 +114,7 @@ export default {
       margin-top: 12px;
       height: 0;
       overflow: hidden;
-      padding-bottom: 86px;
+      padding:0 18px 86px;
       > img {
         width: 100%;
       }
@@ -123,10 +123,11 @@ export default {
     .gap {
       height: 10px;
       background: #f1f1f1;
-      margin: 0 -18px;
     }
 
     .nearby {
+      padding: 0 18px;
+
       > h1 {
         font-size: 18px;
         line-height: 25px;
