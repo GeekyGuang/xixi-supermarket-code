@@ -21,6 +21,7 @@ export default {
     display: flex;
     background: #F5F5F5;
     height: 32px;
+    flex-shrink: 0;
     border-radius: 32px;
     align-items: center;
     padding: 0 16px;

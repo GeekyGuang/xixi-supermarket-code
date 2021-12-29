@@ -64,6 +64,7 @@ export default {
 
     .position-wrapper {
       margin-bottom: 16px;
+      flex-shrink: 0;
     }
 
     .banner {
