@@ -2,10 +2,10 @@
  <div class="login">
     <Icon icon_name='group' />
     <div class="input-item">
-      <input type="text" placeholder="请输入手机号">
+      <input type="text" placeholder="请输入用户名" v-model="data.username">
     </div>
     <div class="input-item">
-      <input type="password" placeholder="请输入密码">
+      <input type="password" placeholder="请输入密码" v-model="data.password">
     </div>
     <button @click="handleLogin">登录</button>
     <router-link to="/register">立即注册</router-link>
@@ -14,16 +14,44 @@
 </template>
 
 <script lang="ts">
+import { reactive } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
+import service from '@/utils/request'
+
 export default {
   setup(){
+    const data = reactive(
+      {
+        username: '',
+        password: ''
+      }
+    )
     const router = useRouter()
-    const handleLogin = () => {
-      localStorage.isLogin = true
-      router.push({name: 'Home'})
+    const handleLogin = async () => {
+      try {
+        const result = await service.post('/user/login', {
+          username: data.username,
+          password: data.password
+        })
+
+        console.log(result)
+
+        if(result.data.verifySuccess === true) {
+          localStorage.isLogin = true
+          router.push({name: 'Home'})
+        } else {
+          alert('用户名或密码错误')
+        }
+
+      } catch(e) {
+        console.log(e)
+        alert('请求失败')
+      }
+
     }
 
     return {
+      data,
       handleLogin
     }
   }
