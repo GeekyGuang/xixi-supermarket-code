@@ -9,40 +9,33 @@
     </div>
     <button @click="handleLogin">登录</button>
     <router-link to="/register">立即注册</router-link>
-    <Toast :showToast="data.showToast" :message="data.message"/>
+    <Toast :showToast="toastData.showToast" :message="toastData.message"/>
  </div>
 
 </template>
 
 <script lang="ts">
-import { reactive, ref } from '@vue/reactivity'
+import { reactive} from 'vue'
 import { useRouter } from 'vue-router'
 import service from '@/utils/request'
-import Toast from '@/components/Toast.vue'
+import Toast, {useToastEffect} from '@/components/Toast.vue'
 
 export default {
   components: {
     Toast
   },
   setup(){
+    const router = useRouter()
     const data = reactive(
       {
         username: '',
         password: '',
-        message: '',
-        showToast: false
+
       }
     )
-    const router = useRouter()
 
-    const showToast = (message: string) => {
-       data.showToast = true
-       data.message = message
-       setTimeout(() => {
-          data.showToast = false
-          data.message = ''
-       }, 2000)
-    }
+    const {toastData, showToast} = useToastEffect()
+
 
     const handleLogin = async () => {
       try {
@@ -67,6 +60,7 @@ export default {
     return {
       data,
       handleLogin,
+      toastData
     }
   }
 }

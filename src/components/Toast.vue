@@ -6,8 +6,32 @@
 </template>
 
 <script lang="ts">
+import { reactive } from "vue"
 export default {
   props: ['message', 'showToast']
+}
+
+export const useToastEffect = () => {
+  const toastData = reactive(
+    {
+        message: '',
+        showToast: false
+    }
+  )
+
+  const showToast = (message: string) => {
+       toastData.showToast = true
+       toastData.message = message
+       setTimeout(() => {
+          toastData.showToast = false
+          toastData.message = ''
+       }, 2000)
+    }
+
+  return {
+    toastData,
+    showToast
+  }
 }
 </script>
 
