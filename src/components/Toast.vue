@@ -1,10 +1,13 @@
 <template>
-  <div class="toast">{{message}}</div>
+  <transition name="fade">
+     <div class="toast" v-if="showToast">{{message}}</div>
+  </transition>
+
 </template>
 
 <script lang="ts">
 export default {
-  props: ['message']
+  props: ['message', 'showToast']
 }
 </script>
 
@@ -20,5 +23,14 @@ export default {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 750ms ease;
   }
 </style>

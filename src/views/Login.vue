@@ -9,7 +9,7 @@
     </div>
     <button @click="handleLogin">登录</button>
     <router-link to="/register">立即注册</router-link>
-    <Toast v-if="data.showToast" :message="data.message"/>
+    <Toast :showToast="data.showToast" :message="data.message"/>
  </div>
 
 </template>
@@ -41,7 +41,7 @@ export default {
        setTimeout(() => {
           data.showToast = false
           data.message = ''
-       }, 1500)
+       }, 2000)
     }
 
     const handleLogin = async () => {
