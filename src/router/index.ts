@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
+import Register from '@/views/Register.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,6 +18,15 @@ const routes: Array<RouteRecordRaw> = [
       isLogin ? next({ name: 'Home' }) : next()
     },
   },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+    beforeEnter: (to, from, next) => {
+      const isLogin = localStorage.isLogin
+      isLogin ? next({ name: 'Home' }) : next()
+    },
+  },
 ]
 
 const router = createRouter({
@@ -26,7 +36,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isLogin = localStorage.isLogin
-  isLogin || to.name === 'Login' ? next() : next('/login')
+  const loginOrRegister = to.name === 'Login' || to.name === 'Register'
+  isLogin || loginOrRegister ? next() : next('/login')
 })
 
 export default router

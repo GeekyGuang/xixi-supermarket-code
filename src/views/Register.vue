@@ -7,8 +7,11 @@
     <div class="input-item">
       <input type="password" placeholder="请输入密码">
     </div>
-    <button @click="handleLogin">登录</button>
-    <router-link to="/register">立即注册</router-link>
+    <div class="input-item">
+      <input type="password" placeholder="请确认密码">
+    </div>
+    <button >注册</button>
+    <router-link to="/login">已有账号去登录</router-link>
  </div>
 
 </template>
