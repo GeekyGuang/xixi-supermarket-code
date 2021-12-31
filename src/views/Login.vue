@@ -5,7 +5,7 @@
       <input type="text" placeholder="请输入用户名" v-model="username">
     </div>
     <div class="input-item">
-      <input type="password" placeholder="请输入密码" v-model="password">
+      <input type="password" placeholder="请输入密码" v-model="password" autocomplete="new-password">
     </div>
     <button @click="handleLogin">登录</button>
     <router-link to="/register">立即注册</router-link>
