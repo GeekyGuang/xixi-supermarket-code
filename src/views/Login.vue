@@ -20,11 +20,7 @@ import { useRouter } from 'vue-router'
 import service from '@/utils/request'
 import Toast, {useToastEffect} from '@/components/Toast.vue'
 
-export default {
-  components: {
-    Toast
-  },
-  setup(){
+const useLoginEffect = (showToast) => {
     const router = useRouter()
     const data = reactive(
       {
@@ -35,10 +31,12 @@ export default {
     )
     const {username, password} = toRefs(data)
 
-    const {message,show, showToast} = useToastEffect()
-
-
     const handleLogin = async () => {
+      if(username.value.replace(/^\s+|\s+$/g, '') === '' || password.value.replace(/^\s+|\s+$/g, '') === '') {
+        showToast('用户名或密码不能为空')
+        return
+      }
+
       try {
         const result = await service.post('/user/login', {
           username: username.value,
@@ -57,6 +55,21 @@ export default {
       }
 
     }
+
+    return {
+      username,
+      password,
+      handleLogin,
+    }
+}
+
+export default {
+  components: {
+    Toast
+  },
+  setup(){
+    const {message,show, showToast} = useToastEffect()
+    const {username,password,handleLogin,} = useLoginEffect(showToast)
 
     return {
       username,

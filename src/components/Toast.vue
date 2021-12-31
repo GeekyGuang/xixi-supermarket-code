@@ -50,6 +50,7 @@ export const useToastEffect = () => {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+    white-space: nowrap;
   }
 
   .fade-enter-from,
