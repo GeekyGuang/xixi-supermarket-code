@@ -63,7 +63,7 @@ const useRegisterEffect = (showToast) => {
         return
       }
 
-      if(checkpassword.value.replace(/^\s+|\s+$/g, '') === ''){
+      if(checkpassword.value.trim() === ''){
         showToast("请确认密码")
         return
       }

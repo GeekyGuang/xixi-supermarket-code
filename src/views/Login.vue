@@ -32,7 +32,7 @@ const useLoginEffect = (showToast) => {
     const {username, password} = toRefs(data)
 
     const handleLogin = async () => {
-      if(username.value.replace(/^\s+|\s+$/g, '') === '' || password.value.replace(/^\s+|\s+$/g, '') === '') {
+      if(username.value.trim() === '' || password.value.trim() === '') {
         showToast('用户名或密码不能为空')
         return
       }
