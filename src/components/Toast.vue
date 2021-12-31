@@ -50,7 +50,9 @@ export const useToastEffect = () => {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    white-space: nowrap;
+    white-space: pre;
+    text-align: center;
+    line-height: 1.5;
   }
 
   .fade-enter-from,

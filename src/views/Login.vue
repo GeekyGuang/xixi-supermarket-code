@@ -24,8 +24,8 @@ const useLoginEffect = (showToast) => {
     const router = useRouter()
     const data = reactive(
       {
-        username: '',
-        password: '',
+        username: 'admin',
+        password: '123456',
 
       }
     )
@@ -34,6 +34,11 @@ const useLoginEffect = (showToast) => {
     const handleLogin = async () => {
       if(username.value.replace(/^\s+|\s+$/g, '') === '' || password.value.replace(/^\s+|\s+$/g, '') === '') {
         showToast('用户名或密码不能为空')
+        return
+      }
+
+       if(!/^[\w\u4e00-\u9fa5]{3,15}$/.test(username.value) || !/^.{6,16}$/.test(password.value)){
+        showToast('用户名或密码不正确')
         return
       }
 
