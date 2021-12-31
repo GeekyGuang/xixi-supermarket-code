@@ -2,20 +2,20 @@
  <div class="login">
     <Icon icon_name='group' />
     <div class="input-item">
-      <input type="text" placeholder="请输入用户名" v-model="data.username">
+      <input type="text" placeholder="请输入用户名" v-model="username">
     </div>
     <div class="input-item">
-      <input type="password" placeholder="请输入密码" v-model="data.password">
+      <input type="password" placeholder="请输入密码" v-model="password">
     </div>
     <button @click="handleLogin">登录</button>
     <router-link to="/register">立即注册</router-link>
-    <Toast :showToast="toastData.showToast" :message="toastData.message"/>
+    <Toast :showToast="show" :message="message"/>
  </div>
 
 </template>
 
 <script lang="ts">
-import { reactive} from 'vue'
+import { reactive, toRefs} from 'vue'
 import { useRouter } from 'vue-router'
 import service from '@/utils/request'
 import Toast, {useToastEffect} from '@/components/Toast.vue'
@@ -33,15 +33,16 @@ export default {
 
       }
     )
+    const {username, password} = toRefs(data)
 
-    const {toastData, showToast} = useToastEffect()
+    const {message,show, showToast} = useToastEffect()
 
 
     const handleLogin = async () => {
       try {
         const result = await service.post('/user/login', {
-          username: data.username,
-          password: data.password
+          username: username.value,
+          password: password.value
         })
 
         if(result.data.verifySuccess === true) {
@@ -58,9 +59,11 @@ export default {
     }
 
     return {
-      data,
+      username,
+      password,
       handleLogin,
-      toastData
+      message,
+      show
     }
   }
 }
