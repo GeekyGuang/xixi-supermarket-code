@@ -4,7 +4,7 @@
     <Search placeholder="请输入商品名称搜索"/>
   </div>
   <div class="shop-wrapper">
-    <shopInfo :info="shopInfo" v-if="shopInfo.imgUrl"/>
+    <shopInfo :info="shopInfo" v-show="shopInfo.imgUrl"/>
   </div>
 
 </template>
@@ -16,9 +16,8 @@ import Icon from '@/components/Icon.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { get } from '@/utils/request'
 import { ref } from '@vue/reactivity'
-export default {
-  components: { ShopInfo, Search, Icon },
-  setup(){
+
+const useGetShopInfoEffect = () => {
     const route = useRoute()
     const shopInfo = ref<any>({})
     const getShopInfo = async () => {
@@ -26,10 +25,29 @@ export default {
       shopInfo.value = result.data.shopInfo
     }
     getShopInfo()
+
+    return {
+      shopInfo,
+      getShopInfo
+    }
+}
+
+const useBackRouterEffect = () => {
     const router = useRouter()
     const handleBackClick = () => {
       router.back()
     }
+
+    return handleBackClick
+}
+
+export default {
+  components: { ShopInfo, Search, Icon },
+  setup(){
+   const {shopInfo, getShopInfo} = useGetShopInfoEffect()
+   getShopInfo()
+   const handleBackClick = useBackRouterEffect()
+
     return {
       shopInfo,
       handleBackClick
