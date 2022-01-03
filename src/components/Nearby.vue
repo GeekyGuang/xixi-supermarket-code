@@ -2,19 +2,8 @@
         <div class="nearby">
         <h1>附近店铺</h1>
         <ul>
-          <li v-for="info in nearbyList" :key="info._id">
-            <div class="shop-img">
-              <img :src="info.imgUrl" alt="">
-            </div>
-            <div class="shop-info">
-              <h2 class="shop-name">{{info.name}}</h2>
-              <p class="shop-data">
-                <span >月售{{info.sales}}</span>
-                <span>起送￥{{info.expressLimit}}</span>
-                <span>基础运费￥{{info.expressPrice}}</span>
-              </p>
-              <p class="discount">{{info.slogan}}</p>
-            </div>
+          <li v-for="info in nearbyList" :key="info._id" @click="handleShopInfoClick">
+              <ShopInfo :info="info"  />
           </li>
         </ul>
       </div>
@@ -23,6 +12,8 @@
 <script lang="ts">
 import {get} from '@/utils/request'
 import {ref} from 'vue'
+import ShopInfo from './ShopInfo.vue'
+import { useRouter } from 'vue-router'
 const useNearbyListEffect = () => {
     const nearbyList = ref([])
     const getNearbyList = async () => {
@@ -37,14 +28,19 @@ const useNearbyListEffect = () => {
 }
 
 export default {
-  setup(){
-    const {nearbyList, getNearbyList} = useNearbyListEffect()
-    getNearbyList()
-
-    return {
-      nearbyList
-    }
-  }
+    setup() {
+        const { nearbyList, getNearbyList } = useNearbyListEffect();
+        const router = useRouter()
+        const handleShopInfoClick = () => {
+          router.push('/shop')
+        }
+        getNearbyList();
+        return {
+            nearbyList,
+            handleShopInfoClick
+        };
+    },
+    components: { ShopInfo }
 }
 </script>
 
@@ -58,43 +54,9 @@ export default {
         margin: 16px 0 14px;
       }
       > ul > li {
+        cursor: pointer;
         display: flex;
         margin-bottom: 12px;
-
-        > .shop-img {
-          width: 56px;
-          margin-right:  16px;
-          > img {
-            width: 100%;
-          }
-        }
-
-        > .shop-info {
-          width: 100%;
-          border-bottom: 1px solid #F1F1F1;
-          h2 {
-            line-height: 22px;
-            font-size: 16px;
-            font-weight: normal;
-            margin-bottom: 8px;
-          }
-
-          .shop-data {
-            line-height: 18px;
-            font-size: 13px;
-            margin-bottom: 8px;
-            > span {
-              margin-right: 16px;
-            }
-          }
-
-          .discount {
-            line-height: 18px;
-            font-size: 13px;
-            color: #E93B3B;
-            margin-bottom: 12px;
-          }
-        }
       }
     }
 </style>
