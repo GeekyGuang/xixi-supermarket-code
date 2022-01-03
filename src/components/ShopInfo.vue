@@ -1,4 +1,5 @@
 <template>
+<div class="shop">
     <div class="shop-img">
       <img :src="info.imgUrl" alt="">
     </div>
@@ -11,6 +12,7 @@
       </p>
       <p class="discount">{{info.slogan}}</p>
     </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -19,7 +21,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.shop {
+  display: flex;
+  padding-bottom: 12px;
+}
 .shop-img {
   width: 56px;
   margin-right:  16px;

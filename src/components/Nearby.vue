@@ -1,11 +1,9 @@
 <template>
         <div class="nearby">
         <h1>附近店铺</h1>
-        <ul>
-          <li v-for="info in nearbyList" :key="info._id" @click="handleShopInfoClick">
-              <ShopInfo :info="info"  />
-          </li>
-        </ul>
+        <router-link to="/shop" v-for="info in nearbyList" :key="info._id">
+            <ShopInfo :info="info"  />
+        </router-link>
       </div>
 </template>
 
@@ -30,14 +28,9 @@ const useNearbyListEffect = () => {
 export default {
     setup() {
         const { nearbyList, getNearbyList } = useNearbyListEffect();
-        const router = useRouter()
-        const handleShopInfoClick = () => {
-          router.push('/shop')
-        }
         getNearbyList();
         return {
-            nearbyList,
-            handleShopInfoClick
+            nearbyList
         };
     },
     components: { ShopInfo }
@@ -53,10 +46,9 @@ export default {
         line-height: 25px;
         margin: 16px 0 14px;
       }
-      > ul > li {
-        cursor: pointer;
-        display: flex;
-        margin-bottom: 12px;
+      a {
+        text-decoration: none;
+        color: inherit;
       }
     }
 </style>
