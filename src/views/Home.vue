@@ -5,7 +5,7 @@
     <Search placeholder="山姆商店会员优惠" />
     <div class="main">
       <div class="banner">
-        <img src="http://www.dell-lee.com/imgs/vue3/banner.jpg" alt="">
+        <img src="https://s6.jpg.cm/2022/01/03/LtOxlW.jpg" alt="">
       </div>
       <Categories />
       <div class="gap">
@@ -71,7 +71,10 @@ export default {
       height: 0;
       overflow: hidden;
       padding:0 18px 86px;
+      border-radius: 5px;
       > img {
+        border-radius: 5px;
+        object-fit: fill;
         width: 100%;
       }
     }
