@@ -4,7 +4,7 @@
     <Search placeholder="请输入商品名称搜索"/>
   </div>
   <div class="shop-wrapper">
-    <shopInfo :info="item"/>
+    <shopInfo :info="shopInfo" v-if="shopInfo.imgUrl"/>
   </div>
 
 </template>
@@ -13,25 +13,25 @@
 import ShopInfo from '@/components/ShopInfo.vue'
 import Search from '@/components/Search.vue'
 import Icon from '@/components/Icon.vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { get } from '@/utils/request'
+import { ref } from '@vue/reactivity'
 export default {
   components: { ShopInfo, Search, Icon },
   setup(){
-    const item = {
-      _id: "1",
-      name: "沃尔玛",
-      imgUrl: require('@/assets/images/wowmall.png'),
-      sales: "10000",
-      expressLimit: "0",
-      expressPrice: "5",
-      slogan: "VIP尊享满89减4元运费券"
+    const route = useRoute()
+    const shopInfo = ref<any>({})
+    const getShopInfo = async () => {
+      const result = await get(`/api/shop/${route.params.id}`)
+      shopInfo.value = result.data.shopInfo
     }
+    getShopInfo()
     const router = useRouter()
     const handleBackClick = () => {
       router.back()
     }
     return {
-      item,
+      shopInfo,
       handleBackClick
     }
   }
