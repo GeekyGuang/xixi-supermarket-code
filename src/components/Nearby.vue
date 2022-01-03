@@ -23,13 +23,22 @@
 <script lang="ts">
 import {get} from '@/utils/request'
 import {ref} from 'vue'
-export default {
-  setup(){
+const useNearbyListEffect = () => {
     const nearbyList = ref([])
     const getNearbyList = async () => {
       const result = await get('/api/shop/hot-list')
       nearbyList.value = result.data
     }
+
+    return {
+      nearbyList,
+      getNearbyList
+    }
+}
+
+export default {
+  setup(){
+    const {nearbyList, getNearbyList} = useNearbyListEffect()
     getNearbyList()
 
     return {
