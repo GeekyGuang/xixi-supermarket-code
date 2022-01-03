@@ -52,6 +52,10 @@ export default {
     flex-shrink: 1;
     overflow: auto;
 
+    :deep(.search-wrapper) {
+        margin: 0 18px 12px;
+    }
+
     .main {
       flex-shrink: 1;
       overflow-x: auto;
