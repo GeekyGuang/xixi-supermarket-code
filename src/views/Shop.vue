@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <Icon icon_name="left" />
+    <Icon icon_name="left" @click="handleBackClick"/>
     <Search placeholder="请输入商品名称搜索"/>
   </div>
   <div class="shop-wrapper">
@@ -13,6 +13,7 @@
 import ShopInfo from '@/components/ShopInfo.vue'
 import Search from '@/components/Search.vue'
 import Icon from '@/components/Icon.vue'
+import { useRouter } from 'vue-router'
 export default {
   components: { ShopInfo, Search, Icon },
   setup(){
@@ -25,8 +26,13 @@ export default {
       expressPrice: "5",
       slogan: "VIP尊享满89减4元运费券"
     }
+    const router = useRouter()
+    const handleBackClick = () => {
+      router.back()
+    }
     return {
-      item
+      item,
+      handleBackClick
     }
   }
   }
@@ -45,9 +51,12 @@ export default {
   padding: 16px 18px 16px 12px;
   display: flex;
   align-items: center;
-  :deep(.left) > .icon{
+  :deep(.left) {
+    cursor: pointer;
+    > .icon{
     color: #B6B6B6 ;
     height: 22px;
+  }
   }
 
   :deep(.search-wrapper) {
