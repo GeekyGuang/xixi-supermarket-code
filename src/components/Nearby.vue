@@ -2,18 +2,18 @@
         <div class="nearby">
         <h1>附近店铺</h1>
         <ul>
-          <li v-for="info in infoList" :key="info.id">
+          <li v-for="info in nearbyList" :key="info._id">
             <div class="shop-img">
               <img :src="info.imgUrl" alt="">
             </div>
             <div class="shop-info">
-              <h2 class="shop-name">{{info.shopName}}</h2>
+              <h2 class="shop-name">{{info.name}}</h2>
               <p class="shop-data">
-                <span >月售{{info.shopData.sale}}万+</span>
-                <span>起送￥{{info.shopData.start}}</span>
-                <span>基础运费￥{{info.shopData.baseFee}}</span>
+                <span >月售{{info.sales}}</span>
+                <span>起送￥{{info.expressLimit}}</span>
+                <span>基础运费￥{{info.expressPrice}}</span>
               </p>
-              <p class="discount">{{info.discount}}</p>
+              <p class="discount">{{info.slogan}}</p>
             </div>
           </li>
         </ul>
@@ -21,28 +21,19 @@
 </template>
 
 <script lang="ts">
+import {get} from '@/utils/request'
+import {ref} from 'vue'
 export default {
   setup(){
-    const infoList = [
-      {id: 1,
-      shopName: '沃尔玛',
-      imgUrl: require('../assets/images/wowmall.png'),
-      shopData: [{sale: '1', start: '0', baseFee: '5'}],
-      discount: 'VIP尊享满89元减4元运费券 (每月3张)'},
-      {id: 2,
-      shopName: '沃尔玛',
-      imgUrl: require('../assets/images/wowmall.png'),
-      shopData: {sale: '1', start: '0', baseFee: '5'},
-      discount: 'VIP尊享满89元减4元运费券 (每月3张)'},
-      {id: 3,
-      shopName: '沃尔玛',
-      imgUrl: require('../assets/images/wowmall.png'),
-      shopData: [{sale: '1', start: '0', baseFee: '5'}],
-      discount: 'VIP尊享满89元减4元运费券 (每月3张)'},
-    ]
+    const nearbyList = ref([])
+    const getNearbyList = async () => {
+      const result = await get('/api/shop/hot-list')
+      nearbyList.value = result.data
+    }
+    getNearbyList()
 
     return {
-      infoList
+      nearbyList
     }
   }
 }

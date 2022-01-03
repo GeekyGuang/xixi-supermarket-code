@@ -8,6 +8,9 @@ const post = async (url: string, data: any = {}) => {
   return response.data
 }
 
-export default {
-  post,
+const get = async (url: string) => {
+  const response = await axios.get(url)
+  return response.data
 }
+
+export { post, get }

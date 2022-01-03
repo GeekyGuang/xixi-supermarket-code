@@ -21,7 +21,7 @@
 import { useRouter } from 'vue-router'
 import Toast, {useToastEffect} from '@/components/Toast.vue'
 import { reactive, toRefs } from '@vue/reactivity'
-import service from '@/utils/request'
+import {post} from '@/utils/request'
 
 export default {
   components: {
@@ -74,7 +74,7 @@ const useRegisterEffect = (showToast) => {
       }
 
       try {
-        const result = await service.post('/user/login', {
+        const result = await post('/user/login', {
           username: username.value,
           password: password.value
         })
