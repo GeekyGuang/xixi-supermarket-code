@@ -2,7 +2,7 @@
   <div class="content">
     <ul class="categories">
        <li :class="{categories__active: checkedTab === item.tab}"
-           v-for="item in categories"
+           v-for="item in CATEGORIES"
            :key="item.tab"
            @click="handleTabClick(item.tab)"
            >{{item.name}}</li>
@@ -34,50 +34,68 @@
 <script lang="ts">
 import Icon from "./Icon.vue";
 import { get } from "@/utils/request";
-import { ref } from '@vue/reactivity';
+import { ref} from '@vue/reactivity';
 import { useRoute } from 'vue-router';
+import { watchEffect } from '@vue/runtime-core';
 
-export default {
-    components: { Icon },
-    setup(){
-      const checkedTab = ref('all')
-      const handleTabClick = (tab:string) => {
-        checkedTab.value = tab
-        getProducts()
-      }
-      const categories = [
-        {
-          name: '全部商品',
-          tab: 'all'
-        },
-        {
-          name: '秒杀',
-          tab: 'seckill'
-        },
-        {
-          name: '新鲜水果',
-          tab: 'fruit'
-        },
-        {
-          name: '休闲食品',
-          tab: 'snacks'
-        },
-        {
-          name: '时令蔬菜',
-          tab: 'vegetables'
-        }
-      ]
+const CATEGORIES = [
+  {
+    name: '全部商品',
+    tab: 'all'
+  },
+  {
+    name: '秒杀',
+    tab: 'seckill'
+  },
+  {
+    name: '新鲜水果',
+    tab: 'fruit'
+  },
+  {
+    name: '休闲食品',
+    tab: 'snacks'
+  },
+  {
+    name: '时令蔬菜',
+    tab: 'vegetables'
+  }
+]
+
+const useGetProductsEffect = (checkedTab) => {
       const products = ref([])
       const route = useRoute()
       const getProducts = async () => {
         const result = await get(`/api/shop/${route.params.id}/products`, {tab: checkedTab.value})
         products.value = result.data
       }
-      getProducts()
+      watchEffect(() => getProducts())
+
+      return {
+        products
+      }
+}
+
+const useCheckTabEffect = () => {
+      const checkedTab = ref(CATEGORIES[0].tab)
+      const handleTabClick = (tab:string) => {
+        checkedTab.value = tab
+      }
+
+      return {
+        checkedTab,
+        handleTabClick
+      }
+}
+
+export default {
+    components: { Icon },
+    setup(){
+      const {checkedTab, handleTabClick} = useCheckTabEffect()
+      const {products} = useGetProductsEffect(checkedTab)
 
       return {
         products,
-        categories,
+        CATEGORIES,
         checkedTab,
         handleTabClick
       }
