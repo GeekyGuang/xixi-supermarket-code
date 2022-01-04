@@ -9,17 +9,17 @@
        <li>肉蛋家禽</li>
     </ul>
     <ul class="goods">
-      <li class="goods_item">
+      <li class="goods_item" v-for="item in products" :key="item._id">
         <div class="img">
-          <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.duobiji.com%2Fwp-content%2Fuploads%2F2020%2F12%2F2020123102010368.jpg&refer=http%3A%2F%2Fwww.duobiji.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643855892&t=0495bf5afaa3059ec96ac764a9ae8fa2" alt="">
+          <img :src="item.imgUrl" alt="">
         </div>
         <div class="info">
-          <h2 clas="info_name">番茄250g/份</h2>
-          <div class="info_sale">月售10件</div>
+          <h2 clas="info_name">{{item.name}}</h2>
+          <div class="info_sale">月售 {{item.sales}} 件</div>
           <div class="info_bottom">
-            <div class="new_price">&yen;33.6
+            <div class="new_price">&yen;{{item.price}}
             </div>
-            <div class="old_price">&yen;33.6
+            <div class="old_price">&yen;{{item.oldPrice}}
             </div>
             <div class="manipulate_button">
               <Icon icon_name="minus" />
@@ -34,8 +34,24 @@
 </template>
 <script lang="ts">
 import Icon from "./Icon.vue";
+import { get } from "@/utils/request";
+import { ref } from '@vue/reactivity';
+import { useRoute } from 'vue-router';
 export default {
-    components: { Icon }
+    components: { Icon },
+    setup(){
+      const products = ref([])
+      const route = useRoute()
+      const getProducts = async () => {
+        const result = await get(`/api/shop/${route.params.id}/products`, {tab: 'all'})
+        products.value = result.data
+      }
+      getProducts()
+
+      return {
+        products
+      }
+    }
 }
 </script>
 <style lang="scss" scoped>
