@@ -11,8 +11,8 @@ const post = async (url: string, data: any = {}) => {
   return response.data
 }
 
-const get = async (url: string) => {
-  const response = await instance.get(url)
+const get = async (url: string, params: any = {}) => {
+  const response = await instance.get(url, { params })
   return response.data
 }
 
