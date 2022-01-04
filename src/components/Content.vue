@@ -1,12 +1,11 @@
 <template>
   <div class="content">
     <ul class="categories">
-       <li class="categories__active">全部商品</li>
-       <li>秒杀</li>
-       <li>新鲜水果</li>
-       <li>休闲食品</li>
-       <li>时令蔬菜</li>
-       <li>肉蛋家禽</li>
+       <li :class="{categories__active: checkedTab === item.tab}"
+           v-for="item in categories"
+           :key="item.tab"
+           @click="handleTabClick(item.tab)"
+           >{{item.name}}</li>
     </ul>
     <ul class="goods">
       <li class="goods_item" v-for="item in products" :key="item._id">
@@ -37,19 +36,50 @@ import Icon from "./Icon.vue";
 import { get } from "@/utils/request";
 import { ref } from '@vue/reactivity';
 import { useRoute } from 'vue-router';
+
 export default {
     components: { Icon },
     setup(){
+      const checkedTab = ref('all')
+      const handleTabClick = (tab:string) => {
+        checkedTab.value = tab
+        getProducts()
+      }
+      const categories = [
+        {
+          name: '全部商品',
+          tab: 'all'
+        },
+        {
+          name: '秒杀',
+          tab: 'seckill'
+        },
+        {
+          name: '新鲜水果',
+          tab: 'fruit'
+        },
+        {
+          name: '休闲食品',
+          tab: 'snacks'
+        },
+        {
+          name: '时令蔬菜',
+          tab: 'vegetables'
+        }
+      ]
       const products = ref([])
       const route = useRoute()
       const getProducts = async () => {
-        const result = await get(`/api/shop/${route.params.id}/products`, {tab: 'all'})
+        const result = await get(`/api/shop/${route.params.id}/products`, {tab: checkedTab.value})
         products.value = result.data
       }
       getProducts()
 
       return {
-        products
+        products,
+        categories,
+        checkedTab,
+        handleTabClick
       }
     }
 }
