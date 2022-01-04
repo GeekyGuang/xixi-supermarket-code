@@ -50,7 +50,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
-    overflow: auto;
+    overflow: hidden;
 
     :deep(.search-wrapper) {
         margin: 0 18px 12px;
@@ -58,8 +58,8 @@ export default {
 
     .main {
       flex-shrink: 1;
-      overflow-x: auto;
-      overflow-y: auto;
+      // overflow-x: auto;
+      overflow-y: scroll;
 
       &::-webkit-scrollbar {
             display:none
