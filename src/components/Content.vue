@@ -8,9 +8,23 @@
        <li>时令蔬菜</li>
        <li>肉蛋家禽</li>
     </ul>
-    <div class="goods">
-
-    </div>
+    <ul class="goods">
+      <li class="goods_item">
+        <div class="img">
+          <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.duobiji.com%2Fwp-content%2Fuploads%2F2020%2F12%2F2020123102010368.jpg&refer=http%3A%2F%2Fwww.duobiji.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643855892&t=0495bf5afaa3059ec96ac764a9ae8fa2" alt="">
+        </div>
+        <div class="info">
+          <h2 clas="info_name">番茄250g/份</h2>
+          <div class="info_sale">月售10件</div>
+          <div class="info_bottom">
+            <div class="new_price">&yen;33.6
+            </div>
+            <div class="old_price">&yen;33.6
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 <script lang="ts">
@@ -19,16 +33,93 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~@/style/helpers.scss';
   .content {
     flex-grow: 1;
     flex-shrink: 1;
     overflow: hidden;
+    display: flex;
+
+    .goods {
+      padding: 0 16px;
+      flex-grow: 1;
+      overflow-x: hidden;
+      overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display:none
+        }
+
+      > .goods_item {
+        display: flex;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #F1F1F1;
+        margin-bottom: 12px;
+
+        .info {
+          flex-grow: 1;
+          overflow: hidden;
+          height: 68px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+
+          > h2 {
+            line-height: 20px;
+            font-size: 14px;
+
+            @extend %ellipsis;
+          }
+
+          &_sale {
+            line-height: 16px;
+            font-size: 12px;
+          }
+
+          &_bottom {
+            display: flex;
+            align-items: center;
+            .new_price {
+              line-height: 20px;
+              font-size: 16px;
+              color: #E93B3B;
+            }
+
+            .old_price {
+              line-height: 16px;
+              font-size: 12px;
+              color: #999999;
+              text-decoration: line-through;
+              margin-left: 6px;
+            }
+          }
+        }
+        .img {
+          width: 68px;
+          height: 68px;
+          margin-right: 16px;
+          flex-shrink: 0;
+
+          > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+    }
 
     .categories {
       width: 76px;
       height: 100%;
       background:  #F5F5F5;
       overflow-y: scroll;
+      flex-shrink: 0;
+
+      &::-webkit-scrollbar {
+            display:none
+      }
 
       &__active {
         background: white;
