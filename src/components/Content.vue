@@ -21,6 +21,11 @@
             </div>
             <div class="old_price">&yen;33.6
             </div>
+            <div class="manipulate_button">
+              <Icon icon_name="minus" />
+              <span>88</span>
+              <Icon icon_name="add" />
+            </div>
           </div>
         </div>
       </li>
@@ -28,8 +33,9 @@
   </div>
 </template>
 <script lang="ts">
+import Icon from "./Icon.vue";
 export default {
-
+    components: { Icon }
 }
 </script>
 <style lang="scss" scoped>
@@ -62,6 +68,31 @@ export default {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+
+          .manipulate_button {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: auto;
+            :deep(.add) {
+              color: #0091FF;
+              // background: white;
+              > .icon {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+            :deep(.minus) {
+              color: #666666;
+              > .icon {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+
+          }
 
 
           > h2 {
