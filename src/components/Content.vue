@@ -75,7 +75,7 @@ export default {
             align-items: center;
             margin-left: auto;
             :deep(.add) {
-              color: #0091FF;
+              color: $blue-button-color;
               // background: white;
               > .icon {
                 width: 20px;
@@ -113,15 +113,15 @@ export default {
             .new_price {
               line-height: 20px;
               font-size: 16px;
-              color: #E93B3B;
+              color: $red-highlight-color;
             }
 
             .old_price {
-              line-height: 16px;
+              line-height: 20px;
               font-size: 12px;
               color: #999999;
               text-decoration: line-through;
-              margin-left: 6px;
+              margin-left: 8px;
             }
           }
         }
@@ -144,7 +144,7 @@ export default {
     .categories {
       width: 76px;
       height: 100%;
-      background:  #F5F5F5;
+      background:  $grey-background;
       overflow-y: scroll;
       flex-shrink: 0;
 

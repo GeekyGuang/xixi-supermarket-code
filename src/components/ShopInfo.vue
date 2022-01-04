@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/style/helpers.scss';
 .shop {
   display: flex;
   padding-bottom: 12px;
@@ -55,7 +56,7 @@ export default {
   .discount {
     line-height: 18px;
     font-size: 13px;
-    color: #E93B3B;
+    color: $red-highlight-color;
     margin-bottom: 12px;
   }
 }

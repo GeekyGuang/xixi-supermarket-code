@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/style/helpers.scss';
 .login {
   display: flex;
   flex-direction: column;
@@ -126,7 +127,7 @@ export default {
 
   button {
     border: none;
-    background: #0091FF;
+    background: $blue-button-color;
     box-shadow: 0 4px 8px 0 rgba(0,145,255,0.32);
     border-radius: 4px;
     width: 100%;

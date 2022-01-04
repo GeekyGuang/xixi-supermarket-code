@@ -16,10 +16,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $grey-font: #B7B7B7;
+@import '~@/style/helpers.scss';
+
   .search-wrapper {
     display: flex;
-    background: #F5F5F5;
+    background: $grey-background;
     height: 32px;
     flex-shrink: 0;
     border-radius: 32px;
