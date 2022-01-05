@@ -18,7 +18,7 @@ import Icon from '@/components/Icon.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { get } from '@/utils/request'
 import { ref } from '@vue/reactivity'
-import Content from '@/components/Content.vue'
+import Content from '@/views/shop/Content.vue'
 
 const useGetShopInfoEffect = () => {
     const route = useRoute()
