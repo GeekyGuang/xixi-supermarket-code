@@ -8,6 +8,7 @@
       <shopInfo :info="shopInfo" v-show="shopInfo.imgUrl"/>
     </div>
     <Content />
+    <Cart />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { get } from '@/utils/request'
 import { ref } from '@vue/reactivity'
 import Content from '@/views/shop/Content.vue'
+import Cart from './Cart.vue'
 
 const useGetShopInfoEffect = () => {
     const route = useRoute()
@@ -45,7 +47,7 @@ const useBackRouterEffect = () => {
 }
 
 export default {
-  components: { ShopInfo, Search, Icon, Content },
+  components: { ShopInfo, Search, Icon, Content, Cart },
   setup(){
    const {shopInfo, getShopInfo} = useGetShopInfoEffect()
    getShopInfo()
