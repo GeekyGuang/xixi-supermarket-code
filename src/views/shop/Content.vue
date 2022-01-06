@@ -22,8 +22,8 @@
             </div>
             <div class="manipulate_button">
               <Icon icon_name="minus" />
-              <span>88</span>
-              <Icon icon_name="add" />
+              <span>{{cartList?.[shopId]?.[item._id]?.count || 0}}</span>
+              <Icon icon_name="add" @click="handleAddToCart(shopId,item)"/>
             </div>
           </div>
         </div>
@@ -34,9 +34,10 @@
 <script lang="ts">
 import Icon from "@/components/Icon.vue";
 import { get } from "@/utils/request";
-import { ref} from '@vue/reactivity';
+import { ref, toRefs} from '@vue/reactivity';
 import { useRoute } from 'vue-router';
 import { watchEffect } from '@vue/runtime-core';
+import { useStore } from 'vuex';
 
 const CATEGORIES = [
   {
@@ -61,11 +62,10 @@ const CATEGORIES = [
   }
 ]
 
-const useGetProductsEffect = (checkedTab) => {
+const useGetProductsEffect = (checkedTab, shopId) => {
       const products = ref([])
-      const route = useRoute()
       const getProducts = async () => {
-        const result = await get(`/api/shop/${route.params.id}/products`, {tab: checkedTab.value})
+        const result = await get(`/api/shop/${shopId}/products`, {tab: checkedTab.value})
         products.value = result.data
       }
       watchEffect(() => getProducts())
@@ -87,17 +87,36 @@ const useCheckTabEffect = () => {
       }
 }
 
+const useCartEffect = () => {
+    const store = useStore()
+      const {cartList} = toRefs(store.state)
+      const handleAddToCart = (shopId,productInfo) => {
+        store.commit('addToCart', {shopId, productInfo})
+      }
+
+    return {
+      cartList,
+      handleAddToCart
+    }
+}
+
 export default {
     components: { Icon },
     setup(){
       const {checkedTab, handleTabClick} = useCheckTabEffect()
-      const {products} = useGetProductsEffect(checkedTab)
+      const route = useRoute()
+      const shopId = route.params.id
+      const {products} = useGetProductsEffect(checkedTab, shopId)
+      const { cartList,handleAddToCart } = useCartEffect()
 
       return {
         products,
         CATEGORIES,
         checkedTab,
-        handleTabClick
+        handleTabClick,
+        handleAddToCart,
+        cartList,
+        shopId
       }
     }
 }
