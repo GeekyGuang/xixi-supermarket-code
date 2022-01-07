@@ -2,11 +2,11 @@
   <div class="cart">
     <div class="basket-wrapper">
        <Icon icon_name="basket" />
-       <div class="notice">2</div>
+       <div class="notice">{{count}}</div>
     </div>
     <div class="total">
       <span>合计:</span>
-      <span>&yen;288元</span>
+      <span>&yen; {{total}}</span>
     </div>
     <div class="checkout-button">
       去结算
@@ -17,8 +17,51 @@
 
 <script lang="ts">
 import Icon from "@/components/Icon.vue";
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+import { computed } from '@vue/reactivity';
+
+const useCartEffect = () => {
+      const route = useRoute()
+      const shopId = route.params.id
+      const store = useStore()
+      const count = computed(() => {
+        let total = 0
+        const productList = store.state.cartList[`${shopId}`]
+        if(productList){
+           for (const i in productList) {
+             total += productList[i].count
+           }
+        }
+        return total
+
+      })
+
+      const total = computed(() => {
+        let total = 0
+        const productList = store.state.cartList[`${shopId}`]
+        if(productList){
+           for (const i in productList) {
+             total += (productList[i].count * productList[i].price)
+           }
+        }
+        return total.toFixed(2)
+      })
+      return {
+        count, total
+      }
+}
+
 export default {
-    components: { Icon }
+    components: { Icon },
+    setup(){
+      const {count, total} = useCartEffect()
+
+      return {
+        count,
+        total
+      }
+    }
 }
 </script>
 
