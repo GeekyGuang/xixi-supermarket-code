@@ -2,7 +2,7 @@
   <div class="cart">
     <div class="basket-wrapper">
        <Icon icon_name="basket" />
-       <div class="notice">1</div>
+       <div class="notice">2</div>
     </div>
     <div class="total">
       <span>合计:</span>
@@ -59,17 +59,19 @@ export default {
     margin-left: 24px;
     margin-right: 32px;
     .notice {
-      width: 20px;
+      min-width: 20px;
       height: 20px;
       line-height: 20px;
       background: #E93B3B;
       color: white;
       font-size: 16px;
-      border-radius: 50%;
+      border-radius: 10px;
       text-align: center;
       transform: scale(.5);
+      transform-origin: left center;
       position: absolute;
-      right: -8px;
+      padding: 0 5px;
+      left: 20px;
       top: -8px;
     }
     :deep(.basket) > .icon {
