@@ -21,9 +21,9 @@
             <div class="old_price">&yen;{{item.oldPrice}}
             </div>
             <div class="manipulate_button">
-              <Icon icon_name="minus" />
+              <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
               <span>{{cartList?.[shopId]?.[item._id]?.count || 0}}</span>
-              <Icon icon_name="add" @click="handleAddToCart(shopId,item)"/>
+              <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
             </div>
           </div>
         </div>
@@ -90,13 +90,13 @@ const useCheckTabEffect = () => {
 const useCartEffect = () => {
     const store = useStore()
       const {cartList} = toRefs(store.state)
-      const handleAddToCart = (shopId,productInfo) => {
-        store.commit('addToCart', {shopId, productInfo})
+      const handleChangeCartItemInfo = (shopId,productId,productInfo, num) => {
+        store.commit('changeCartItemInfo', {shopId,productId,productInfo, num})
       }
 
     return {
       cartList,
-      handleAddToCart
+      handleChangeCartItemInfo
     }
 }
 
@@ -107,14 +107,14 @@ export default {
       const route = useRoute()
       const shopId = route.params.id
       const {products} = useGetProductsEffect(checkedTab, shopId)
-      const { cartList,handleAddToCart } = useCartEffect()
+      const { cartList,handleChangeCartItemInfo } = useCartEffect()
 
       return {
         products,
         CATEGORIES,
         checkedTab,
         handleTabClick,
-        handleAddToCart,
+        handleChangeCartItemInfo,
         cartList,
         shopId
       }
