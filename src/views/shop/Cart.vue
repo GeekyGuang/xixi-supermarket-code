@@ -30,11 +30,14 @@
     </div>
     <div class="basket-wrapper" @click="handleCartIconClick">
        <Icon icon_name="basket" />
-       <div class="notice">{{count}}</div>
+       <div class="notice" v-if="count > 0">{{count}}</div>
     </div>
-    <div class="total">
+    <div class="total" v-if="count > 0">
       <span>合计:</span>
       <span>&yen; {{total}}</span>
+    </div>
+    <div class="total" v-else>
+      <span>购物车是空的</span>
     </div>
     <div class="checkout-button">
       去结算
