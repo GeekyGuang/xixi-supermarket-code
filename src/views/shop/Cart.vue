@@ -4,6 +4,9 @@
     <ul class="goods">
       <template v-for="item in productList" :key="item._id">
         <li class="goods_item"  v-if="item.count">
+          <div class="check-button" @click="changeCartItemChecked(shopId, item._id)">
+            <Icon :icon_name="item.checked ? 'checked':'check-circle' " />
+          </div>
           <div class="img">
             <img :src="item.imgUrl" alt="">
           </div>
@@ -81,8 +84,12 @@ const useCartEffect = () => {
         return total.toFixed(2)
       })
 
+      const changeCartItemChecked = (shopId, productId) => {
+        store.commit('changeCartItemChecked', {shopId, productId})
+      }
+
       return {
-        count, total,productList,shopId
+        count, total,productList,shopId,changeCartItemChecked
       }
 }
 
@@ -93,7 +100,7 @@ export default {
       const handleCartIconClick = () => {
         showCartDetail.value = !showCartDetail.value;
       }
-      const {count, total,productList,shopId} = useCartEffect()
+      const {count, total,productList,shopId,changeCartItemChecked} = useCartEffect()
       const {handleChangeCartItemInfo} = useCommonCartEffect()
 
       return {
@@ -103,7 +110,8 @@ export default {
         handleChangeCartItemInfo,
         shopId,
         handleCartIconClick,
-        showCartDetail
+        showCartDetail,
+        changeCartItemChecked
       }
     }
 }
@@ -146,6 +154,24 @@ export default {
         // border-bottom: 1px solid #F1F1F1;
         // margin-bottom: 12px;
 
+        .check-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding:0 18px 0 2px;
+
+          :deep(.icon) {
+            width: 23px;
+            height: 23px;
+          }
+
+          :deep(.check-circle) {
+            color: #666;
+          }
+          :deep(.checked) {
+            color: #0091FF;
+          }
+        }
         .info {
           flex-grow: 1;
           overflow: hidden;
