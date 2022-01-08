@@ -1,6 +1,7 @@
 <template>
   <div class="checkout">
-    <div class="cart-detail" v-if="showCartDetail">
+    <div class="mask" v-if="showCartDetail && count > 0" @click="handleCartIconClick"></div>
+    <div class="cart-detail" v-if="showCartDetail && count > 0">
     <div class="cart-header" v-if="count > 0">
       <div class="checkAll" @click="setCartItemsAllChecked(shopId, allChecked)">
           <div class="check-button">
@@ -38,20 +39,23 @@
       </template>
     </ul>
     </div>
-    <div class="basket-wrapper" @click="handleCartIconClick">
-       <Icon icon_name="basket" />
-       <div class="notice" v-if="count > 0">{{count}}</div>
+    <div class="bottom-wrapper">
+      <div class="basket-wrapper" @click="handleCartIconClick">
+        <Icon icon_name="basket" />
+        <div class="notice" v-if="count > 0">{{count}}</div>
+      </div>
+      <div class="total" v-if="count > 0">
+        <span>合计:</span>
+        <span>&yen; {{total}}</span>
+      </div>
+      <div class="total" v-else>
+        <span>购物车是空的</span>
+      </div>
+      <div class="checkout-button">
+        去结算
+      </div>
     </div>
-    <div class="total" v-if="count > 0">
-      <span>合计:</span>
-      <span>&yen; {{total}}</span>
-    </div>
-    <div class="total" v-else>
-      <span>购物车是空的</span>
-    </div>
-    <div class="checkout-button">
-      去结算
-    </div>
+
 
   </div>
 </template>
@@ -103,8 +107,19 @@ const useCartEffect = () => {
         store.commit('changeCartItemChecked', {shopId, productId})
       }
 
+      const showCartDetail = ref(false)
+      const handleCartIconClick = () => {
+        if(count.value > 0){
+          showCartDetail.value = !showCartDetail.value;
+        } else {
+          showCartDetail.value = false
+        }
+
+      }
+
       const clearCartItems = (shopId) => {
         store.commit('clearCartItems', {shopId})
+        showCartDetail.value = false
       }
 
       const allChecked = computed(() => {
@@ -126,19 +141,18 @@ const useCartEffect = () => {
       }
 
       return {
-        count, total,productList,shopId,changeCartItemChecked,clearCartItems, allChecked,setCartItemsAllChecked
+        count, total,productList,shopId,changeCartItemChecked,clearCartItems,
+        allChecked,setCartItemsAllChecked,handleCartIconClick,showCartDetail
       }
 }
 
 export default {
     components: { Icon },
     setup(){
-      const showCartDetail = ref(false)
-      const handleCartIconClick = () => {
-        showCartDetail.value = !showCartDetail.value;
-      }
+
       const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
-          allChecked,setCartItemsAllChecked} = useCartEffect()
+          allChecked,setCartItemsAllChecked,handleCartIconClick,
+        showCartDetail,} = useCartEffect()
       const {handleChangeCartItemInfo} = useCommonCartEffect()
 
       return {
@@ -161,14 +175,16 @@ export default {
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';
 .checkout {
-  height: 48px;
-  box-shadow: 0 -1px 1px #F1F1F1;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 3;
-  position: relative;
 
+  .mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.50);
+    z-index: 1;
+  }
   .cart-detail {
     position: absolute;
     left: 0;
@@ -178,6 +194,7 @@ export default {
     box-shadow: inset 0 -1px 1px -1px rgba(0, 0, 0, .5);
     background: white;
     overflow: scroll;
+    z-index: 2;
     &::-webkit-scrollbar {
           display:none
         }
@@ -317,6 +334,16 @@ export default {
 
     }
   }
+
+  > .bottom-wrapper {
+  height: 48px;
+  box-shadow: 0 -1px 1px #F1F1F1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  position: relative;
+  background: white;
   > .checkout-button {
     line-height: 20px;
     font-size: 14px;
@@ -366,6 +393,8 @@ export default {
       height: 28px;
     }
   }
+  }
+
 
 
 
