@@ -45,6 +45,7 @@ import Icon from "@/components/Icon.vue";
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed, ref } from '@vue/reactivity';
+import {useCommonCartEffect} from './commonCartEffect'
 
 const useCartEffect = () => {
       const route = useRoute()
@@ -80,12 +81,8 @@ const useCartEffect = () => {
         return total.toFixed(2)
       })
 
-      const handleChangeCartItemInfo = (shopId,productId,productInfo, num) => {
-        store.commit('changeCartItemInfo', {shopId,productId,productInfo, num})
-      }
-
       return {
-        count, total,productList,handleChangeCartItemInfo,shopId
+        count, total,productList,shopId
       }
 }
 
@@ -96,7 +93,8 @@ export default {
       const handleCartIconClick = () => {
         showCartDetail.value = !showCartDetail.value;
       }
-      const {count, total,productList,handleChangeCartItemInfo,shopId} = useCartEffect()
+      const {count, total,productList,shopId} = useCartEffect()
+      const {handleChangeCartItemInfo} = useCommonCartEffect()
 
       return {
         count,

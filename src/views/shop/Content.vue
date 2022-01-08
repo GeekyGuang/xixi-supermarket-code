@@ -34,10 +34,10 @@
 <script lang="ts">
 import Icon from "@/components/Icon.vue";
 import { get } from "@/utils/request";
-import { ref, toRefs} from '@vue/reactivity';
+import { ref, } from '@vue/reactivity';
 import { useRoute } from 'vue-router';
 import { watchEffect } from '@vue/runtime-core';
-import { useStore } from 'vuex';
+import {useCommonCartEffect} from './commonCartEffect'
 
 const CATEGORIES = [
   {
@@ -87,19 +87,6 @@ const useCheckTabEffect = () => {
       }
 }
 
-const useCartEffect = () => {
-    const store = useStore()
-      const {cartList} = toRefs(store.state)
-      const handleChangeCartItemInfo = (shopId,productId,productInfo, num) => {
-        store.commit('changeCartItemInfo', {shopId,productId,productInfo, num})
-      }
-
-    return {
-      cartList,
-      handleChangeCartItemInfo
-    }
-}
-
 export default {
     components: { Icon },
     setup(){
@@ -107,7 +94,7 @@ export default {
       const route = useRoute()
       const shopId = route.params.id
       const {products} = useGetProductsEffect(checkedTab, shopId)
-      const { cartList,handleChangeCartItemInfo } = useCartEffect()
+      const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
 
       return {
         products,
