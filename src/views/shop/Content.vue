@@ -22,7 +22,7 @@
             </div>
             <div class="manipulate_button">
               <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
-              <span>{{item.count || 0}}</span>
+              <span>{{cartList?.[shopId]?.[item._id]?.count || 0}}</span>
               <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default {
       const route = useRoute()
       const shopId = route.params.id
       const {products} = useGetProductsEffect(checkedTab, shopId)
-      const { handleChangeCartItemInfo } = useCommonCartEffect()
+      const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
 
       return {
         products,
@@ -102,7 +102,8 @@ export default {
         checkedTab,
         handleTabClick,
         handleChangeCartItemInfo,
-        shopId
+        shopId,
+        cartList
       }
     }
 }

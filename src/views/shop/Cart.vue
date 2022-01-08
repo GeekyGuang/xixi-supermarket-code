@@ -1,6 +1,15 @@
 <template>
   <div class="checkout">
     <div class="cart-detail" v-if="showCartDetail">
+    <div class="cart-header" v-if="count > 0">
+      <div class="checkAll">
+          <div class="check-button">
+            <Icon :icon_name="true ? 'checked':'check-circle' " />
+          </div>
+          <span>全选</span>
+      </div>
+      <div class="clear" @click="clearCartItems(shopId)">清空购物车</div>
+    </div>
     <ul class="goods">
       <template v-for="item in productList" :key="item._id">
         <li class="goods_item"  v-if="item.count">
@@ -93,8 +102,12 @@ const useCartEffect = () => {
         store.commit('changeCartItemChecked', {shopId, productId})
       }
 
+      const clearCartItems = (shopId) => {
+        store.commit('clearCartItems', {shopId})
+      }
+
       return {
-        count, total,productList,shopId,changeCartItemChecked
+        count, total,productList,shopId,changeCartItemChecked,clearCartItems
       }
 }
 
@@ -105,7 +118,7 @@ export default {
       const handleCartIconClick = () => {
         showCartDetail.value = !showCartDetail.value;
       }
-      const {count, total,productList,shopId,changeCartItemChecked} = useCartEffect()
+      const {count, total,productList,shopId,changeCartItemChecked,clearCartItems} = useCartEffect()
       const {handleChangeCartItemInfo} = useCommonCartEffect()
 
       return {
@@ -116,7 +129,8 @@ export default {
         shopId,
         handleCartIconClick,
         showCartDetail,
-        changeCartItemChecked
+        changeCartItemChecked,
+        clearCartItems
       }
     }
 }
@@ -145,6 +159,48 @@ export default {
     &::-webkit-scrollbar {
           display:none
         }
+
+    .cart-header {
+      display: flex;
+      padding: 0 16px;
+      font-size: 14px;
+      line-height: 16px;
+      align-items: center;
+      height: 54px;
+      border-bottom: 1px solid  #F1F1F1;
+      .checkAll {
+        display: flex;
+        align-items: center;
+
+        span{
+          margin-left: -10px;
+        }
+      }
+
+      .clear {
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+
+    .check-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:0 18px 0 2px;
+
+      :deep(.icon) {
+        width: 23px;
+        height: 23px;
+      }
+
+      :deep(.check-circle) {
+        color: #666;
+      }
+      :deep(.checked) {
+        color: #0091FF;
+      }
+    }
      .goods {
       flex-grow: 1;
       overflow-x: hidden;
@@ -159,24 +215,6 @@ export default {
         // border-bottom: 1px solid #F1F1F1;
         // margin-bottom: 12px;
 
-        .check-button {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding:0 18px 0 2px;
-
-          :deep(.icon) {
-            width: 23px;
-            height: 23px;
-          }
-
-          :deep(.check-circle) {
-            color: #666;
-          }
-          :deep(.checked) {
-            color: #0091FF;
-          }
-        }
         .info {
           flex-grow: 1;
           overflow: hidden;
