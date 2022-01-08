@@ -2,25 +2,27 @@
   <div class="checkout">
     <div class="cart-detail" v-if="showCartDetail">
     <ul class="goods">
-      <li class="goods_item" v-for="item in productList" :key="item._id">
-        <div class="img">
-          <img :src="item.imgUrl" alt="">
-        </div>
-        <div class="info">
-          <h2 clas="info_name">{{item.name}}</h2>
-          <div class="info_bottom">
-            <div class="new_price">&yen;{{item.price}}
-            </div>
-            <div class="old_price">&yen;{{item.oldPrice}}
-            </div>
-            <div class="manipulate_button">
-              <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
-              <span>{{item.count || 0}}</span>
-              <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
+      <template v-for="item in productList" :key="item._id">
+        <li class="goods_item"  v-if="item.count">
+          <div class="img">
+            <img :src="item.imgUrl" alt="">
+          </div>
+          <div class="info">
+            <h2 clas="info_name">{{item.name}}</h2>
+            <div class="info_bottom">
+              <div class="new_price">&yen;{{item.price}}
+              </div>
+              <div class="old_price">&yen;{{item.oldPrice}}
+              </div>
+              <div class="manipulate_button">
+                <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
+                <span>{{item.count || 0}}</span>
+                <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      </template>
     </ul>
     </div>
     <div class="basket-wrapper" @click="handleCartIconClick">
@@ -125,8 +127,13 @@ export default {
     left: 0;
     bottom: 48px;
     width: 100%;
+    max-height: 50vh;
     box-shadow: inset 0 -1px 1px -1px rgba(0, 0, 0, .5);
     background: white;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+          display:none
+        }
      .goods {
       flex-grow: 1;
       overflow-x: hidden;
