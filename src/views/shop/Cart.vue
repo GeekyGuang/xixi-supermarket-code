@@ -78,7 +78,9 @@ const useCartEffect = () => {
         const productList = store.state.cartList[`${shopId}`]
         if(productList){
            for (const i in productList) {
-             total += (productList[i].count * productList[i].price)
+             if(productList[i].checked){
+                total += (productList[i].count * productList[i].price)
+             }
            }
         }
         return total.toFixed(2)
