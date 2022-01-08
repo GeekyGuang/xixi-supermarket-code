@@ -1,6 +1,29 @@
 <template>
-  <div class="cart">
-    <div class="basket-wrapper">
+  <div class="checkout">
+    <div class="cart-detail" v-if="showCartDetail">
+    <ul class="goods">
+      <li class="goods_item" v-for="item in productList" :key="item._id">
+        <div class="img">
+          <img :src="item.imgUrl" alt="">
+        </div>
+        <div class="info">
+          <h2 clas="info_name">{{item.name}}</h2>
+          <div class="info_bottom">
+            <div class="new_price">&yen;{{item.price}}
+            </div>
+            <div class="old_price">&yen;{{item.oldPrice}}
+            </div>
+            <div class="manipulate_button">
+              <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
+              <span>{{item.count || 0}}</span>
+              <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    </div>
+    <div class="basket-wrapper" @click="handleCartIconClick">
        <Icon icon_name="basket" />
        <div class="notice">{{count}}</div>
     </div>
@@ -19,15 +42,22 @@
 import Icon from "@/components/Icon.vue";
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed } from '@vue/reactivity';
+import { computed, ref } from '@vue/reactivity';
 
 const useCartEffect = () => {
       const route = useRoute()
       const shopId = route.params.id
       const store = useStore()
+      const cartList = store.state.cartList
+
+      const productList = computed(() => {
+        const productList = cartList[`${shopId}`] || []
+         return productList
+      })
+
       const count = computed(() => {
         let total = 0
-        const productList = store.state.cartList[`${shopId}`]
+        const productList = cartList[`${shopId}`]
         if(productList){
            for (const i in productList) {
              total += productList[i].count
@@ -47,19 +77,33 @@ const useCartEffect = () => {
         }
         return total.toFixed(2)
       })
+
+      const handleChangeCartItemInfo = (shopId,productId,productInfo, num) => {
+        store.commit('changeCartItemInfo', {shopId,productId,productInfo, num})
+      }
+
       return {
-        count, total
+        count, total,productList,handleChangeCartItemInfo,shopId
       }
 }
 
 export default {
     components: { Icon },
     setup(){
-      const {count, total} = useCartEffect()
+      const showCartDetail = ref(false)
+      const handleCartIconClick = () => {
+        showCartDetail.value = !showCartDetail.value;
+      }
+      const {count, total,productList,handleChangeCartItemInfo,shopId} = useCartEffect()
 
       return {
         count,
-        total
+        total,
+        productList,
+        handleChangeCartItemInfo,
+        shopId,
+        handleCartIconClick,
+        showCartDetail
       }
     }
 }
@@ -67,12 +111,116 @@ export default {
 
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';
-.cart {
+.checkout {
   height: 48px;
   box-shadow: 0 -1px 1px #F1F1F1;
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 3;
+  position: relative;
 
+  .cart-detail {
+    position: absolute;
+    left: 0;
+    bottom: 48px;
+    width: 100%;
+    box-shadow: inset 0 -1px 1px -1px rgba(0, 0, 0, .5);
+    background: white;
+     .goods {
+      flex-grow: 1;
+      overflow-x: hidden;
+      overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display:none
+        }
+
+      > .goods_item {
+        display: flex;
+        padding: 8px 16px;
+        // border-bottom: 1px solid #F1F1F1;
+        // margin-bottom: 12px;
+
+        .info {
+          flex-grow: 1;
+          overflow: hidden;
+          height: 48px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .manipulate_button {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: auto;
+            :deep(.add) {
+              color: $blue-button-color;
+              // background: white;
+              > .icon {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+            :deep(.minus) {
+              color: #666666;
+              > .icon {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+
+          }
+
+
+          > h2 {
+            line-height: 20px;
+            font-size: 14px;
+
+            @extend %ellipsis;
+          }
+
+          &_sale {
+            line-height: 16px;
+            font-size: 12px;
+          }
+
+          &_bottom {
+            display: flex;
+            align-items: center;
+            .new_price {
+              line-height: 20px;
+              font-size: 16px;
+              color: $red-highlight-color;
+            }
+
+            .old_price {
+              line-height: 20px;
+              font-size: 12px;
+              color: #999999;
+              text-decoration: line-through;
+              margin-left: 8px;
+            }
+          }
+        }
+        .img {
+          width: 48px;
+          height: 48px;
+          margin-right: 16px;
+          flex-shrink: 0;
+
+          > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+    }
+  }
   > .checkout-button {
     line-height: 20px;
     font-size: 14px;
