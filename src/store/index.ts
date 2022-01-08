@@ -50,6 +50,16 @@ export default createStore({
       const { shopId } = payload
       state.cartList[shopId] = {}
     },
+    setCartItemsAllChecked(state, payload) {
+      const { shopId, allChecked } = payload
+      const products = state.cartList[shopId]
+      for (const i in products) {
+        const product = products[i]
+        if (product.count > 0) {
+          product.checked = !allChecked
+        }
+      }
+    },
   },
   actions: {},
   modules: {},

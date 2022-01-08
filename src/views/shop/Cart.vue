@@ -2,11 +2,12 @@
   <div class="checkout">
     <div class="cart-detail" v-if="showCartDetail">
     <div class="cart-header" v-if="count > 0">
-      <div class="checkAll">
+      <div class="checkAll" @click="setCartItemsAllChecked(shopId, allChecked)">
           <div class="check-button">
-            <Icon :icon_name="true ? 'checked':'check-circle' " />
+            <Icon :icon_name="allChecked ? 'checked':'check-circle' " />
           </div>
-          <span>全选</span>
+          <span v-if="allChecked">取消</span>
+          <span v-else>全选</span>
       </div>
       <div class="clear" @click="clearCartItems(shopId)">清空购物车</div>
     </div>
@@ -106,8 +107,26 @@ const useCartEffect = () => {
         store.commit('clearCartItems', {shopId})
       }
 
+      const allChecked = computed(() => {
+        let result = true
+        const productList = store.state.cartList[`${shopId}`]
+        if(productList){
+           for (const i in productList) {
+             if(productList[i].count > 0 && !productList[i].checked){
+                result = false
+             }
+           }
+        }
+
+        return result
+      })
+
+      const setCartItemsAllChecked = (shopId, allChecked) => {
+        store.commit('setCartItemsAllChecked', {shopId, allChecked})
+      }
+
       return {
-        count, total,productList,shopId,changeCartItemChecked,clearCartItems
+        count, total,productList,shopId,changeCartItemChecked,clearCartItems, allChecked,setCartItemsAllChecked
       }
 }
 
@@ -118,7 +137,8 @@ export default {
       const handleCartIconClick = () => {
         showCartDetail.value = !showCartDetail.value;
       }
-      const {count, total,productList,shopId,changeCartItemChecked,clearCartItems} = useCartEffect()
+      const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
+          allChecked,setCartItemsAllChecked} = useCartEffect()
       const {handleChangeCartItemInfo} = useCommonCartEffect()
 
       return {
@@ -130,7 +150,9 @@ export default {
         handleCartIconClick,
         showCartDetail,
         changeCartItemChecked,
-        clearCartItems
+        clearCartItems,
+        allChecked,
+        setCartItemsAllChecked
       }
     }
 }
