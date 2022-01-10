@@ -8,7 +8,7 @@
       <shopInfo :info="shopInfo" v-show="shopInfo.imgUrl"/>
     </div>
     <Content />
-    <Cart />
+    <Cart :shopName="shopInfo.name"/>
   </div>
 </template>
 

@@ -52,7 +52,9 @@
         <span>购物车是空的</span>
       </div>
       <div class="checkout-button">
-        去结算
+        <router-link :to="{name: 'Checkout', params: {id: shopId}, query: {shopName}}">
+          去结算
+        </router-link>
       </div>
     </div>
 
@@ -148,6 +150,7 @@ const useCartEffect = () => {
 
 export default {
     components: { Icon },
+    props: ['shopName'],
     setup(){
 
       const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
