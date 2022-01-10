@@ -154,7 +154,7 @@ export default {
             }
 
             :deep(.minus) {
-              color: #666666;
+              color: $grey-icon-color;
               > .icon {
                 width: 20px;
                 height: 20px;

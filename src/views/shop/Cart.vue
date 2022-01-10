@@ -182,7 +182,7 @@ export default {
     top: 0;
     bottom: 0;
     right: 0;
-    background: rgba(0,0,0,0.50);
+    background: $dark-background;
     z-index: 1;
   }
   .cart-detail {
@@ -191,7 +191,7 @@ export default {
     bottom: 48px;
     width: 100%;
     max-height: 50vh;
-    box-shadow: inset 0 -1px 1px -1px rgba(0, 0, 0, .5);
+    box-shadow: inset 0 -1px 1px -1px $dark-background;
     background: white;
     overflow: scroll;
     z-index: 2;
@@ -234,10 +234,10 @@ export default {
       }
 
       :deep(.check-circle) {
-        color: #666;
+        color: $grey-icon-color;
       }
       :deep(.checked) {
-        color: #0091FF;
+        color: $blue-button-color;
       }
     }
      .goods {
@@ -277,7 +277,7 @@ export default {
             }
 
             :deep(.minus) {
-              color: #666666;
+              color: $grey-icon-color;
               > .icon {
                 width: 20px;
                 height: 20px;
@@ -363,7 +363,7 @@ export default {
     }
     span:nth-of-type(2) {
       font-size: 18px;
-      color: #E93B3B;
+      color: $red-highlight-color;
     }
   }
 
@@ -376,7 +376,7 @@ export default {
       min-width: 20px;
       height: 20px;
       line-height: 20px;
-      background: #E93B3B;
+      background: $red-highlight-color;
       color: white;
       font-size: 16px;
       border-radius: 10px;
