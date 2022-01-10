@@ -1,30 +1,22 @@
 import { createStore } from 'vuex'
 
+const saveCartListToLocalStorage = (state) => {
+  const { cartList } = state
+  localStorage.setItem('cartList', JSON.stringify(cartList))
+}
+
+const getCartListFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('cartList') || '{}')
+}
+
 export default createStore({
   state: {
-    cartList: {
-      // shopId
-      // 1: {
-      //   // productId
-      //   1: {
-      //     _id: 1,
-      //     name: '番茄250g/份',
-      //     imgUrl: 'https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto',
-      //     sales: 10,
-      //     price: 33.6,
-      //     oldPrice: 39.6,
-      //     count: 0,
-      //   },
-      // },
-    },
+    cartList: getCartListFromLocalStorage(),
   },
   mutations: {
     changeCartItemInfo(state, payload) {
       const { shopId, productId, productInfo, num } = payload
-      let shopInfo = state.cartList[shopId]
-      if (!shopInfo) {
-        shopInfo = {}
-      }
+      const shopInfo = state.cartList[shopId] || {}
       let product = shopInfo[productId]
       if (!product) {
         product = productInfo
@@ -40,15 +32,18 @@ export default createStore({
       }
       shopInfo[productId] = product
       state.cartList[shopId] = shopInfo
+      saveCartListToLocalStorage(state)
     },
     changeCartItemChecked(state, payload) {
       const { shopId, productId } = payload
       const product = state.cartList[shopId][productId]
       product.checked = !product.checked
+      saveCartListToLocalStorage(state)
     },
     clearCartItems(state, payload) {
       const { shopId } = payload
       state.cartList[shopId] = {}
+      saveCartListToLocalStorage(state)
     },
     setCartItemsAllChecked(state, payload) {
       const { shopId, allChecked } = payload
@@ -59,8 +54,7 @@ export default createStore({
           product.checked = !allChecked
         }
       }
+      saveCartListToLocalStorage(state)
     },
   },
-  actions: {},
-  modules: {},
 })
