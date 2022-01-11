@@ -5,14 +5,10 @@
     </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    placeholder: {
-      type: String
-    }
-  }
-}
+<script lang="ts" setup>
+const props = defineProps({
+  placeholder: String
+})
 </script>
 
 <style lang="scss" scoped>

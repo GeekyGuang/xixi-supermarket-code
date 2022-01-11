@@ -6,19 +6,17 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
   // eslint-disable-next-line no-undef
 const importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try {importAll(require.context('../assets/icons', true, /\.svg$/));} catch (error) {console.log(error);}
 
-  export default {
-    props: {
+const props = defineProps({
       'icon_name': {
         type: String,
         require: true
       }
-    },
-  }
+})
 </script>
 
 

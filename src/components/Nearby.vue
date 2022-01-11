@@ -7,13 +7,13 @@
       </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import {get} from '@/utils/request'
 import {ref} from 'vue'
 import ShopInfo from './ShopInfo.vue'
-import { useRouter } from 'vue-router'
+
 const useNearbyListEffect = () => {
-    const nearbyList = ref([])
+    const nearbyList = ref<any>([])
     const getNearbyList = async () => {
       const result = await get('/api/shop/hot-list')
       nearbyList.value = result.data
@@ -25,16 +25,9 @@ const useNearbyListEffect = () => {
     }
 }
 
-export default {
-    setup() {
-        const { nearbyList, getNearbyList } = useNearbyListEffect();
-        getNearbyList();
-        return {
-            nearbyList
-        };
-    },
-    components: { ShopInfo }
-}
+
+  const { nearbyList, getNearbyList } = useNearbyListEffect();
+  getNearbyList();
 </script>
 
 <style lang="scss" scoped>

@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import ShopInfo from '@/components/ShopInfo.vue'
 import Search from '@/components/Search.vue'
 import Icon from '@/components/Icon.vue'
@@ -38,19 +38,10 @@ const useGetShopInfoEffect = () => {
     }
 }
 
-export default {
-  components: { ShopInfo, Search, Icon, Content, Cart },
-  setup(){
-   const {shopInfo, getShopInfo} = useGetShopInfoEffect()
-   getShopInfo()
-   const handleBackClick = useBackRouterEffect()
+const {shopInfo, getShopInfo} = useGetShopInfoEffect()
+getShopInfo()
+const handleBackClick = useBackRouterEffect()
 
-    return {
-      shopInfo,
-      handleBackClick
-    }
-  }
-  }
 </script>
 
 <style lang="scss" scoped>

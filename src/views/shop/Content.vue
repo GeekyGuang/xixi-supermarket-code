@@ -31,7 +31,7 @@
     </ul>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import Icon from "@/components/Icon.vue";
 import { get } from "@/utils/request";
 import { ref, } from '@vue/reactivity';
@@ -63,7 +63,7 @@ const CATEGORIES = [
 ]
 
 const useGetProductsEffect = (checkedTab, shopId) => {
-      const products = ref([])
+      const products = ref<any>([])
       const getProducts = async () => {
         const result = await get(`/api/shop/${shopId}/products`, {tab: checkedTab.value})
         products.value = result.data
@@ -87,26 +87,13 @@ const useCheckTabEffect = () => {
       }
 }
 
-export default {
-    components: { Icon },
-    setup(){
-      const {checkedTab, handleTabClick} = useCheckTabEffect()
-      const route = useRoute()
-      const shopId = route.params.id
-      const {products} = useGetProductsEffect(checkedTab, shopId)
-      const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
 
-      return {
-        products,
-        CATEGORIES,
-        checkedTab,
-        handleTabClick,
-        handleChangeCartItemInfo,
-        shopId,
-        cartList
-      }
-    }
-}
+const {checkedTab, handleTabClick} = useCheckTabEffect()
+const route = useRoute()
+const shopId = route.params.id as string
+const {products} = useGetProductsEffect(checkedTab, shopId)
+const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
+
 </script>
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';

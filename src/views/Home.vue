@@ -18,22 +18,12 @@
 
 
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import Docker from '@/components/Docker.vue'
 import Search from '@/components/Search.vue'
 import Position from '@/components/Position.vue'
 import Categories from '@/components/Categories.vue'
 import Nearby from '@/components/Nearby.vue'
-
-export default {
-  components: {
-    Docker,
-    Search,
-    Position,
-    Categories,
-    Nearby
-}
-}
 </script>
 
 <style lang="scss" scoped>

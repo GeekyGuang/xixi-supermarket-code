@@ -14,7 +14,7 @@
 
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { reactive, toRefs} from 'vue'
 import { useRouter } from 'vue-router'
 import {post} from '@/utils/request'
@@ -68,23 +68,10 @@ const useLoginEffect = (showToast) => {
     }
 }
 
-export default {
-  components: {
-    Toast
-  },
-  setup(){
-    const {message,show, showToast} = useToastEffect()
-    const {username,password,handleLogin,} = useLoginEffect(showToast)
 
-    return {
-      username,
-      password,
-      handleLogin,
-      message,
-      show
-    }
-  }
-}
+  const {message,show, showToast} = useToastEffect()
+  const {username,password,handleLogin,} = useLoginEffect(showToast)
+
 </script>
 
 <style lang="scss" scoped>

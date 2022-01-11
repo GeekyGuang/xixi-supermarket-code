@@ -15,10 +15,14 @@
     </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: ['info']
-}
+<script lang="ts" setup>
+const props = defineProps({
+  info: {
+    type: Object,
+    required: true
+  }
+})
+
 </script>
 
 <style lang="scss" scoped>

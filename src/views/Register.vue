@@ -17,31 +17,11 @@
 
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import Toast, {useToastEffect} from '@/components/Toast.vue'
 import { reactive, toRefs } from '@vue/reactivity'
 import {post} from '@/utils/request'
-
-export default {
-  components: {
-    Toast
-  },
-  setup(){
-
-    const {message,show, showToast} = useToastEffect()
-    const {username, password, checkpassword,handleRegister} = useRegisterEffect(showToast)
-
-    return {
-      message,
-      show,
-      handleRegister,
-      username,
-      password,
-      checkpassword
-    }
-  }
-}
 
 const useRegisterEffect = (showToast) => {
       const router = useRouter()
@@ -95,6 +75,9 @@ const useRegisterEffect = (showToast) => {
        username, password, checkpassword,handleRegister
     }
 }
+
+const {message,show, showToast} = useToastEffect()
+const {username, password, checkpassword,handleRegister} = useRegisterEffect(showToast)
 </script>
 
 <style lang="scss" scoped>

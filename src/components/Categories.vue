@@ -7,9 +7,8 @@
   </ul>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
+<script lang="ts" setup>
+
     const categories = [
       {name: 'supermarket', title: '超市便利'},
       {name: 'vegetable', title: '菜市场'},
@@ -22,12 +21,6 @@ export default {
       {name: 'bigbrand', title: '大牌免运'},
       {name: 'redenvolope', title: '红包套餐'},
     ]
-
-    return {
-      categories
-    }
-  }
-}
 
 </script>
 

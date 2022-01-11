@@ -4,13 +4,8 @@
   </transition>
 
 </template>
-
 <script lang="ts">
 import { reactive, toRefs } from "vue"
-export default {
-  props: ['message', 'showToast']
-}
-
 export const useToastEffect = () => {
   const toastData = reactive(
     {
@@ -36,6 +31,12 @@ export const useToastEffect = () => {
     showToast
   }
 }
+</script>
+<script lang="ts" setup>
+const props = defineProps({
+  message: String,
+  showToast: Boolean
+})
 </script>
 
 <style lang="scss" scoped>
