@@ -1,9 +1,10 @@
 <template>
-<div>
-  结算
-  {{shopId}}
-  {{shopName}}
-</div>
+ <div class="top-wrapper">
+   <div class="header">
+     <Icon icon_name="left" />
+     <div class="title">确认订单</div>
+   </div>
+ </div>
 
 </template>
 

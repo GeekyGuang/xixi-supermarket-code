@@ -16,11 +16,12 @@
 import ShopInfo from '@/components/ShopInfo.vue'
 import Search from '@/components/Search.vue'
 import Icon from '@/components/Icon.vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { get } from '@/utils/request'
 import { ref } from '@vue/reactivity'
 import Content from '@/views/shop/Content.vue'
 import Cart from './Cart.vue'
+import {useBackRouterEffect} from '@/lib/helper'
 
 const useGetShopInfoEffect = () => {
     const route = useRoute()
@@ -35,15 +36,6 @@ const useGetShopInfoEffect = () => {
       shopInfo,
       getShopInfo
     }
-}
-
-const useBackRouterEffect = () => {
-    const router = useRouter()
-    const handleBackClick = () => {
-      router.back()
-    }
-
-    return handleBackClick
 }
 
 export default {
