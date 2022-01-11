@@ -62,12 +62,16 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Icon from "@/components/Icon.vue";
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed, ref } from '@vue/reactivity';
 import {useCommonCartEffect} from './commonCartEffect'
+
+const props = defineProps({
+  shopName: String
+})
 
 const useCartEffect = () => {
       const route = useRoute()
@@ -148,31 +152,13 @@ const useCartEffect = () => {
       }
 }
 
-export default {
-    components: { Icon },
-    props: ['shopName'],
-    setup(){
 
-      const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
-          allChecked,setCartItemsAllChecked,handleCartIconClick,
-        showCartDetail,} = useCartEffect()
-      const {handleChangeCartItemInfo} = useCommonCartEffect()
 
-      return {
-        count,
-        total,
-        productList,
-        handleChangeCartItemInfo,
-        shopId,
-        handleCartIconClick,
-        showCartDetail,
-        changeCartItemChecked,
-        clearCartItems,
-        allChecked,
-        setCartItemsAllChecked
-      }
-    }
-}
+const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
+    allChecked,setCartItemsAllChecked,handleCartIconClick,
+  showCartDetail,} = useCartEffect()
+const {handleChangeCartItemInfo} = useCommonCartEffect()
+
 </script>
 
 <style lang="scss" scoped>
