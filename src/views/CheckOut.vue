@@ -35,7 +35,9 @@ const handleBackClick = useBackRouterEffect()
   height: 100vh;
   background: #f8f8f8;
   .top-wrapper {
-    background-image: linear-gradient(0deg, rgba(0,145,255,0.00) 30%, #0091FF 70%);
+    background-size: 100% 76%;
+    background-image: linear-gradient(0deg, rgba(0,145,255,0.00) 4%, #0091FF 55%);
+    background-repeat: no-repeat;
     padding: 24px 18px 16px;
 
     .address-wrapper {
@@ -44,6 +46,7 @@ const handleBackClick = useBackRouterEffect()
       align-items: center;
       justify-content: space-between;
       background: white;
+      border-radius: 4px;
 
       .address {
         color: #333;
