@@ -59,7 +59,7 @@ const handleBackClick = useBackRouterEffect()
 }
 
 .search {
-  padding: 16px 18px 16px 12px;
+  padding: 16px 18px;
   display: flex;
   align-items: center;
   :deep(.left) {
@@ -72,7 +72,7 @@ const handleBackClick = useBackRouterEffect()
 
   :deep(.search-wrapper) {
     flex-grow: 1;
-    margin-left: 6px;
+    // margin-left: 6px;
   }
 }
 }
