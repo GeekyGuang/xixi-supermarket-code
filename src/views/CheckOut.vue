@@ -15,6 +15,27 @@
      <Icon icon_name="left" />
    </div>
  </div>
+ <div class="cart-content">
+   <h2 class="title">{{shopName}}</h2>
+    <ul class="goods">
+      <template v-for="item in productList" :key="item._id">
+        <li class="goods_item"  v-if="item.count">
+          <div class="img">
+            <img :src="item.imgUrl" alt="">
+          </div>
+          <div class="info">
+            <h2 clas="info_name">{{item.name}}</h2>
+            <div class="info_bottom">
+              <div class="new_price">&yen;{{item.price}} × {{item.count}}
+              </div>
+              <div class="total_price">&yen;{{(item.price * item.count).toFixed(2)}}
+              </div>
+            </div>
+          </div>
+        </li>
+      </template>
+    </ul>
+ </div>
 </div>
 
 
@@ -23,14 +44,17 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
 import { useBackRouterEffect } from '@/lib/helper'
+import { useCommonCartEffect } from '@/effects/commonCartEffect'
 const route = useRoute()
-const shopId = route.params.id
+const shopId = route.params.id as string
 const shopName = route.query.shopName
 const handleBackClick = useBackRouterEffect()
+const {productList} = useCommonCartEffect(shopId)
 
 </script>
 
 <style lang="scss" scoped>
+@import '~@/style/helpers.scss';
 .wrapper {
   height: 100vh;
   background: #f8f8f8;
@@ -105,6 +129,76 @@ const handleBackClick = useBackRouterEffect()
         width: 22px;
         height: 22px;
       }
+    }
+  }
+
+  .cart-content {
+    background: white;
+    border-radius: 4px;
+    margin: 0 18px;
+    padding: 16px;
+
+    .title {
+      line-height: 22px;
+      font-size: 16px;
+      color: #333;
+    }
+    .goods {
+      // flex-grow: 1;
+      // overflow-x: hidden;
+      // overflow-y: scroll;
+      //   &::-webkit-scrollbar {
+      //     display:none
+      //   }
+      > .goods_item {
+        display: flex;
+        margin-top: 16px;
+
+        .info {
+          flex-grow: 1;
+          overflow: hidden;
+          height: 48px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          > h2 {
+            line-height: 20px;
+            font-size: 14px;
+
+            @extend %ellipsis;
+          }
+
+          &_sale {
+            line-height: 16px;
+            font-size: 12px;
+          }
+
+          &_bottom {
+            display: flex;
+            align-items: center;
+            .new_price {
+              line-height: 20px;
+              font-size: 16px;
+              color: $red-highlight-color;
+              margin-right: auto;
+            }
+          }
+        }
+        .img {
+          width: 48px;
+          height: 48px;
+          margin-right: 16px;
+          flex-shrink: 0;
+
+          > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
     }
   }
 }

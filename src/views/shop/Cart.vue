@@ -65,9 +65,8 @@
 <script lang="ts" setup>
 import Icon from "@/components/Icon.vue";
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
 import { computed, ref } from '@vue/reactivity';
-import {useCommonCartEffect} from './commonCartEffect'
+import {useCommonCartEffect} from '@/effects/commonCartEffect'
 
 const props = defineProps({
   shopName: String
@@ -75,39 +74,11 @@ const props = defineProps({
 
 const useCartEffect = () => {
       const route = useRoute()
-      const shopId = route.params.id
-      const store = useStore()
-      const cartList = store.state.cartList
+      const shopId = route.params.id as string
 
-      const productList = computed(() => {
-        const productList = cartList[`${shopId}`] || []
-         return productList
-      })
+      const {store, productList, handleChangeCartItemInfo, count, total} = useCommonCartEffect(shopId)
 
-      const count = computed(() => {
-        let total = 0
-        const productList = cartList[`${shopId}`]
-        if(productList){
-           for (const i in productList) {
-             total += productList[i].count
-           }
-        }
-        return total
 
-      })
-
-      const total = computed(() => {
-        let total = 0
-        const productList = store.state.cartList[`${shopId}`]
-        if(productList){
-           for (const i in productList) {
-             if(productList[i].checked){
-                total += (productList[i].count * productList[i].price)
-             }
-           }
-        }
-        return total.toFixed(2)
-      })
 
       const changeCartItemChecked = (shopId, productId) => {
         store.commit('changeCartItemChecked', {shopId, productId})
@@ -148,7 +119,7 @@ const useCartEffect = () => {
 
       return {
         count, total,productList,shopId,changeCartItemChecked,clearCartItems,
-        allChecked,setCartItemsAllChecked,handleCartIconClick,showCartDetail
+        allChecked,setCartItemsAllChecked,handleCartIconClick,showCartDetail,handleChangeCartItemInfo
       }
 }
 
@@ -156,8 +127,7 @@ const useCartEffect = () => {
 
 const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
     allChecked,setCartItemsAllChecked,handleCartIconClick,
-  showCartDetail,} = useCartEffect()
-const {handleChangeCartItemInfo} = useCommonCartEffect()
+  showCartDetail,handleChangeCartItemInfo} = useCartEffect()
 
 </script>
 
