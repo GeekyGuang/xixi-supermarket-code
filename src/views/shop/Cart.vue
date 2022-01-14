@@ -51,22 +51,23 @@
       <div class="total" v-else>
         <span>购物车是空的</span>
       </div>
-      <div class="checkout-button">
-        <router-link :to="{name: 'Checkout', params: {id: shopId}, query: {shopName}}">
+      <div class="checkout-button" @click="handleCheckoutButtonClick">
           去结算
-        </router-link>
       </div>
     </div>
 
-
+    <Toast :showToast="show" :message="message"/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Icon from "@/components/Icon.vue";
-import { useRoute } from 'vue-router';
+import { useRoute,useRouter } from 'vue-router';
 import { computed, ref } from '@vue/reactivity';
 import {useCommonCartEffect} from '@/effects/commonCartEffect'
+import Toast, { useToastEffect } from "@/components/Toast.vue";
+
+const {message, show, showToast} = useToastEffect()
 
 const props = defineProps({
   shopName: String
@@ -77,8 +78,6 @@ const useCartEffect = () => {
       const shopId = route.params.id as string
 
       const {store, productList, handleChangeCartItemInfo, count, total} = useCommonCartEffect(shopId)
-
-
 
       const changeCartItemChecked = (shopId, productId) => {
         store.commit('changeCartItemChecked', {shopId, productId})
@@ -125,9 +124,21 @@ const useCartEffect = () => {
 
 
 
-const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
-    allChecked,setCartItemsAllChecked,handleCartIconClick,
-  showCartDetail,handleChangeCartItemInfo} = useCartEffect()
+  const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
+      allChecked,setCartItemsAllChecked,handleCartIconClick,
+    showCartDetail,handleChangeCartItemInfo} = useCartEffect()
+
+  const router = useRouter()
+
+  const handleCheckoutButtonClick = () => {
+    if (count.value === 0) {
+      console.log('cart is empty')
+      showToast('还没挑选商品哦！')
+      return
+    }
+
+    router.push({name: 'Checkout', params: {id: shopId}, query: {shopName:'hello'}})
+  }
 
 </script>
 
