@@ -4,20 +4,34 @@
         <span>需付金额:</span>
         <span>&yen;{{total}}</span>
       </div>
-      <div class="commit-button">
-        <router-link to="/home">
+      <div class="commit-button" @click="handleCommit">
           提交订单
-        </router-link>
+      </div>
+      <div class="mask" v-if="showConfirmPanel" @click="handleCommit">
+        <div class="confirm-panel nohandle">
+          <h2 class="nohandle">确认要离开收银台？</h2>
+          <p class="nohandle">请尽快完成支付，否则将被取消</p>
+          <div class="buttons">
+            <button>取消订单</button>
+            <button>确认支付</button>
+          </div>
+        </div>
       </div>
  </div>
 </template>
 
 <script lang="ts" setup>
+import {ref} from 'vue'
 import { useRoute } from 'vue-router'
 import { useCommonCartEffect } from '@/effects/commonCartEffect'
 const route = useRoute()
 const shopId = route.params.id as string
 const {total} = useCommonCartEffect(shopId)
+const showConfirmPanel = ref(false)
+const handleCommit = (e) => {
+  if(e.target.className.includes('nohandle')) return;
+  showConfirmPanel.value = !showConfirmPanel.value
+}
 </script>
 
 <style lang="scss" scoped>
@@ -29,6 +43,65 @@ const {total} = useCommonCartEffect(shopId)
     align-items: center;
     background: white;
     z-index: 5;
+
+    .mask {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.50);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > .confirm-panel {
+        width: 300px;
+        background: white;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 0;
+
+        h2 {
+          line-height: 22px;
+          font-size: 18px;
+          color: #333;
+          margin-bottom: 8px;
+        }
+
+        p {
+          line-height: 20px;
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 24px;
+        }
+
+        .buttons {
+          button {
+            background: none;
+            line-height: 20px;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 16px;
+            border: 1px solid $light-blue;
+          }
+
+          button:nth-of-type(1) {
+            color: #0091FF;
+            background: white;
+            margin-right: 24px;
+          }
+
+          button:nth-of-type(2) {
+            color: white;
+            background: $light-blue;
+          }
+        }
+
+      }
+    }
 
     .total {
       margin-left: 24px;
@@ -50,7 +123,7 @@ const {total} = useCommonCartEffect(shopId)
       line-height: 20px;
       font-size: 14px;
       color: white;
-      background: #4FB0F9;
+      background: $light-blue;
       padding: 14px 28px;
       margin-left: auto;
       cursor: pointer;

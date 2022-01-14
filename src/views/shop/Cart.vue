@@ -307,7 +307,7 @@ const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
     line-height: 20px;
     font-size: 14px;
     color: white;
-    background: #4FB0F9;
+    background: $light-blue;
     padding: 14px 28px;
     margin-left: auto;
     cursor: pointer;
