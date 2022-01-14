@@ -1,6 +1,7 @@
 <template>
 <div class="wrapper">
- <div class="top-wrapper">
+  <div class="content-wrapper">
+ <div class="top">
    <div class="header">
      <Icon icon_name="left" @click="handleBackClick"/>
      <div class="title">确认订单</div>
@@ -18,7 +19,7 @@
  <div class="cart-content">
    <h2 class="title">{{shopName}}</h2>
     <ul class="goods">
-      <template v-for="item in productList" :key="item._id">
+      <template v-for="item in products" :key="item._id">
         <li class="goods_item"  v-if="item.count">
           <div class="img">
             <img :src="item.imgUrl" alt="">
@@ -35,6 +36,15 @@
         </li>
       </template>
     </ul>
+    <div class="bottom-down" @click="toggleShowAllProducts">
+      <span>总计 {{count}} 件</span>
+      <Icon icon_name="arrow-down" :class="{down: pulldown}" />
+    </div>
+  </div>
+
+ </div>
+ <div class="order-commit">
+
  </div>
 </div>
 
@@ -45,11 +55,40 @@
 import { useRoute } from 'vue-router'
 import { useBackRouterEffect } from '@/lib/helper'
 import { useCommonCartEffect } from '@/effects/commonCartEffect'
+import { ref } from 'vue'
 const route = useRoute()
 const shopId = route.params.id as string
 const shopName = route.query.shopName
 const handleBackClick = useBackRouterEffect()
-const {productList} = useCommonCartEffect(shopId)
+const {productList,count, total} = useCommonCartEffect(shopId)
+
+const keys = Object.keys(productList.value)
+const products = ref<any>({})
+if (keys.length > 2) {
+  const subkeys = keys.slice(0, 2)
+  for(const i of subkeys) {
+    products.value[i] = productList.value[i]
+  }
+} else {
+  products.value = productList.value
+}
+const pulldown = ref(false)
+const toggleShowAllProducts = () => {
+  pulldown.value = !pulldown.value
+
+  if (pulldown.value) {
+    products.value = productList.value
+  } else {
+    if (keys.length > 2) {
+      products.value = {}
+      const subkeys = keys.slice(0, 2)
+      for(const i of subkeys) {
+        products.value[i] = productList.value[i]
+      }
+    }
+  }
+}
+
 
 </script>
 
@@ -58,7 +97,23 @@ const {productList} = useCommonCartEffect(shopId)
 .wrapper {
   height: 100vh;
   background: #f8f8f8;
-  .top-wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .content-wrapper {
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display:none
+    }
+    flex-grow: 1;
+  }
+
+  .order-commit {
+    height: 48px;
+    background: pink;
+  }
+  .top{
     background-size: 100% 76%;
     background-image: linear-gradient(0deg, rgba(0,145,255,0.00) 4%, #0091FF 55%);
     background-repeat: no-repeat;
@@ -135,8 +190,33 @@ const {productList} = useCommonCartEffect(shopId)
   .cart-content {
     background: white;
     border-radius: 4px;
-    margin: 0 18px;
+    margin: 0 18px 18px;
     padding: 16px;
+
+    > .bottom-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F5F5F5;
+      margin-top: 16px;
+      padding: 4px 0;
+
+      line-height: 20px;
+      font-size: 14px;
+      color: #999;
+
+      .arrow-down {
+        margin-left: 8px;
+        :deep(.icon) {
+          width: 14px;
+          height: 14px;
+        }
+
+        &.down {
+          transform: rotate(180deg);
+        }
+      }
+      }
 
     .title {
       line-height: 22px;
@@ -150,6 +230,7 @@ const {productList} = useCommonCartEffect(shopId)
       //   &::-webkit-scrollbar {
       //     display:none
       //   }
+
       > .goods_item {
         display: flex;
         margin-top: 16px;
