@@ -1,21 +1,4 @@
 <template>
-<div class="wrapper">
-  <div class="content-wrapper">
- <div class="top">
-   <div class="header">
-     <Icon icon_name="left" @click="handleBackClick"/>
-     <div class="title">确认订单</div>
-     <div class="space-block"></div>
-   </div>
-   <div class="address-wrapper">
-     <div class="address">
-       <h2>收货地址</h2>
-       <p>北京理工大学国防科技园2号楼10层</p>
-       <p><span>瑶妹 (先生)</span><span>18911024266</span></p>
-     </div>
-     <Icon icon_name="left" />
-   </div>
- </div>
  <div class="cart-content">
    <h2 class="title">{{shopName}}</h2>
     <ul class="goods">
@@ -41,34 +24,17 @@
       <Icon icon_name="arrow-down" :class="{down: pulldown}" />
     </div>
   </div>
-
- </div>
- <div class="order-commit">
-      <div class="total">
-        <span>需付金额:</span>
-        <span>&yen;{{total}}</span>
-      </div>
-      <div class="commit-button">
-        <router-link to="/home">
-          提交订单
-        </router-link>
-      </div>
- </div>
-</div>
-
-
 </template>
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
-import { useBackRouterEffect } from '@/lib/helper'
 import { useCommonCartEffect } from '@/effects/commonCartEffect'
 import { ref } from 'vue'
+
 const route = useRoute()
 const shopId = route.params.id as string
 const shopName = route.query.shopName
-const handleBackClick = useBackRouterEffect()
-const {productList,count, total} = useCommonCartEffect(shopId)
+const {productList,count} = useCommonCartEffect(shopId)
 
 const keys = Object.keys(productList.value)
 const products = ref<any>({})
@@ -96,135 +62,10 @@ const toggleShowAllProducts = () => {
     }
   }
 }
-
-
 </script>
 
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';
-.wrapper {
-  height: 100vh;
-  background: #f8f8f8;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-
-  .content-wrapper {
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-      display:none
-    }
-    flex-grow: 1;
-  }
-
-  .order-commit {
-    height: 48px;
-    box-shadow: 0 -1px 1px #F1F1F1;
-    display: flex;
-    align-items: center;
-    background: white;
-    z-index: 5;
-
-    .total {
-      margin-left: 24px;
-      display: flex;
-      align-items: center;
-
-      span:nth-of-type(1) {
-        font-size: 14px;
-        color: #333;
-      }
-      span:nth-of-type(2) {
-        font-size: 16px;
-        color: $red-highlight-color;
-        font-weight: 500;
-        margin-left: 4px;
-      }
-    }
-    .commit-button {
-      line-height: 20px;
-      font-size: 14px;
-      color: white;
-      background: #4FB0F9;
-      padding: 14px 28px;
-      margin-left: auto;
-      cursor: pointer;
-    }
-  }
-  .top{
-    background-size: 100% 76%;
-    background-image: linear-gradient(0deg, rgba(0,145,255,0.00) 4%, #0091FF 55%);
-    background-repeat: no-repeat;
-    padding: 24px 18px 16px;
-
-    .address-wrapper {
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: white;
-      border-radius: 4px;
-
-      .address {
-        color: #333;
-        h2 {
-          line-height: 22px;
-          font-size: 16px;
-          margin-bottom: 14px;
-        }
-
-        p:nth-of-type(1) {
-          line-height: 20px;
-          font-size: 14px;
-          margin-bottom: 6px;
-        }
-
-        p:nth-of-type(2) {
-          color: #666;
-          font-size: 12px;
-          line-height: 17px;
-
-          span:nth-of-type(1){
-            margin-right: 6px;
-          }
-        }
-
-      }
-
-      .left {
-        transform: rotate(180deg);
-        color: #666;
-        :deep(.icon) {
-          height: 16px;
-          width: 16px;
-        }
-      }
-    }
-    .header {
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
-      .left {
-        :deep(.icon) {
-          height: 22px;
-          width: 22px;
-        }
-      }
-
-      .title {
-        line-height: 22px;
-        font-size: 16px;
-      }
-
-      .space-block {
-        width: 22px;
-        height: 22px;
-      }
-    }
-  }
-
   .cart-content {
     background: white;
     border-radius: 4px;
@@ -314,5 +155,4 @@ const toggleShowAllProducts = () => {
 
     }
   }
-}
 </style>

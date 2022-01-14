@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/checkout/:id',
     name: 'Checkout',
-    component: () => import(/* webpackChunkName: "checkout" */ '@/views/CheckOut.vue'),
+    component: () => import(/* webpackChunkName: "checkout" */ '@/views/checkout/CheckOut.vue'),
   },
   {
     path: '/shop/:id',
