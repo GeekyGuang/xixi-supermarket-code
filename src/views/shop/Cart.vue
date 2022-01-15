@@ -137,7 +137,7 @@ const useCartEffect = () => {
       return
     }
 
-    router.push({name: 'Checkout', params: {id: shopId}, query: {shopName:'hello'}})
+    router.push({name: 'Checkout', params: {id: shopId}, query: {shopName:props.shopName}})
   }
 
 </script>
