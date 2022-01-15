@@ -20,7 +20,7 @@
       </template>
     </ul>
     <div class="bottom-down" @click="toggleShowAllProducts">
-      <span>总计 {{count}} 件</span>
+      <span>总计 {{checkedCount}} 件</span>
       <Icon icon_name="arrow-down" :class="{down: pulldown}" />
     </div>
   </div>
@@ -34,30 +34,30 @@ import { ref } from 'vue'
 const route = useRoute()
 const shopId = route.params.id as string
 const shopName = route.query.shopName
-const {productList,count} = useCommonCartEffect(shopId)
+const {checkedProducts,checkedCount} = useCommonCartEffect(shopId)
 
-const keys = Object.keys(productList.value)
+const keys = Object.keys(checkedProducts.value)
 const products = ref<any>({})
 if (keys.length > 2) {
   const subkeys = keys.slice(0, 2)
   for(const i of subkeys) {
-    products.value[i] = productList.value[i]
+    products.value[i] = checkedProducts.value[i]
   }
 } else {
-  products.value = productList.value
+  products.value = checkedProducts.value
 }
 const pulldown = ref(false)
 const toggleShowAllProducts = () => {
   pulldown.value = !pulldown.value
 
   if (pulldown.value) {
-    products.value = productList.value
+    products.value = checkedProducts.value
   } else {
     if (keys.length > 2) {
       products.value = {}
       const subkeys = keys.slice(0, 2)
       for(const i of subkeys) {
-        products.value[i] = productList.value[i]
+        products.value[i] = checkedProducts.value[i]
       }
     }
   }

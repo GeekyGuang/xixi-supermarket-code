@@ -9,8 +9,30 @@ export const useCommonCartEffect = (shopId = '') => {
   }
 
   const productList = computed(() => {
-    const productList = cartList[`${shopId}`] || []
+    const productList = cartList[`${shopId}`] || {}
     return productList
+  })
+
+  const checkedProducts = computed(() => {
+    const productList = cartList[`${shopId}`]
+    const result = {}
+    if (productList) {
+      for (const i in productList) {
+        if (productList[i].checked) result[i] = productList[i]
+      }
+    }
+    return result
+  })
+
+  const checkedCount = computed(() => {
+    let total = 0
+    const productList = cartList[`${shopId}`]
+    if (productList) {
+      for (const i in productList) {
+        if (productList[i].checked) total += productList[i].count
+      }
+    }
+    return total
   })
 
   const count = computed(() => {
@@ -44,5 +66,7 @@ export const useCommonCartEffect = (shopId = '') => {
     productList,
     count,
     total,
+    checkedProducts,
+    checkedCount,
   }
 }
