@@ -4,15 +4,15 @@
         <span>需付金额:</span>
         <span>&yen;{{total}}</span>
       </div>
-      <div class="commit-button" @click="handleCommit">
+      <div class="commit-button" @click="toggleShowConfirmPanel">
           提交订单
       </div>
-      <div class="mask" v-if="showConfirmPanel" @click="handleCommit">
-        <div class="confirm-panel nohandle">
-          <h2 class="nohandle">确认要离开收银台？</h2>
-          <p class="nohandle">请尽快完成支付，否则将被取消</p>
+      <div class="mask" v-if="showConfirmPanel" @click="toggleShowConfirmPanel">
+        <div class="confirm-panel" @click.stop>
+          <h2>确认要离开收银台？</h2>
+          <p>请尽快完成支付，否则将被取消</p>
           <div class="buttons">
-            <button>取消订单</button>
+            <button @click="toggleShowConfirmPanel">取消支付</button>
             <button>确认支付</button>
           </div>
         </div>
@@ -28,8 +28,8 @@ const route = useRoute()
 const shopId = route.params.id as string
 const {total} = useCommonCartEffect(shopId)
 const showConfirmPanel = ref(false)
-const handleCommit = (e) => {
-  if(e.target.className.includes('nohandle')) return;
+const toggleShowConfirmPanel = (e) => {
+  // if(e.target.className.includes('nohandle')) return;
   showConfirmPanel.value = !showConfirmPanel.value
 }
 </script>
