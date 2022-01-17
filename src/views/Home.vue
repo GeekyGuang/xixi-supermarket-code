@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<Layout>
   <div class="front-page">
     <Position />
     <Search placeholder="山姆商店会员优惠" />
@@ -13,34 +13,28 @@
       <Nearby />
     </div>
   </div>
-  <Docker />
-</div>
+</Layout>
 
 
 </template>
 <script lang="ts" setup>
-import Docker from '@/components/Docker.vue'
 import Search from '@/components/Search.vue'
 import Position from '@/components/Position.vue'
 import Categories from '@/components/Categories.vue'
 import Nearby from '@/components/Nearby.vue'
+import Layout from '@/components/Layout.vue'
 </script>
 
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';
-.wrapper{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color:$content-font-color;
 
-  > .front-page {
+ .front-page {
     flex-grow: 1;
     padding-top: 16px;
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
-    overflow: hidden;
+    overflow: auto;
 
     :deep(.search-wrapper) {
         margin: 0 18px 12px;
@@ -48,8 +42,7 @@ import Nearby from '@/components/Nearby.vue'
 
     .main {
       flex-shrink: 1;
-      // overflow-x: auto;
-      overflow-y: scroll;
+      overflow-y: auto;
 
       &::-webkit-scrollbar {
             display:none
@@ -78,7 +71,4 @@ import Nearby from '@/components/Nearby.vue'
     }
 
   }
-
-
-}
 </style>
