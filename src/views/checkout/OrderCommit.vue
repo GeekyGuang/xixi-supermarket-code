@@ -13,7 +13,7 @@
           <p>请尽快完成支付，否则将被取消</p>
           <div class="buttons">
             <button @click="toggleShowConfirmPanel">取消支付</button>
-            <button>确认支付</button>
+            <button @click="handleConfirm">确认支付</button>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import {ref} from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useCommonCartEffect } from '@/effects/commonCartEffect'
 const route = useRoute()
 const shopId = route.params.id as string
@@ -31,6 +31,10 @@ const showConfirmPanel = ref(false)
 const toggleShowConfirmPanel = (e) => {
   // if(e.target.className.includes('nohandle')) return;
   showConfirmPanel.value = !showConfirmPanel.value
+}
+const router = useRouter()
+const handleConfirm = () => {
+  router.push('/order')
 }
 </script>
 

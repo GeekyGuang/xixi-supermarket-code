@@ -4,22 +4,27 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+    component: () => import('@/views/Home.vue'),
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    component: () => import('@/views/orderList/OrderList.vue'),
   },
   {
     path: '/checkout/:id',
     name: 'Checkout',
-    component: () => import(/* webpackChunkName: "checkout" */ '@/views/checkout/CheckOut.vue'),
+    component: () => import('@/views/checkout/CheckOut.vue'),
   },
   {
     path: '/shop/:id',
     name: 'Shop',
-    component: () => import(/* webpackChunkName: "shop" */ '@/views/shop/Shop.vue'),
+    component: () => import('@/views/shop/Shop.vue'),
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
+    component: () => import('@/views/Login.vue'),
     beforeEnter: (to, from, next) => {
       const isLogin = localStorage.isLogin
       isLogin ? next({ name: 'Home' }) : next()
@@ -28,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '@/views/Register.vue'),
+    component: () => import('@/views/Register.vue'),
     beforeEnter: (to, from, next) => {
       const isLogin = localStorage.isLogin
       isLogin ? next({ name: 'Home' }) : next()
