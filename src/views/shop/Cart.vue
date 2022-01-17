@@ -51,7 +51,7 @@
       <div class="total" v-else>
         <span>购物车是空的</span>
       </div>
-      <div class="checkout-button" @click="handleCheckoutButtonClick">
+      <div class="checkout-button" @click="handleCheckoutButtonClick" v-show="checkedCount">
           去结算
       </div>
     </div>
@@ -77,7 +77,7 @@ const useCartEffect = () => {
       const route = useRoute()
       const shopId = route.params.id as string
 
-      const {store, productList, handleChangeCartItemInfo, count, total} = useCommonCartEffect(shopId)
+      const {store, productList, handleChangeCartItemInfo, count, total, checkedCount} = useCommonCartEffect(shopId)
 
       const changeCartItemChecked = (shopId, productId) => {
         store.commit('changeCartItemChecked', {shopId, productId})
@@ -118,7 +118,7 @@ const useCartEffect = () => {
 
       return {
         count, total,productList,shopId,changeCartItemChecked,clearCartItems,
-        allChecked,setCartItemsAllChecked,handleCartIconClick,showCartDetail,handleChangeCartItemInfo
+        allChecked,setCartItemsAllChecked,handleCartIconClick,showCartDetail,handleChangeCartItemInfo,checkedCount
       }
 }
 
@@ -126,7 +126,7 @@ const useCartEffect = () => {
 
   const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
       allChecked,setCartItemsAllChecked,handleCartIconClick,
-    showCartDetail,handleChangeCartItemInfo} = useCartEffect()
+    showCartDetail,handleChangeCartItemInfo, checkedCount} = useCartEffect()
 
   const router = useRouter()
 
