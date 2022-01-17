@@ -1,7 +1,7 @@
 <template>
 <Layout>
-  <div class="order">
-   订单
+  <div class="profile">
+   个人详情
   </div>
 </Layout>
 </template>
@@ -12,7 +12,7 @@ import Layout from "../../components/Layout.vue";
 </script>
 
 <style lang="scss" scoped>
-.order {
+.profile {
   flex-grow: 1;
 }
 </style>

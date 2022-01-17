@@ -1,7 +1,7 @@
 <template>
 <Layout>
-  <div class="order">
-   订单
+  <div class="cart">
+   购物车
   </div>
 </Layout>
 </template>
@@ -12,7 +12,7 @@ import Layout from "../../components/Layout.vue";
 </script>
 
 <style lang="scss" scoped>
-.order {
+.cart {
   flex-grow: 1;
 }
 </style>

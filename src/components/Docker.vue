@@ -1,21 +1,21 @@
 <template>
     <div class="docker">
-    <div class="docker__item docker__item--active">
+    <router-link to="/" class="docker__item">
       <Icon icon_name="shouye"  />
       <div class="docker-item__title">首页</div>
-    </div>
-    <div class="docker__item">
+    </router-link>
+    <router-link to="/cart" class="docker__item">
       <Icon icon_name="cart"  />
       <div class="docker-item__title">购物车</div>
-    </div>
-    <div class="docker__item">
+    </router-link>
+    <router-link to="/order" class="docker__item">
       <Icon icon_name="dingdan"  />
       <div class="docker-item__title">订单</div>
-    </div>
-    <div class="docker__item">
+    </router-link>
+    <router-link to="/profile" class="docker__item">
       <Icon icon_name="wode"  />
       <div class="docker-item__title">我的</div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -27,15 +27,17 @@
   justify-content: space-around;
   width: 100%;
 
+  .router-link-exact-active {
+      color: #1FA4FC;
+  }
+
   &__item {
     padding: 0.07rem 0 0.06rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    &--active {
-      color: #1FA4FC;
-    }
+
   }
 
   &-item__title {
