@@ -1,5 +1,10 @@
 import { createStore } from 'vuex'
 
+interface OrderItem {
+  shopName: string
+  products: any[]
+}
+
 const saveCartListToLocalStorage = (state) => {
   const { cartList } = state
   localStorage.setItem('cartList', JSON.stringify(cartList))
@@ -9,9 +14,32 @@ const getCartListFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('cartList') || '{}')
 }
 
+const saveOrderListToLocalStorage = (state) => {
+  const { orderList } = state
+  localStorage.setItem('orderList', JSON.stringify(orderList))
+}
+
+const getOrderListFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('orderList') || '{}')
+}
+
 export default createStore({
   state: {
     cartList: getCartListFromLocalStorage(),
+    orderList: getOrderListFromLocalStorage(),
+    // {
+    // orderId: {
+    //   shopName: '',
+    //   products: [
+    //     {
+    //       name: '',
+    //       url: '',
+    //       count: '',
+    //       price: ''
+    //     }
+    //   ]
+    // }
+    // },
   },
   mutations: {
     changeCartItemInfo(state, payload) {
@@ -55,6 +83,32 @@ export default createStore({
         }
       }
       saveCartListToLocalStorage(state)
+    },
+    comfirmOrder(state, payload) {
+      const { shopId, shopName } = payload
+      const orderId = Math.floor(Math.random() * 1000000000)
+      const { orderList } = state
+      const products = state.cartList[shopId]
+      const order: OrderItem = {
+        shopName,
+        products: [],
+      }
+      const checkedKeys: string[] = []
+      for (const i in products) {
+        const product = products[i]
+        if (product.count > 0 && product.checked) {
+          checkedKeys.push(i)
+        }
+      }
+
+      for (const i of checkedKeys) {
+        order.products.push(products[i])
+        delete products[i]
+      }
+
+      orderList[orderId] = order
+
+      saveOrderListToLocalStorage(state)
     },
   },
 })

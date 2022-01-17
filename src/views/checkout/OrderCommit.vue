@@ -24,8 +24,10 @@
 import {ref} from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCommonCartEffect } from '@/effects/commonCartEffect'
+import { useStore } from 'vuex'
 const route = useRoute()
 const shopId = route.params.id as string
+const shopName = route.query.shopName
 const {total} = useCommonCartEffect(shopId)
 const showConfirmPanel = ref(false)
 const toggleShowConfirmPanel = (e) => {
@@ -33,7 +35,9 @@ const toggleShowConfirmPanel = (e) => {
   showConfirmPanel.value = !showConfirmPanel.value
 }
 const router = useRouter()
+const store = useStore()
 const handleConfirm = () => {
+  store.commit('comfirmOrder', {shopId, shopName})
   router.push('/order')
 }
 </script>
