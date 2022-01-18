@@ -17,6 +17,13 @@
           </div>
         </div>
       </div>
+      <div class="payment-mask" v-if="paymentSuccess">
+        <div class="payment-success">
+          <Icon icon_name="hook" />
+          <P><b>支付成功，等待配送</b></P>
+          <div class="close-button" @click="handleClosePaymentMask"></div>
+        </div>
+      </div>
  </div>
 </template>
 
@@ -30,6 +37,7 @@ const shopId = route.params.id as string
 const shopName = route.query.shopName
 const {total} = useCommonCartEffect(shopId)
 const showConfirmPanel = ref(false)
+const paymentSuccess = ref(false)
 const toggleShowConfirmPanel = (e) => {
   // if(e.target.className.includes('nohandle')) return;
   showConfirmPanel.value = !showConfirmPanel.value
@@ -38,6 +46,11 @@ const router = useRouter()
 const store = useStore()
 const handleConfirm = () => {
   store.commit('comfirmOrder', {shopId, shopName})
+  showConfirmPanel.value = false
+  paymentSuccess.value = true
+}
+
+const handleClosePaymentMask = () => {
   router.push('/order')
 }
 </script>
@@ -52,7 +65,7 @@ const handleConfirm = () => {
     background: white;
     z-index: 5;
 
-    .mask {
+    .payment-mask, .mask {
       position: fixed;
       left: 0;
       top: 0;
@@ -62,6 +75,67 @@ const handleConfirm = () => {
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .payment-mask {
+      > .payment-success {
+        background:  white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 4px;
+        padding: 32px 70px;
+        position: relative;
+
+        .close-button {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 14px;
+          height: 14px;
+          // border: 1px solid red;
+
+          &::after, &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: #333;
+            left: 0;
+            top: 50%;
+          }
+
+          &::before{
+            transform: rotate(45deg);
+          }
+
+          &::after{
+            transform: rotate(-45deg);
+          }
+        }
+
+
+
+        .hook {
+          :deep(.icon) {
+            width: 48px;
+            height: 48px;
+          }
+        }
+
+        p {
+          font-size: 18px;
+          line-height: 25px;
+          color: #333;
+          margin-top: 24px;
+          // font-weight: 500;
+        }
+
+      }
+    }
+
+    .mask {
 
       > .confirm-panel {
         width: 300px;

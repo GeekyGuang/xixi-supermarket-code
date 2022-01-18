@@ -115,8 +115,8 @@ newOrderList.forEach(item => {
         align-items: end;
 
         h3 {
-          line-height: 22px;
-          font-size: 16px;
+          line-height: 20px;
+          font-size: 14px;
           color: #333;
         }
 
