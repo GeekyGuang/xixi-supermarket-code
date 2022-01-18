@@ -34,7 +34,7 @@ import Layout from '@/components/Layout.vue'
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
-    overflow: auto;
+    overflow: hidden;
 
     :deep(.search-wrapper) {
         margin: 0 18px 12px;
@@ -42,7 +42,7 @@ import Layout from '@/components/Layout.vue'
 
     .main {
       flex-shrink: 1;
-      overflow-y: auto;
+      overflow-y: scroll;
 
       &::-webkit-scrollbar {
             display:none

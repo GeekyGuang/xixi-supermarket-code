@@ -3,20 +3,18 @@
   <div class="order">
     <h2>我的订单</h2>
    <ul class="order-item">
-     <li>
+     <li v-for="order in newOrderList" :key="order.orderId">
        <div class="title">
-         <h3>单号: 1221324123231</h3>
-         <span>2022-01-18 12:23:23</span>
+         <h3>单号: O{{order.orderId}}</h3>
+         <span>{{order.createDate}}</span>
        </div>
        <div class="content">
          <div class="imgs">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
+           <img v-for="(item, index) in order.shortProducts" :src="item.imgUrl" alt="" :key="index">
          </div>
          <div class="detail">
-           <span>&yen;66.6</span>
-           <span>共3件</span>
+           <span>&yen;{{order.totalPrice}}</span>
+           <span>共 {{order.totalCount}} 件</span>
          </div>
        </div>
      </li>
@@ -26,19 +24,27 @@
 </template>
 
 <script lang="ts" setup>
+import { deepClone } from "@/lib/helper";
 import { useStore } from "vuex";
 import Layout from "../../components/Layout.vue";
+import dayjs from 'dayjs'
 const store = useStore()
 
 const orderList = store.state.orderList
+const newOrderList = deepClone(orderList).sort((a, b) => dayjs(b.createDate).valueOf() - dayjs(a.createDate).valueOf())
 
-
-
+newOrderList.forEach(item => {
+  item.createDate = dayjs(item.createDate).format('YYYY-MM-DD HH:mm:ss')
+  item.totalCount = item.products.reduce((sum, item) => sum + item.count, 0)
+  item.totalPrice = item.products.reduce((sum, item) => sum + (item.count * item.price) ,0).toFixed(2)
+  item.shortProducts = item.products.slice(0, 4)
+  })
 </script>
 
 <style lang="scss" scoped>
 .order {
   flex-grow: 1;
+  flex-shrink: 1;
   overflow-y: scroll;
   background: #f8f8f8;
 
@@ -49,9 +55,16 @@ const orderList = store.state.orderList
     padding: 11px 0;
     background: white;
     text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
   .order-item {
+    flex-shrink: 1;
     padding: 18px;
+    margin-top: 44px;
+
     li + li {
       margin-top: 16px;
     }
@@ -97,9 +110,9 @@ const orderList = store.state.orderList
 
       > .title {
         display: flex;
-        flex-direction: column;
-        // justify-content: space-between;
-        // align-items: end;
+        // flex-direction: column;
+        justify-content: space-between;
+        align-items: end;
 
         h3 {
           line-height: 22px;
