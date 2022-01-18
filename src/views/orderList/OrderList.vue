@@ -20,47 +20,19 @@
          </div>
        </div>
      </li>
-          <li>
-       <div class="title">
-         <h3>单号: 12213243234242432</h3>
-         <span>2022-01-18 12:23:23</span>
-       </div>
-       <div class="content">
-         <div class="imgs">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-         </div>
-         <div class="detail">
-           <span>&yen;66.6</span>
-           <span>共3件</span>
-         </div>
-       </div>
-     </li>
-          <li>
-       <div class="title">
-         <h3>单号: 12213243234242432</h3>
-         <span>2022-01-18 12:23:23</span>
-       </div>
-       <div class="content">
-         <div class="imgs">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-           <img src="https://img1.baidu.com/it/u=544840061,2614948313&fm=26&fmt=auto" alt="">
-         </div>
-         <div class="detail">
-           <span>&yen;66.6</span>
-           <span>共3件</span>
-         </div>
-       </div>
-     </li>
    </ul>
   </div>
 </Layout>
 </template>
 
 <script lang="ts" setup>
+import { useStore } from "vuex";
 import Layout from "../../components/Layout.vue";
+const store = useStore()
+
+const orderList = store.state.orderList
+
+
 
 </script>
 
