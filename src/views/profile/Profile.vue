@@ -97,13 +97,13 @@ const avatar = require('@/assets/images/avatar.png')
   }
 
   .blue-bg {
-    height: 240px;
+    height: 210px;
     background-image: linear-gradient(239deg, #3A6FF3 0%, #50C7FB 100%);
     clip-path: ellipse(80% 60% at 50% 40%);
   }
 
   .info {
-    margin: -140px 18px 0;
+    margin: -110px 18px 0;
     background: white;
     border-radius: 4px;
     box-shadow: 0px 3px 15px -6px rgba(0,0,0, .2);
