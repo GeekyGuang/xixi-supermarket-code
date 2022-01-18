@@ -22,6 +22,23 @@
      <img :src="avatar" alt="">
 
    </div>
+   <ul class="others">
+     <li>
+       <Icon icon_name="wallet" />
+       <span>我的钱包</span>
+       <Icon icon_name="left" />
+     </li>
+     <li>
+       <Icon icon_name="address" />
+       <span>我的地址</span>
+       <Icon icon_name="left" />
+     </li>
+     <li>
+       <Icon icon_name="waitress" />
+       <span>客服与帮助</span>
+       <Icon icon_name="left" />
+     </li>
+   </ul>
   </div>
 </Layout>
 </template>
@@ -37,6 +54,48 @@ const avatar = require('@/assets/images/avatar.png')
 .profile {
   flex-grow: 1;
 
+  .others {
+    z-index: 11;
+    margin: 16px 18px 0;
+    background: white;
+    box-shadow: 0px 3px 15px -6px rgba(0,0,0, .2);
+    padding: 16px;
+    position: relative;
+
+    > li + li {
+      margin-top: 24px;
+    }
+
+    > li {
+      display: flex;
+      align-items: center;
+
+      > span {
+        line-height: 20px;
+        font-size: 14px;
+        color: #262626;
+        margin-left: 12px;
+      }
+
+      .wallet, .address, .waitress {
+        :deep(.icon) {
+          width: 22px;
+          height: 22px;
+        }
+      }
+
+      .left {
+        transform: rotate(180deg);
+        margin-left: auto;
+        :deep(.icon) {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+    }
+  }
+
   .blue-bg {
     height: 240px;
     background-image: linear-gradient(239deg, #3A6FF3 0%, #50C7FB 100%);
@@ -47,7 +106,7 @@ const avatar = require('@/assets/images/avatar.png')
     margin: -140px 18px 0;
     background: white;
     border-radius: 4px;
-    box-shadow: 0px 6px 15px -6px rgba(0,0,0, .2);
+    box-shadow: 0px 3px 15px -6px rgba(0,0,0, .2);
     padding-top: 59px;
     z-index: 10;
     position: relative;
