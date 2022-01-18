@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
 
 interface OrderItem {
+  orderId: number
+  createDate: Date
   shopName: string
   products: any[]
 }
@@ -20,15 +22,16 @@ const saveOrderListToLocalStorage = (state) => {
 }
 
 const getOrderListFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem('orderList') || '{}')
+  return JSON.parse(localStorage.getItem('orderList') || '[]')
 }
 
 export default createStore({
   state: {
     cartList: getCartListFromLocalStorage(),
     orderList: getOrderListFromLocalStorage(),
-    // {
-    // orderId: {
+    // [{
+    //  orderId: '',
+    //  createDate: '',
     //   shopName: '',
     //   products: [
     //     {
@@ -37,9 +40,8 @@ export default createStore({
     //       count: '',
     //       price: ''
     //     }
-    //   ]
     // }
-    // },
+    // }],
   },
   mutations: {
     changeCartItemInfo(state, payload) {
@@ -90,6 +92,8 @@ export default createStore({
       const { orderList } = state
       const products = state.cartList[shopId]
       const order: OrderItem = {
+        orderId,
+        createDate: new Date(),
         shopName,
         products: [],
       }
@@ -106,7 +110,7 @@ export default createStore({
         delete products[i]
       }
 
-      orderList[orderId] = order
+      orderList.push(order)
 
       saveOrderListToLocalStorage(state)
     },
