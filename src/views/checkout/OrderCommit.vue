@@ -118,6 +118,7 @@ const handleClosePaymentMask = () => {
 
 
         .hook {
+          color: #0091FF;
           :deep(.icon) {
             width: 48px;
             height: 48px;
