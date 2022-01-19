@@ -2,7 +2,7 @@
 <Layout>
   <div class="order">
     <h2>我的订单</h2>
-   <ul class="order-item">
+   <ul class="order-item" v-if="newOrderList.length > 0">
      <li v-for="order in newOrderList" :key="order.orderId">
        <h2 class="shop">{{order.shopName}}</h2>
        <div class="title">
@@ -21,6 +21,10 @@
        <p class="date">{{order.createDate}}</p>
      </li>
    </ul>
+   <div class="empty-page" v-else>
+      <Icon icon_name="loading" />
+      <span>还没有购物记录哦~</span>
+   </div>
   </div>
 </Layout>
 </template>
@@ -41,6 +45,8 @@ newOrderList.forEach(item => {
   item.totalPrice = item.products.reduce((sum, item) => sum + (item.count * item.price) ,0).toFixed(2)
   item.shortProducts = item.products.slice(0, 4)
   })
+
+console.log(newOrderList)
 </script>
 
 <style lang="scss" scoped>
@@ -51,6 +57,21 @@ newOrderList.forEach(item => {
   background: #f8f8f8;
   &::-webkit-scrollbar {
       display:none
+  }
+
+  .empty-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    .loading {
+      :deep(.icon) {
+        width: 64px;
+        height: 64px;
+      }
+    }
   }
 
   > h2 {
