@@ -1,44 +1,46 @@
 <template>
   <div class="checkout">
     <div class="mask" v-if="showCartDetail && count > 0" @click="handleCartIconClick"></div>
+
     <div class="cart-detail" v-if="showCartDetail && count > 0">
-    <div class="cart-header" v-if="count > 0">
-      <div class="checkAll" @click="setCartItemsAllChecked(shopId, allChecked)">
-          <div class="check-button">
-            <Icon :icon_name="allChecked ? 'checked':'check-circle' " />
-          </div>
-          <span v-if="allChecked">取消</span>
-          <span v-else>全选</span>
+      <div class="cart-header" v-if="count > 0">
+        <div class="checkAll" @click="setCartItemsAllChecked(shopId, allChecked)">
+            <div class="check-button">
+              <Icon :icon_name="allChecked ? 'checked':'check-circle' " />
+            </div>
+            <span v-if="allChecked">取消</span>
+            <span v-else>全选</span>
+        </div>
+        <div class="clear" @click="clearCartItems(shopId)">清空购物车</div>
       </div>
-      <div class="clear" @click="clearCartItems(shopId)">清空购物车</div>
-    </div>
-    <ul class="goods">
-      <template v-for="item in productList" :key="item._id">
-        <li class="goods_item"  v-if="item.count">
-          <div class="check-button" @click="changeCartItemChecked(shopId, item._id)">
-            <Icon :icon_name="item.checked ? 'checked':'check-circle' " />
-          </div>
-          <div class="img">
-            <img :src="item.imgUrl" alt="">
-          </div>
-          <div class="info">
-            <h2 clas="info_name">{{item.name}}</h2>
-            <div class="info_bottom">
-              <div class="new_price">&yen;{{item.price}}
-              </div>
-              <div class="old_price">&yen;{{item.oldPrice}}
-              </div>
-              <div class="manipulate_button">
-                <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1, shopName)"/>
-                <span>{{item.count || 0}}</span>
-                <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1, shopName)"/>
+      <ul class="goods">
+        <template v-for="item in productList" :key="item._id">
+          <li class="goods_item"  v-if="item.count">
+            <div class="check-button" @click="changeCartItemChecked(shopId, item._id)">
+              <Icon :icon_name="item.checked ? 'checked':'check-circle' " />
+            </div>
+            <div class="img">
+              <img :src="item.imgUrl" alt="">
+            </div>
+            <div class="info">
+              <h2 clas="info_name">{{item.name}}</h2>
+              <div class="info_bottom">
+                <div class="new_price">&yen;{{item.price}}
+                </div>
+                <div class="old_price">&yen;{{item.oldPrice}}
+                </div>
+                <div class="manipulate_button">
+                  <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1, shopName)"/>
+                  <span>{{item.count || 0}}</span>
+                  <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1, shopName)"/>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-      </template>
-    </ul>
+          </li>
+        </template>
+      </ul>
     </div>
+
     <div class="bottom-wrapper">
       <div class="basket-wrapper" @click="handleCartIconClick">
         <Icon icon_name="basket" />
@@ -78,7 +80,6 @@ const useCartEffect = () => {
       const shopId = route.params.id as string
 
       const {store, productList, handleChangeCartItemInfo, count, total, checkedCount} = useCommonCartEffect(shopId)
-
       const changeCartItemChecked = (shopId, productId) => {
         store.commit('changeCartItemChecked', {shopId, productId})
       }
@@ -177,6 +178,11 @@ const useCartEffect = () => {
       align-items: center;
       height: 54px;
       border-bottom: 1px solid  #F1F1F1;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      left: 0;
+      background: white;
       .checkAll {
         display: flex;
         align-items: center;

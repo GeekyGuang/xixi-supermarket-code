@@ -30,7 +30,7 @@ export const useCommonCartEffect = (shopId = '') => {
     const productList = cartList[`${shopId}`]
     if (productList) {
       for (const i in productList) {
-        if (productList[i].checked) total += productList[i].count
+        if (i !== 'shopName') if (productList[i].checked) total += productList[i].count
       }
     }
     return total
@@ -41,7 +41,7 @@ export const useCommonCartEffect = (shopId = '') => {
     const productList = cartList[`${shopId}`]
     if (productList) {
       for (const i in productList) {
-        total += productList[i].count
+        if (i !== 'shopName') total += productList[i].count
       }
     }
     return total
@@ -52,7 +52,7 @@ export const useCommonCartEffect = (shopId = '') => {
     const productList = store.state.cartList[`${shopId}`]
     if (productList) {
       for (const i in productList) {
-        if (productList[i].checked) {
+        if (i !== 'shopName' && productList[i].checked) {
           total += productList[i].count * productList[i].price
         }
       }
