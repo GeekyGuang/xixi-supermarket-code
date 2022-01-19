@@ -45,7 +45,7 @@ export default createStore({
   },
   mutations: {
     changeCartItemInfo(state, payload) {
-      const { shopId, productId, productInfo, num } = payload
+      const { shopId, productId, productInfo, num, shopName } = payload
       const shopInfo = state.cartList[shopId] || {}
       let product = shopInfo[productId]
       if (!product) {
@@ -61,6 +61,7 @@ export default createStore({
         product.checked = false
       }
       shopInfo[productId] = product
+      shopInfo.shopName = shopName
       state.cartList[shopId] = shopInfo
       saveCartListToLocalStorage(state)
     },

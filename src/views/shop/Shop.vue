@@ -5,9 +5,9 @@
       <Search placeholder="请输入商品名称搜索"/>
     </div>
     <div class="shop-info-wrapper">
-      <shopInfo :info="shopInfo" v-show="shopInfo.imgUrl"/>
+      <ShopInfo :info="shopInfo" v-show="shopInfo.imgUrl"/>
     </div>
-    <Content />
+    <Content :shopName="shopInfo.name"/>
     <Cart :shopName="shopInfo.name"/>
   </div>
 </template>

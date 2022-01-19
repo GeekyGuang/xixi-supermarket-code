@@ -21,9 +21,9 @@
             <div class="old_price">&yen;{{item.oldPrice}}
             </div>
             <div class="manipulate_button">
-              <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
+              <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1, shopName)"/>
               <span>{{cartList?.[shopId]?.[item._id]?.count || 0}}</span>
-              <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
+              <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1, shopName)"/>
             </div>
           </div>
         </div>
@@ -38,6 +38,10 @@ import { ref, } from '@vue/reactivity';
 import { useRoute } from 'vue-router';
 import { watchEffect } from '@vue/runtime-core';
 import {useCommonCartEffect} from '@/effects/commonCartEffect'
+
+const props = defineProps({
+  shopName: String
+})
 
 const CATEGORIES = [
   {

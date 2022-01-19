@@ -29,9 +29,9 @@
               <div class="old_price">&yen;{{item.oldPrice}}
               </div>
               <div class="manipulate_button">
-                <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1)"/>
+                <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1, shopName)"/>
                 <span>{{item.count || 0}}</span>
-                <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1)"/>
+                <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1, shopName)"/>
               </div>
             </div>
           </div>
