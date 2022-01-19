@@ -21,7 +21,7 @@
     </ul>
     <div class="bottom-down" @click="toggleShowAllProducts">
       <span>总计 {{count}} 件</span>
-      <Icon icon_name="arrow-down" :class="{down: pulldown}" />
+      <Icon icon_name="arrow-down" :class="{down: pulldown}" v-if="allowPulldown"/>
     </div>
   </div>
 </template>
@@ -32,7 +32,11 @@ import { ref } from 'vue'
 const props = defineProps({
   products: {type: Object, required: true},
   count: {type: Number, required: true},
-  shopName: {type: String, required: true}
+  shopName: {type: String, required: true},
+  allowPulldown: {
+     type: Boolean,
+     default: true
+  }
 })
 
 const checkedProducts = ref(props.products)
@@ -49,6 +53,7 @@ if (keys.length > 2) {
 }
 const pulldown = ref(false)
 const toggleShowAllProducts = () => {
+  if(!props.allowPulldown) return;
   pulldown.value = !pulldown.value
 
   if (pulldown.value) {
