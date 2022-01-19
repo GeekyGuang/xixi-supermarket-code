@@ -20,21 +20,22 @@
       </template>
     </ul>
     <div class="bottom-down" @click="toggleShowAllProducts">
-      <span>总计 {{checkedCount}} 件</span>
+      <span>总计 {{count}} 件</span>
       <Icon icon_name="arrow-down" :class="{down: pulldown}" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
-import { useCommonCartEffect } from '@/effects/commonCartEffect'
 import { ref } from 'vue'
 
-const route = useRoute()
-const shopId = route.params.id as string
-const shopName = route.query.shopName
-const {checkedProducts,checkedCount} = useCommonCartEffect(shopId)
+const props = defineProps({
+  products: {type: Object, required: true},
+  count: {type: Number, required: true},
+  shopName: {type: String, required: true}
+})
+
+const checkedProducts = ref(props.products)
 
 const keys = Object.keys(checkedProducts.value)
 const products = ref<any>({})
