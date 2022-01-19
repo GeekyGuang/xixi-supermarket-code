@@ -4,9 +4,10 @@
     <h2>我的订单</h2>
    <ul class="order-item">
      <li v-for="order in newOrderList" :key="order.orderId">
+       <h2 class="shop">{{order.shopName}}</h2>
        <div class="title">
          <h3>单号: O{{order.orderId}}</h3>
-         <span>{{order.createDate}}</span>
+         <span>运送中</span>
        </div>
        <div class="content">
          <div class="imgs">
@@ -17,6 +18,7 @@
            <span>共 {{order.totalCount}} 件</span>
          </div>
        </div>
+       <p class="date">{{order.createDate}}</p>
      </li>
    </ul>
   </div>
@@ -47,6 +49,9 @@ newOrderList.forEach(item => {
   flex-shrink: 1;
   overflow-y: scroll;
   background: #f8f8f8;
+  &::-webkit-scrollbar {
+      display:none
+  }
 
   > h2 {
     line-height: 22px;
@@ -108,6 +113,21 @@ newOrderList.forEach(item => {
         }
       }
 
+      .shop {
+        line-height: 20px;
+        font-size: 16px;
+        color: #333;
+        padding-bottom: 12px;
+      }
+
+      > .date {
+        color: #999;
+        text-align: right;
+        line-height: 20px;
+        font-size: 12px;
+        padding-top: 12px;
+      }
+
       > .title {
         display: flex;
         // flex-direction: column;
@@ -117,7 +137,7 @@ newOrderList.forEach(item => {
         h3 {
           line-height: 20px;
           font-size: 14px;
-          color: #333;
+          color: #666;
         }
 
         span {
