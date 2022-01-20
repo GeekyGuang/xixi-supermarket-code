@@ -3,8 +3,8 @@
   <div class="cart">
    <h2>我的全部购物车(2)</h2>
    <ul class="content" v-if="true">
-     <li>
-       <!-- <CartContent /> -->
+     <li v-for="(item, key) in cartList" :key="key">
+       <CartContent :shop-name="item.shopName" :allow-pulldown="false" :count="0" :products="item.products"/>
      </li>
 
    </ul>
@@ -17,8 +17,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useStore } from "vuex";
 import Layout from "../../components/Layout.vue";
 import CartContent from "../checkout/CartContent.vue";
+
+const store = useStore()
+const {cartList} = store.state
+console.log(cartList)
 
 
 </script>

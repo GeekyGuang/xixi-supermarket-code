@@ -101,7 +101,7 @@ const useCartEffect = () => {
 
       const allChecked = computed(() => {
         let result = true
-        const productList = store.state.cartList[`${shopId}`]
+        const productList = store.state.cartList[`${shopId}`].products
         if(productList){
            for (const i in productList) {
              if(productList[i].count > 0 && !productList[i].checked){
@@ -128,6 +128,8 @@ const useCartEffect = () => {
   const {count, total,productList,shopId,changeCartItemChecked,clearCartItems,
       allChecked,setCartItemsAllChecked,handleCartIconClick,
     showCartDetail,handleChangeCartItemInfo, checkedCount} = useCartEffect()
+
+    console.log(count.value)
 
   const router = useRouter()
 

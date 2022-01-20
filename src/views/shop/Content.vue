@@ -22,7 +22,7 @@
             </div>
             <div class="manipulate_button">
               <Icon icon_name="minus" @click="handleChangeCartItemInfo(shopId,item._id,item, -1, shopName)"/>
-              <span>{{cartList?.[shopId]?.[item._id]?.count || 0}}</span>
+              <span>{{cartList?.[shopId]?.products[item._id]?.count || 0}}</span>
               <Icon icon_name="add" @click="handleChangeCartItemInfo(shopId,item._id,item, 1, shopName)"/>
             </div>
           </div>

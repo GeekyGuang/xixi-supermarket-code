@@ -28,6 +28,24 @@ const getOrderListFromLocalStorage = () => {
 export default createStore({
   state: {
     cartList: getCartListFromLocalStorage(),
+    // {1 : {
+    //   shopName: '',
+    //   products: {
+      //   1: {
+      //   _id: 1,
+      //   name: '',
+      //   price: '',
+      //   count: ''
+      //   },
+      //   2: {
+      //     _id: 1,
+      //     name: '',
+      //     price: '',
+      //     count: ''
+      //   },
+      //  }
+      // }
+      // }
     orderList: getOrderListFromLocalStorage(),
     // [{
     //  orderId: '',
@@ -47,7 +65,8 @@ export default createStore({
     changeCartItemInfo(state, payload) {
       const { shopId, productId, productInfo, num, shopName } = payload
       const shopInfo = state.cartList[shopId] || {}
-      let product = shopInfo[productId]
+      const products = shopInfo.products || {}
+      let product = products[productId]
       if (!product) {
         product = productInfo
         product.count = 0
@@ -60,14 +79,16 @@ export default createStore({
         product.count = 0
         product.checked = false
       }
-      shopInfo[productId] = product
+      products[productId] = product
+      shopInfo.products = products
       shopInfo.shopName = shopName
       state.cartList[shopId] = shopInfo
       saveCartListToLocalStorage(state)
     },
     changeCartItemChecked(state, payload) {
       const { shopId, productId } = payload
-      const product = state.cartList[shopId][productId]
+      const {products} = state.cartList[shopId]
+      const product = products[productId]
       product.checked = !product.checked
       saveCartListToLocalStorage(state)
     },
@@ -78,7 +99,7 @@ export default createStore({
     },
     setCartItemsAllChecked(state, payload) {
       const { shopId, allChecked } = payload
-      const products = state.cartList[shopId]
+      const {products} = state.cartList[shopId]
       for (const i in products) {
         const product = products[i]
         if (product.count > 0) {
@@ -91,7 +112,7 @@ export default createStore({
       const { shopId, shopName } = payload
       const orderId = Math.floor(Math.random() * 1000000000)
       const { orderList } = state
-      const products = state.cartList[shopId]
+      const {products} = state.cartList[shopId]
       const order: OrderItem = {
         orderId,
         createDate: new Date(),
