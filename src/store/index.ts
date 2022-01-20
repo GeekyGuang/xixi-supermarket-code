@@ -9,6 +9,7 @@ interface OrderItem {
 
 const saveCartListToLocalStorage = (state) => {
   const { cartList } = state
+  console.log(cartList)
   localStorage.setItem('cartList', JSON.stringify(cartList))
 }
 
@@ -77,6 +78,9 @@ export default createStore({
         product.checked = true
       } else {
         delete products[productId]
+        if(Object.keys(products).length === 0) {
+          delete state.cartList[shopId]
+        }
       }
 
       shopInfo.products = products
@@ -129,10 +133,14 @@ export default createStore({
       for (const i of checkedKeys) {
         order.products.push(products[i])
         delete products[i]
+        if(Object.keys(products).length === 0) {
+          delete state.cartList[shopId]
+        }
       }
 
-      orderList.push(order)
 
+      orderList.push(order)
+      saveCartListToLocalStorage(state)
       saveOrderListToLocalStorage(state)
     },
   },

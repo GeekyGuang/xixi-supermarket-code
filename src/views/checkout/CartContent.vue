@@ -50,7 +50,7 @@ if (keys.length > 2) {
 } else {
   products.value = checkedProducts.value
 }
-console.log(products.value)
+
 const pulldown = ref(false)
 const toggleShowAllProducts = () => {
   if(!props.allowPulldown) return;

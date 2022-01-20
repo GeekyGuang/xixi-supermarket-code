@@ -5,7 +5,7 @@
     <Search placeholder="山姆商店会员优惠" />
     <div class="main">
       <div class="banner">
-        <!-- <img src="https://s6.jpg.cm/2022/01/03/LtOxlW.jpg" alt=""> -->
+        <img src="https://s4.ax1x.com/2022/01/20/7cIkan.jpg" alt="">
       </div>
       <Categories />
       <div class="gap">
@@ -55,14 +55,18 @@ import Layout from '@/components/Layout.vue'
     }
 
     .banner {
-      height: 86px;
-      // overflow: hidden;
-      // padding:0 18px 86px;
-      border-radius: 5px;
-      background-image: url('https://s6.jpg.cm/2022/01/03/LtOxlW.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      margin: 0 18px;
+      // background-image: url('https://s6.jpg.cm/2022/01/03/LtOxlW.jpg');
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // margin: 0 18px;
+      padding: 0 18px;
+      img {
+        border-radius: 5px;
+        width: 100%;
+        height: 86px;
+        object-fit: cover;
+        object-position:center 25%;
+      }
     }
 
     .gap {
