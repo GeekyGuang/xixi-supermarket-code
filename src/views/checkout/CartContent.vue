@@ -21,7 +21,7 @@
     </ul>
     <div class="bottom-down" @click="toggleShowAllProducts">
       <span>总计 {{count}} 件</span>
-      <Icon icon_name="arrow-down" :class="{down: pulldown}" v-if="count > 2"/>
+      <Icon icon_name="arrow-down" :class="{down: pulldown}" v-if="keys.length > 2"/>
     </div>
   </div>
 </template>
@@ -50,6 +50,7 @@ if (keys.length > 2) {
 } else {
   products.value = checkedProducts.value
 }
+console.log(products.value)
 const pulldown = ref(false)
 const toggleShowAllProducts = () => {
   if(!props.allowPulldown) return;

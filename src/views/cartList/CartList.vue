@@ -28,14 +28,14 @@ import CartContent from "../checkout/CartContent.vue";
 
 const store = useStore()
 const {cartList} = store.state
+const cartCount = Object.keys(cartList).length
+console.log(cartList)
 const cartListCopy = deepClone(cartList)
 const totalCount = ref(0)
-const cartCount = ref(0)
 for(const i in  cartListCopy) {
   const {count} = useCommonCartEffect(i)
   cartListCopy[i].count = count.value
   totalCount.value += count.value
-  cartCount.value += 1
 }
 
 
