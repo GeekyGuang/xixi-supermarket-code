@@ -72,14 +72,13 @@ export default createStore({
         product.count = 0
       }
       product.count += num
+      products[productId] = product
       if (product.count > 0) {
         product.checked = true
+      } else {
+        delete products[productId]
       }
-      if (product.count < 0) {
-        product.count = 0
-        product.checked = false
-      }
-      products[productId] = product
+
       shopInfo.products = products
       shopInfo.shopName = shopName
       state.cartList[shopId] = shopInfo
@@ -94,7 +93,7 @@ export default createStore({
     },
     clearCartItems(state, payload) {
       const { shopId } = payload
-      state.cartList[shopId] = {}
+      delete state.cartList[shopId]
       saveCartListToLocalStorage(state)
     },
     setCartItemsAllChecked(state, payload) {

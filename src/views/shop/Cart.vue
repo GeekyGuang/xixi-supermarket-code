@@ -101,7 +101,7 @@ const useCartEffect = () => {
 
       const allChecked = computed(() => {
         let result = true
-        const productList = store.state.cartList[`${shopId}`].products
+        const productList = store.state.cartList[`${shopId}`]?.products
         if(productList){
            for (const i in productList) {
              if(productList[i].count > 0 && !productList[i].checked){
@@ -129,13 +129,10 @@ const useCartEffect = () => {
       allChecked,setCartItemsAllChecked,handleCartIconClick,
     showCartDetail,handleChangeCartItemInfo, checkedCount} = useCartEffect()
 
-    console.log(count.value)
-
   const router = useRouter()
 
   const handleCheckoutButtonClick = () => {
     if (count.value === 0) {
-      console.log('cart is empty')
       showToast('还没挑选商品哦！')
       return
     }

@@ -1,10 +1,12 @@
 <template>
 <Layout>
   <div class="cart">
-   <h2>我的全部购物车(2)</h2>
-   <ul class="content" v-if="true">
-     <li v-for="(item, key) in cartList" :key="key">
-       <CartContent :shop-name="item.shopName" :allow-pulldown="false" :count="0" :products="item.products"/>
+   <h2>我的全部购物车<span v-if="cartCount > 0">({{cartCount}})</span></h2>
+   <ul class="content" v-if="totalCount > 0">
+     <li v-for="(item, key) in cartListCopy" :key="key">
+      <router-link :to="`/shop/${key}`">
+       <CartContent :shop-name="item.shopName" :allow-pulldown="false" :count="item.count" :products="item.products"/>
+       </router-link>
      </li>
 
    </ul>
@@ -17,13 +19,24 @@
 </template>
 
 <script lang="ts" setup>
+import { useCommonCartEffect } from "@/effects/commonCartEffect";
+import { deepClone } from "@/lib/helper";
+import { ref } from "vue";
 import { useStore } from "vuex";
 import Layout from "../../components/Layout.vue";
 import CartContent from "../checkout/CartContent.vue";
 
 const store = useStore()
 const {cartList} = store.state
-console.log(cartList)
+const cartListCopy = deepClone(cartList)
+const totalCount = ref(0)
+const cartCount = ref(0)
+for(const i in  cartListCopy) {
+  const {count} = useCommonCartEffect(i)
+  cartListCopy[i].count = count.value
+  totalCount.value += count.value
+  cartCount.value += 1
+}
 
 
 </script>

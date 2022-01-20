@@ -1,5 +1,5 @@
 <template>
- <div class="cart-content">
+ <div class="cart-content" v-if="count > 0">
    <h2 class="title">{{shopName}}</h2>
     <ul class="goods">
       <template v-for="item in products" :key="item._id">
@@ -21,7 +21,7 @@
     </ul>
     <div class="bottom-down" @click="toggleShowAllProducts">
       <span>总计 {{count}} 件</span>
-      <Icon icon_name="arrow-down" :class="{down: pulldown}" v-if="allowPulldown"/>
+      <Icon icon_name="arrow-down" :class="{down: pulldown}" v-if="count > 2"/>
     </div>
   </div>
 </template>
@@ -40,7 +40,6 @@ const props = defineProps({
 })
 
 const checkedProducts = ref(props.products)
-
 const keys = Object.keys(checkedProducts.value)
 const products = ref<any>({})
 if (keys.length > 2) {
@@ -55,7 +54,6 @@ const pulldown = ref(false)
 const toggleShowAllProducts = () => {
   if(!props.allowPulldown) return;
   pulldown.value = !pulldown.value
-
   if (pulldown.value) {
     products.value = checkedProducts.value
   } else {

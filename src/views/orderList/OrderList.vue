@@ -45,8 +45,6 @@ newOrderList.forEach(item => {
   item.totalPrice = item.products.reduce((sum, item) => sum + (item.count * item.price) ,0).toFixed(2)
   item.shortProducts = item.products.slice(0, 4)
   })
-
-console.log(newOrderList)
 </script>
 
 <style lang="scss" scoped>
