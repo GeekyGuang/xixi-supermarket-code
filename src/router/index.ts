@@ -32,6 +32,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/shop/Shop.vue'),
   },
   {
+    path: '/pending',
+    name: 'Pending',
+    component: () => import('@/views/PendingPage.vue'),
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login.vue'),

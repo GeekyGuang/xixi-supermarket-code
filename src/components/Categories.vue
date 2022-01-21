@@ -1,13 +1,14 @@
 <template>
   <ul class="categories">
-    <li v-for="item in categories" :key="item.name">
+    <li v-for="item in categories" :key="item.name" @click="handleClick(item.name)">
       <Icon :icon_name="item.name" />
       <div>{{item.title}}</div>
     </li>
   </ul>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup>import { useRouter } from 'vue-router';
+
 
     const categories = [
       {name: 'supermarket', title: '超市便利'},
@@ -21,6 +22,17 @@
       {name: 'bigbrand', title: '大牌免运'},
       {name: 'redenvolope', title: '红包套餐'},
     ]
+
+    const router = useRouter()
+
+    const handleClick = (tag: string) => {
+      const arr = ['supermarket', 'vegetable', 'fruit']
+      if(arr.includes(tag)){
+        router.push('/shop/0')
+      } else {
+        router.push('/pending')
+      }
+    }
 
 </script>
 
