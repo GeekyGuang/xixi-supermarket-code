@@ -26,13 +26,13 @@ const handleBack = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 0.16rem;
 
     .back{
         display: flex;
-        padding: 0 18px;
+        padding: 0 0.18rem;
         align-items: center;
-        height: 48px;
+        height: 0.48rem;
         width: 100%;
         background: white;
 
@@ -40,8 +40,8 @@ const handleBack = () => {
 
     .loading {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 2rem;
+    height: 2rem;
     }
 
     .loading::before, .loading::after {
@@ -64,7 +64,7 @@ const handleBack = () => {
 
     @keyframes wave {
     0% {width: 0; height: 0; opacity: 1;}
-    100% {width: 100px; height: 100px; opacity: 0.5;}
+    100% {width: 1rem; height: 1rem; opacity: 0.5;}
     }
 }
 </style>

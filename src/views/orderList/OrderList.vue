@@ -63,49 +63,49 @@ newOrderList.forEach(item => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 0.24rem;
     .loading {
       :deep(.icon) {
-        width: 64px;
-        height: 64px;
+        width: 0.64rem;
+        height: 0.64rem;
       }
     }
   }
 
   > h2 {
-    line-height: 22px;
-    font-size: 16px;
+    line-height: 0.22rem;
+    font-size: 0.16rem;
     color: #333;
-    padding: 11px 0;
+    padding: 0.11rem 0;
     background: white;
     text-align: center;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
   }
   .order-item {
     flex-shrink: 1;
-    padding: 18px;
-    margin-top: 44px;
+    padding: 0.18rem;
+    // margin-top: 0.44rem;
 
     li + li {
-      margin-top: 16px;
+      margin-top: 0.16rem;
     }
     > li {
       background:  white;
-      padding: 16px;
+      padding: 0.16rem;
 
       .content {
         display: flex;
         justify-content: space-between;
-        margin-top: 16px;
+        margin-top: 0.16rem;
 
         > .imgs {
           img {
-            width: 40px;
-            height: 40px;
-            margin-right: 12px;
+            width: 0.4rem;
+            height: 0.4rem;
+            margin-right: 0.12rem;
           }
         }
 
@@ -119,32 +119,32 @@ newOrderList.forEach(item => {
           }
 
           span:nth-of-type(1) {
-            line-height: 20px;
-            font-size: 14px;
+            line-height: 0.2rem;
+            font-size: 0.14rem;
             color:#E93B3B;
           }
 
           span:nth-of-type(2) {
-            line-height: 14px;
-            font-size: 12px;
+            line-height: 0.14rem;
+            font-size: 0.12rem;
             color:#333;
           }
         }
       }
 
       .shop {
-        line-height: 20px;
-        font-size: 16px;
+        line-height: 0.2rem;
+        font-size: 0.16rem;
         color: #333;
-        padding-bottom: 12px;
+        padding-bottom: 0.12rem;
       }
 
       > .date {
         color: #999;
         text-align: right;
-        line-height: 20px;
-        font-size: 12px;
-        padding-top: 12px;
+        line-height: 0.2rem;
+        font-size: 0.12rem;
+        padding-top: 0.12rem;
       }
 
       > .title {
@@ -154,16 +154,16 @@ newOrderList.forEach(item => {
         align-items: end;
 
         h3 {
-          line-height: 20px;
-          font-size: 14px;
+          line-height: 0.2rem;
+          font-size: 0.14rem;
           color: #666;
         }
 
         span {
           color: #999;
           // text-align: right;
-          line-height: 20px;
-          font-size: 14px;
+          line-height: 0.2rem;
+          font-size: 0.14rem;
         }
       }
     }

@@ -30,14 +30,14 @@ import Layout from '@/components/Layout.vue'
 
  .front-page {
     flex-grow: 1;
-    padding-top: 16px;
+    padding-top: 0.16rem;
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
     overflow: hidden;
 
     :deep(.search-wrapper) {
-        margin: 0 18px 12px;
+        margin: 0 0.18rem 0.12rem;
     }
 
     .main {
@@ -50,7 +50,7 @@ import Layout from '@/components/Layout.vue'
     }
 
     .position-wrapper {
-      margin-bottom: 16px;
+      margin-bottom: 0.16rem;
       flex-shrink: 0;
     }
 
@@ -58,19 +58,19 @@ import Layout from '@/components/Layout.vue'
       // background-image: url('https://s6.jpg.cm/2022/01/03/LtOxlW.jpg');
       // background-size: cover;
       // background-repeat: no-repeat;
-      // margin: 0 18px;
-      padding: 0 18px;
+      // margin: 0 0.18rem;
+      padding: 0 0.18rem;
       img {
-        border-radius: 5px;
+        border-radius: 0.05rem;
         width: 100%;
-        height: 86px;
+        height: 0.86rem;
         object-fit: cover;
         object-position:center 25%;
       }
     }
 
     .gap {
-      height: 10px;
+      height: 0.1rem;
       background: #f1f1f1;
     }
 

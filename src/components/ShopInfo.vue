@@ -29,39 +29,39 @@ const props = defineProps({
 @import '~@/style/helpers.scss';
 .shop {
   display: flex;
-  padding-bottom: 12px;
+  padding-bottom: 0.12rem;
 }
 .shop-img {
-  width: 56px;
-  margin-right:  16px;
+  width: 0.56rem;
+  margin-right:  0.16rem;
   > img {
     width: 100%;
   }
 }
 .shop-info {
   width: 100%;
-  border-bottom: 1px solid #F1F1F1;
+  border-bottom: 0.01rem solid #F1F1F1;
   h2 {
-    line-height: 22px;
-    font-size: 16px;
+    line-height: 0.22rem;
+    font-size: 0.16rem;
     font-weight: normal;
-    margin-bottom: 8px;
+    margin-bottom: 0.08rem;
   }
 
   .shop-data {
-    line-height: 18px;
-    font-size: 13px;
-    margin-bottom: 8px;
+    line-height: 0.18rem;
+    font-size: 0.13rem;
+    margin-bottom: 0.08rem;
     > span {
-      margin-right: 16px;
+      margin-right: 0.16rem;
     }
   }
 
   .discount {
-    line-height: 18px;
-    font-size: 13px;
+    line-height: 0.18rem;
+    font-size: 0.13rem;
     color: $red-highlight-color;
-    margin-bottom: 12px;
+    margin-bottom: 0.12rem;
   }
 }
 </style>

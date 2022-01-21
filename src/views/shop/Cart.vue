@@ -145,6 +145,7 @@ const useCartEffect = () => {
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';
 .checkout {
+  position: relative;
 
   .mask {
     position: fixed;
@@ -158,10 +159,10 @@ const useCartEffect = () => {
   .cart-detail {
     position: absolute;
     left: 0;
-    bottom: 48px;
+    bottom: 0.48rem;
     width: 100%;
     max-height: 50vh;
-    box-shadow: inset 0 -1px 1px -1px $dark-background;
+    box-shadow: inset 0 -0.01rem 0.01rem -0.01rem $dark-background;
     background: white;
     overflow: scroll;
     z-index: 2;
@@ -171,12 +172,12 @@ const useCartEffect = () => {
 
     .cart-header {
       display: flex;
-      padding: 0 16px;
-      font-size: 14px;
-      line-height: 16px;
+      padding: 0 0.16rem;
+      font-size: 0.14rem;
+      line-height: 0.16rem;
       align-items: center;
-      height: 54px;
-      border-bottom: 1px solid  #F1F1F1;
+      height: 0.54rem;
+      border-bottom: 0.01rem solid  #F1F1F1;
       width: 100%;
       position: sticky;
       top: 0;
@@ -187,7 +188,7 @@ const useCartEffect = () => {
         align-items: center;
 
         span{
-          margin-left: -10px;
+          margin-left: -0.1rem;
         }
       }
 
@@ -201,11 +202,11 @@ const useCartEffect = () => {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding:0 18px 0 2px;
+      padding:0 0.18rem 0 0.02rem;
 
       :deep(.icon) {
-        width: 23px;
-        height: 23px;
+        width: 0.23rem;
+        height: 0.23rem;
       }
 
       :deep(.check-circle) {
@@ -225,37 +226,37 @@ const useCartEffect = () => {
 
       > .goods_item {
         display: flex;
-        padding: 8px 16px;
-        // border-bottom: 1px solid #F1F1F1;
-        // margin-bottom: 12px;
+        padding: 0.08rem 0.16rem;
+        // border-bottom: 0.01rem solid #F1F1F1;
+        // margin-bottom: 0.12rem;
 
         .info {
           flex-grow: 1;
           overflow: hidden;
-          height: 48px;
+          height: 0.48rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
 
           .manipulate_button {
             display: flex;
-            gap: 10px;
+            gap: 0.1rem;
             align-items: center;
             margin-left: auto;
             :deep(.add) {
               color: $blue-button-color;
               // background: white;
               > .icon {
-                width: 20px;
-                height: 20px;
+                width: 0.2rem;
+                height: 0.2rem;
               }
             }
 
             :deep(.minus) {
               color: $grey-icon-color;
               > .icon {
-                width: 20px;
-                height: 20px;
+                width: 0.2rem;
+                height: 0.2rem;
               }
             }
 
@@ -264,39 +265,39 @@ const useCartEffect = () => {
 
 
           > h2 {
-            line-height: 20px;
-            font-size: 14px;
+            line-height: 0.2rem;
+            font-size: 0.14rem;
 
             @extend %ellipsis;
           }
 
           &_sale {
-            line-height: 16px;
-            font-size: 12px;
+            line-height: 0.16rem;
+            font-size: 0.12rem;
           }
 
           &_bottom {
             display: flex;
             align-items: center;
             .new_price {
-              line-height: 20px;
-              font-size: 16px;
+              line-height: 0.2rem;
+              font-size: 0.16rem;
               color: $red-highlight-color;
             }
 
             .old_price {
-              line-height: 20px;
-              font-size: 12px;
+              line-height: 0.2rem;
+              font-size: 0.12rem;
               color: #999999;
               text-decoration: line-through;
-              margin-left: 8px;
+              margin-left: 0.08rem;
             }
           }
         }
         .img {
-          width: 48px;
-          height: 48px;
-          margin-right: 16px;
+          width: 0.48rem;
+          height: 0.48rem;
+          margin-right: 0.16rem;
           flex-shrink: 0;
 
           > img {
@@ -311,8 +312,8 @@ const useCartEffect = () => {
   }
 
   > .bottom-wrapper {
-  height: 48px;
-  box-shadow: 0 -1px 1px #F1F1F1;
+  height: 0.48rem;
+  box-shadow: 0 -0.01rem 0.01rem #F1F1F1;
   display: flex;
   align-items: center;
   position: relative;
@@ -320,11 +321,11 @@ const useCartEffect = () => {
   position: relative;
   background: white;
   > .checkout-button {
-    line-height: 20px;
-    font-size: 14px;
+    line-height: 0.2rem;
+    font-size: 0.14rem;
     color: white;
     background: $light-blue;
-    padding: 14px 28px;
+    padding: 0.14rem 0.28rem;
     margin-left: auto;
     cursor: pointer;
   }
@@ -333,11 +334,11 @@ const useCartEffect = () => {
     display: flex;
     align-items: center;
     span:nth-of-type(1) {
-      font-size: 12px;
-      margin-right: 5px;
+      font-size: 0.12rem;
+      margin-right: 0.05rem;
     }
     span:nth-of-type(2) {
-      font-size: 18px;
+      font-size: 0.18rem;
       color: $red-highlight-color;
     }
   }
@@ -345,27 +346,27 @@ const useCartEffect = () => {
 
   > .basket-wrapper {
     position: relative;
-    margin-left: 24px;
-    margin-right: 32px;
+    margin-left: 0.24rem;
+    margin-right: 0.32rem;
     .notice {
-      min-width: 20px;
-      height: 20px;
-      line-height: 20px;
+      min-width: 0.2rem;
+      height: 0.2rem;
+      line-height: 0.2rem;
       background: $red-highlight-color;
       color: white;
-      font-size: 16px;
-      border-radius: 10px;
+      font-size: 0.16rem;
+      border-radius: 0.1rem;
       text-align: center;
       transform: scale(.5);
       transform-origin: left center;
       position: absolute;
-      padding: 0 5px;
-      left: 20px;
-      top: -8px;
+      padding: 0 0.05rem;
+      left: 0.2rem;
+      top: -0.08rem;
     }
     :deep(.basket) > .icon {
-      width: 28px;
-      height: 28px;
+      width: 0.28rem;
+      height: 0.28rem;
     }
   }
   }

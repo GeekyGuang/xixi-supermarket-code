@@ -58,8 +58,8 @@ const handleClosePaymentMask = () => {
 <style lang="scss" scoped>
 @import '~@/style/helpers.scss';
 .order-commit {
-    height: 48px;
-    box-shadow: 0 -1px 1px #F1F1F1;
+    height: 0.48rem;
+    box-shadow: 0 -0.01rem 0.01rem #F1F1F1;
     display: flex;
     align-items: center;
     background: white;
@@ -83,24 +83,24 @@ const handleClosePaymentMask = () => {
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-radius: 4px;
-        padding: 32px 70px;
+        border-radius: 0.04rem;
+        padding: 0.32rem 0.7rem;
         position: relative;
 
         .close-button {
           position: absolute;
-          top: 12px;
-          right: 12px;
-          width: 14px;
-          height: 14px;
-          // border: 1px solid red;
+          top: 0.12rem;
+          right: 0.12rem;
+          width: 0.14rem;
+          height: 0.14rem;
+          // border: 0.01rem solid red;
 
           &::after, &::before {
             content: '';
             display: block;
             position: absolute;
             width: 100%;
-            height: 1px;
+            height: 0.01rem;
             background: #333;
             left: 0;
             top: 50%;
@@ -120,16 +120,16 @@ const handleClosePaymentMask = () => {
         .hook {
           color: #0091FF;
           :deep(.icon) {
-            width: 48px;
-            height: 48px;
+            width: 0.48rem;
+            height: 0.48rem;
           }
         }
 
         p {
-          font-size: 18px;
-          line-height: 25px;
+          font-size: 0.18rem;
+          line-height: 0.25rem;
           color: #333;
-          margin-top: 24px;
+          margin-top: 0.24rem;
           // font-weight: 500;
         }
 
@@ -139,42 +139,42 @@ const handleClosePaymentMask = () => {
     .mask {
 
       > .confirm-panel {
-        width: 300px;
+        width: 3rem;
         background: white;
-        border-radius: 4px;
+        border-radius: 0.04rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 24px 0;
+        padding: 0.24rem 0;
 
         h2 {
-          line-height: 22px;
-          font-size: 18px;
+          line-height: 0.22rem;
+          font-size: 0.18rem;
           color: #333;
-          margin-bottom: 8px;
+          margin-bottom: 0.08rem;
         }
 
         p {
-          line-height: 20px;
-          font-size: 14px;
+          line-height: 0.2rem;
+          font-size: 0.14rem;
           color: #666;
-          margin-bottom: 24px;
+          margin-bottom: 0.24rem;
         }
 
         .buttons {
           button {
             background: none;
-            line-height: 20px;
-            font-size: 14px;
-            padding: 6px 12px;
-            border-radius: 16px;
-            border: 1px solid $light-blue;
+            line-height: 0.2rem;
+            font-size: 0.14rem;
+            padding: 0.06rem 0.12rem;
+            border-radius: 0.16rem;
+            border: 0.01rem solid $light-blue;
           }
 
           button:nth-of-type(1) {
             color: #0091FF;
             background: white;
-            margin-right: 24px;
+            margin-right: 0.24rem;
           }
 
           button:nth-of-type(2) {
@@ -187,27 +187,27 @@ const handleClosePaymentMask = () => {
     }
 
     .total {
-      margin-left: 24px;
+      margin-left: 0.24rem;
       display: flex;
       align-items: center;
 
       span:nth-of-type(1) {
-        font-size: 14px;
+        font-size: 0.14rem;
         color: #333;
       }
       span:nth-of-type(2) {
-        font-size: 16px;
+        font-size: 0.16rem;
         color: $red-highlight-color;
         font-weight: 500;
-        margin-left: 4px;
+        margin-left: 0.04rem;
       }
     }
     .commit-button {
-      line-height: 20px;
-      font-size: 14px;
+      line-height: 0.2rem;
+      font-size: 0.14rem;
       color: white;
       background: $light-blue;
-      padding: 14px 28px;
+      padding: 0.14rem 0.28rem;
       margin-left: auto;
       cursor: pointer;
     }

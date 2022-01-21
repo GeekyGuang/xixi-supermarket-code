@@ -17,24 +17,24 @@ const props = defineProps({
   .search-wrapper {
     display: flex;
     background: $grey-background;
-    height: 32px;
+    height: 0.32rem;
     flex-shrink: 0;
-    border-radius: 32px;
+    border-radius: 0.32rem;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 0.16rem;
     color: $grey-font;
 
     > :deep(.search ){
       > .icon {
-        width: 18px;
-        height: 18px;
+        width: 0.18rem;
+        height: 0.18rem;
       }
     }
 
     > input {
-      margin-left: 12px;
+      margin-left: 0.12rem;
       flex-grow: 1;
-      font-size: 14px;
+      font-size: 0.14rem;
       background: none;
       border: none;
       height: 100%;

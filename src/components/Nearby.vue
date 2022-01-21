@@ -32,12 +32,12 @@ const useNearbyListEffect = () => {
 
 <style lang="scss" scoped>
     .nearby {
-      padding: 0 18px;
+      padding: 0 0.18rem;
 
       > h1 {
-        font-size: 18px;
-        line-height: 25px;
-        margin: 16px 0 14px;
+        font-size: 0.18rem;
+        line-height: 0.25rem;
+        margin: 0.16rem 0 0.14rem;
       }
       a {
         text-decoration: none;

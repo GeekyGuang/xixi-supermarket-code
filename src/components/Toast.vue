@@ -41,11 +41,11 @@ const props = defineProps({
 
 <style lang="scss" scoped>
   .toast {
-    padding: 16px;
-    border-radius: 5px;
+    padding: 0.16rem;
+    border-radius: 0.05rem;
     background: rgba(0, 0, 0, 0.35);
     color: white;
-    font-size: 16px;
+    font-size: 0.16rem;
     position: fixed;
     left: 50%;
     top: 50%;

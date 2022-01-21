@@ -51,7 +51,7 @@ const handleBackClick = useBackRouterEffect()
   flex-direction: column;
   height: 100vh;
 .shop-info-wrapper {
-  padding: 0 18px;
+  padding: 0 0.18rem;
 
   :deep(.shop-info) {
     border-bottom: none;
@@ -59,14 +59,14 @@ const handleBackClick = useBackRouterEffect()
 }
 
 .search {
-  padding: 16px 18px;
+  padding: 0.16rem 0.18rem;
   display: flex;
   align-items: center;
   :deep(.left) {
     cursor: pointer;
     > .icon{
     color: #B6B6B6 ;
-    height: 22px;
+    height: 0.22rem;
   }
   }
 

@@ -17,5 +17,11 @@ module.exports = {
     // .end()
     config.plugin('svg-sprite').use(require('svg-sprite-loader/plugin'), [{ plainSprite: true }]) // 配置插件
     config.module.rule('svg').exclude.add(dir) // 其他svg loader排除icons目录
+    config.plugin('html')
+      .tap(args => {
+        args[0].title = '西西超市'
+        return args
+      })
   },
+
 }

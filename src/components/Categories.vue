@@ -40,19 +40,19 @@
     .categories {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 0.16rem;
       justify-content: space-between;
-      padding: 16px 18px;
+      padding: 0.16rem 0.18rem;
 
       > li {
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 14px;
-        gap: 6px;
+        font-size: 0.14rem;
+        gap: 0.06rem;
          :deep(.icon) {
-            width: 40px;
-            height: 40px;
+            width: 0.4rem;
+            height: 0.4rem;
           }
 
         }

@@ -108,7 +108,7 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
     display: flex;
 
     .goods {
-      padding: 0 16px;
+      padding: 0 0.16rem;
       flex-grow: 1;
       overflow-x: hidden;
       overflow-y: scroll;
@@ -118,37 +118,37 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
 
       > .goods_item {
         display: flex;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #F1F1F1;
-        margin-bottom: 12px;
+        padding-bottom: 0.12rem;
+        border-bottom: 0.01rem solid #F1F1F1;
+        margin-bottom: 0.12rem;
 
         .info {
           flex-grow: 1;
           overflow: hidden;
-          height: 68px;
+          height: 0.68rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
 
           .manipulate_button {
             display: flex;
-            gap: 10px;
+            gap: 0.1rem;
             align-items: center;
             margin-left: auto;
             :deep(.add) {
               color: $blue-button-color;
               // background: white;
               > .icon {
-                width: 20px;
-                height: 20px;
+                width: 0.2rem;
+                height: 0.2rem;
               }
             }
 
             :deep(.minus) {
               color: $grey-icon-color;
               > .icon {
-                width: 20px;
-                height: 20px;
+                width: 0.2rem;
+                height: 0.2rem;
               }
             }
 
@@ -157,39 +157,39 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
 
 
           > h2 {
-            line-height: 20px;
-            font-size: 14px;
+            line-height: 0.2rem;
+            font-size: 0.14rem;
 
             @extend %ellipsis;
           }
 
           &_sale {
-            line-height: 16px;
-            font-size: 12px;
+            line-height: 0.16rem;
+            font-size: 0.12rem;
           }
 
           &_bottom {
             display: flex;
             align-items: center;
             .new_price {
-              line-height: 20px;
-              font-size: 16px;
+              line-height: 0.2rem;
+              font-size: 0.16rem;
               color: $red-highlight-color;
             }
 
             .old_price {
-              line-height: 20px;
-              font-size: 12px;
+              line-height: 0.2rem;
+              font-size: 0.12rem;
               color: #999999;
               text-decoration: line-through;
-              margin-left: 8px;
+              margin-left: 0.08rem;
             }
           }
         }
         .img {
-          width: 68px;
-          height: 68px;
-          margin-right: 16px;
+          width: 0.68rem;
+          height: 0.68rem;
+          margin-right: 0.16rem;
           flex-shrink: 0;
 
           > img {
@@ -203,7 +203,7 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
     }
 
     .categories {
-      width: 76px;
+      width: 0.76rem;
       height: 100%;
       background:  $grey-background;
       overflow-y: scroll;
@@ -218,9 +218,9 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
       }
 
       > li {
-        line-height: 16px;
-        font-size: 14px;
-        padding: 12px 0;
+        line-height: 0.16rem;
+        font-size: 0.14rem;
+        padding: 0.12rem 0;
         text-align: center;
       }
     }

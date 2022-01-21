@@ -73,27 +73,27 @@ const toggleShowAllProducts = () => {
 @import '~@/style/helpers.scss';
   .cart-content {
     background: white;
-    border-radius: 4px;
-    margin: 0 18px 18px;
-    padding: 16px;
+    border-radius: 0.04rem;
+    margin: 0 0.18rem 0.18rem;
+    padding: 0.16rem;
 
     > .bottom-down {
       display: flex;
       align-items: center;
       justify-content: center;
       background: #F5F5F5;
-      margin-top: 16px;
-      padding: 4px 0;
+      margin-top: 0.16rem;
+      padding: 0.04rem 0;
 
-      line-height: 20px;
-      font-size: 14px;
+      line-height: 0.2rem;
+      font-size: 0.14rem;
       color: #999;
 
       .arrow-down {
-        margin-left: 8px;
+        margin-left: 0.08rem;
         :deep(.icon) {
-          width: 14px;
-          height: 14px;
+          width: 0.14rem;
+          height: 0.14rem;
         }
 
         &.down {
@@ -103,51 +103,51 @@ const toggleShowAllProducts = () => {
       }
 
     .title {
-      line-height: 22px;
-      font-size: 16px;
+      line-height: 0.22rem;
+      font-size: 0.16rem;
       color: #333;
     }
     .goods {
 
       > .goods_item {
         display: flex;
-        margin-top: 16px;
+        margin-top: 0.16rem;
 
         .info {
           flex-grow: 1;
           overflow: hidden;
-          height: 48px;
+          height: 0.48rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
 
           > h2 {
-            line-height: 20px;
-            font-size: 14px;
+            line-height: 0.2rem;
+            font-size: 0.14rem;
 
             @extend %ellipsis;
           }
 
           &_sale {
-            line-height: 16px;
-            font-size: 12px;
+            line-height: 0.16rem;
+            font-size: 0.12rem;
           }
 
           &_bottom {
             display: flex;
             align-items: center;
             .new_price {
-              line-height: 20px;
-              font-size: 16px;
+              line-height: 0.2rem;
+              font-size: 0.16rem;
               color: $red-highlight-color;
               margin-right: auto;
             }
           }
         }
         .img {
-          width: 48px;
-          height: 48px;
-          margin-right: 16px;
+          width: 0.48rem;
+          height: 0.48rem;
+          margin-right: 0.16rem;
           flex-shrink: 0;
 
           > img {

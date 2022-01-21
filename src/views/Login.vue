@@ -80,31 +80,31 @@ const useLoginEffect = (showToast) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 0.4rem;
 
   .group {
-    margin: 120px auto 40px;
+    margin: 1.2rem auto 0.4rem;
     > :deep(.icon) {
-      width: 66px;
-      height: 66px;
+      width: 0.66rem;
+      height: 0.66rem;
     }
   }
 
   > .input-item {
     background: #F9F9F9;
-    border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 6px;
+    border: 0.01rem solid rgba(0,0,0,0.10);
+    border-radius: 0.06rem;
     width: 100%;
-    padding: 0 16px;
-    margin-bottom: 16px;
+    padding: 0 0.16rem;
+    margin-bottom: 0.16rem;
 
     > input {
       background: none;
-      height: 48px;
+      height: 0.48rem;
       border: none;
       width: 100%;
       outline: none;
-      line-height: 48px;
+      line-height: 0.48rem;
 
       &::placeholder {
         color: #777
@@ -115,12 +115,12 @@ const useLoginEffect = (showToast) => {
   button {
     border: none;
     background: $blue-button-color;
-    box-shadow: 0 4px 8px 0 rgba(0,145,255,0.32);
-    border-radius: 4px;
+    box-shadow: 0 0.04rem 0.08rem 0 rgba(0,145,255,0.32);
+    border-radius: 0.04rem;
     width: 100%;
     color: white;
-    height: 48px;
-    margin: 16px 0;
+    height: 0.48rem;
+    margin: 0.16rem 0;
     cursor: pointer;
   }
 

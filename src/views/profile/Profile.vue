@@ -56,14 +56,14 @@ const avatar = require('@/assets/images/avatar.png')
 
   .others {
     z-index: 11;
-    margin: 16px 18px 0;
+    margin: 0.16rem 0.18rem 0;
     background: white;
-    box-shadow: 0px 3px 15px -6px rgba(0,0,0, .2);
-    padding: 16px;
+    box-shadow: 0rem 0.03rem 0.15rem -0.06rem rgba(0,0,0, .2);
+    padding: 0.16rem;
     position: relative;
 
     > li + li {
-      margin-top: 24px;
+      margin-top: 0.24rem;
     }
 
     > li {
@@ -71,16 +71,16 @@ const avatar = require('@/assets/images/avatar.png')
       align-items: center;
 
       > span {
-        line-height: 20px;
-        font-size: 14px;
+        line-height: 0.2rem;
+        font-size: 0.14rem;
         color: #262626;
-        margin-left: 12px;
+        margin-left: 0.12rem;
       }
 
       .wallet, .address, .waitress {
         :deep(.icon) {
-          width: 22px;
-          height: 22px;
+          width: 0.22rem;
+          height: 0.22rem;
         }
       }
 
@@ -88,8 +88,8 @@ const avatar = require('@/assets/images/avatar.png')
         transform: rotate(180deg);
         margin-left: auto;
         :deep(.icon) {
-          width: 12px;
-          height: 12px;
+          width: 0.12rem;
+          height: 0.12rem;
         }
       }
 
@@ -97,24 +97,24 @@ const avatar = require('@/assets/images/avatar.png')
   }
 
   .blue-bg {
-    height: 210px;
+    height: 2.1rem;
     background-image: linear-gradient(239deg, #3A6FF3 0%, #50C7FB 100%);
     clip-path: ellipse(80% 60% at 50% 40%);
   }
 
   .info {
-    margin: -110px 18px 0;
+    margin: -1.1rem 0.18rem 0;
     background: white;
-    border-radius: 4px;
-    box-shadow: 0px 3px 15px -6px rgba(0,0,0, .2);
-    padding-top: 59px;
+    border-radius: 0.04rem;
+    box-shadow: 0rem 0.03rem 0.15rem -0.06rem rgba(0,0,0, .2);
+    padding-top: 0.59rem;
     z-index: 10;
     position: relative;
 
     > img {
       display: block;
-      width: 94px;
-      height: 94px;
+      width: 0.94rem;
+      height: 0.94rem;
       object-fit: cover;
       object-position: center;
       border-radius: 50%;
@@ -125,11 +125,11 @@ const avatar = require('@/assets/images/avatar.png')
     }
 
     .coupon {
-      border-top: 1px solid  #F1F1F1;
+      border-top: 0.01rem solid  #F1F1F1;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 28px 16px;
+      padding: 0.12rem 0.28rem 0.16rem;
       > li {
         span {
           display: block;
@@ -137,26 +137,26 @@ const avatar = require('@/assets/images/avatar.png')
         }
 
         span:nth-of-type(1) {
-          line-height: 17px;
-          font-size: 12px;
+          line-height: 0.17rem;
+          font-size: 0.12rem;
           color: #C1C0C9;
         }
 
         span:nth-of-type(2) {
-          line-height: 28px;
-          font-size: 20px;
+          line-height: 0.28rem;
+          font-size: 0.2rem;
           color: #262628;
-          margin-top: 3px;
+          margin-top: 0.03rem;
         }
       }
     }
 
     > p {
-      line-height: 17px;
-      font-size: 14px;
+      line-height: 0.17rem;
+      font-size: 0.14rem;
       color: #C1C0C9;
       text-align: center;
-      padding: 2px 0 12px;
+      padding: 0.02rem 0 0.12rem;
     }
 
     .info-name {
@@ -166,26 +166,26 @@ const avatar = require('@/assets/images/avatar.png')
       align-items: center;
       justify-content: center;
       h2 {
-        line-height: 36px;
-        font-size: 24px;
+        line-height: 0.36rem;
+        font-size: 0.24rem;
         color: #262628;
-        letter-spacing: 0.19px;
+        letter-spacing: 0.0019rem;
         font-weight: normal;
-        margin: 0 12px;
+        margin: 0 0.12rem;
       }
 
       .placeholder {
-        height: 30px;
-        width: 60px;
+        height: 0.3rem;
+        width: 0.6rem;
       }
       .star-wrapper {
         background-image: linear-gradient(180deg, #BEE700 0%, #8ACA00 100%);
-        border-radius: 7.5px;
-        height: 30px;
-        width: 60px;
+        border-radius: 0.075rem;
+        height: 0.3rem;
+        width: 0.6rem;
         display: flex;
         align-items: center;
-        padding: 4px;
+        padding: 0.04rem;
         transform: scale(.5);
         transform-origin: left center;
 

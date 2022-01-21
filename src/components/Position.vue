@@ -9,10 +9,10 @@
 <style lang="scss" scoped>
 @import '../style/helpers.scss';
     .position-wrapper {
-      padding: 0 18px;
+      padding: 0 0.18rem;
       :deep(.icon) {
-        width: 18px;
-        height: 18px;
+        width: 0.18rem;
+        height: 0.18rem;
       }
       display: flex;
       align-items: center;
@@ -20,7 +20,7 @@
         margin-left: auto;
       }
       .address {
-        margin: 0 8px;
+        margin: 0 0.08rem;
         @extend %ellipsis;
         // @include ellipsis;
       }

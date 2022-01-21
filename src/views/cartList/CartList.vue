@@ -50,14 +50,15 @@ for(const i in  cartListCopy) {
   &::-webkit-scrollbar {
       display:none
   }
+  // position: relative;
 
   .content {
     flex-shrink: 1;
-    padding-top: 18px;
-    margin-top: 44px;
+    padding-top: 0.18rem;
+    // margin-top: 0.44rem;
 
     // li + li {
-    //   margin-top: 16px;
+    //   margin-top: 0.16rem;
     // }
   }
   .empty {
@@ -66,23 +67,23 @@ for(const i in  cartListCopy) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 0.24rem;
     .emptyPage {
       :deep(.icon) {
-        width: 64px;
-        height: 64px;
+        width: 0.64rem;
+        height: 0.64rem;
       }
     }
   }
 
     > h2 {
-    line-height: 22px;
-    font-size: 16px;
+    line-height: 0.22rem;
+    font-size: 0.16rem;
     color: #333;
-    padding: 11px 0;
+    padding: 0.11rem 0;
     background: white;
     text-align: center;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
