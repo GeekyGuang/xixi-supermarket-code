@@ -39,20 +39,41 @@
        <Icon icon_name="left" />
      </li>
    </ul>
+   <div class="logout" @click="handleLogout">
+     退出登录
+   </div>
   </div>
 </Layout>
 </template>
 
 <script lang="ts" setup>
+import { useRouter } from "vue-router";
 import Layout from "../../components/Layout.vue";
 const coupons = [{name: '红包', count: 218}, {name: '优惠券', count: '12张'}, {name: '鲜豆', count: 88}, {name: '白条', count: 1000}]
 const avatar = require('@/assets/images/avatar.png')
+
+const router = useRouter()
+const handleLogout = () => {
+  localStorage.isLogin = false
+  router.push('/login')
+}
 
 </script>
 
 <style lang="scss" scoped>
 .profile {
   flex-grow: 1;
+
+  .logout {
+    text-align: center;
+    background: white;
+    box-shadow: 0rem 0.03rem 0.15rem -0.06rem rgba(0,0,0, .2);
+    font-size: 0.14rem;
+    color: #e93b3b;
+    line-height: 0.2rem;
+    padding: 0.08rem 0;
+    margin: 0.16rem 0.18rem 0;
+  }
 
   .others {
     z-index: 11;
