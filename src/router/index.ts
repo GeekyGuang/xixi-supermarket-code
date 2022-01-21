@@ -41,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Login',
     component: () => import('@/views/Login.vue'),
     beforeEnter: (to, from, next) => {
-      const isLogin = localStorage.isLogin
+      const isLogin = JSON.parse(localStorage.isLogin)
       isLogin ? next({ name: 'Home' }) : next()
     },
   },
@@ -50,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Register',
     component: () => import('@/views/Register.vue'),
     beforeEnter: (to, from, next) => {
-      const isLogin = localStorage.isLogin
+      const isLogin = JSON.parse(localStorage.isLogin)
       isLogin ? next({ name: 'Home' }) : next()
     },
   },
@@ -62,7 +62,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const isLogin = localStorage.isLogin
+  const isLogin = JSON.parse(localStorage.isLogin)
   const loginOrRegister = to.name === 'Login' || to.name === 'Register'
   isLogin || loginOrRegister ? next() : next('/login')
 })
