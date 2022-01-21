@@ -63,6 +63,10 @@ const handleLogout = () => {
 <style lang="scss" scoped>
 .profile {
   flex-grow: 1;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+      display:none
+  }
 
   .logout {
     text-align: center;

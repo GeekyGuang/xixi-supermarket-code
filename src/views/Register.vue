@@ -87,6 +87,7 @@ const {username, password, checkpassword,handleRegister} = useRegisterEffect(sho
   flex-direction: column;
   align-items: center;
   padding: 0 0.4rem;
+  height: 100vh;
 
   .group {
     margin: 1.2rem auto 0.4rem;

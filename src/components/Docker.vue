@@ -26,6 +26,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  z-index: 99;
 
   .router-link-exact-active {
       color: #1FA4FC;
