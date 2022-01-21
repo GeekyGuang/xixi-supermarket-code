@@ -35,6 +35,7 @@ const handleBack = () => {
         height: 0.48rem;
         width: 100%;
         background: white;
+        cursor: pointer;
 
     }
 

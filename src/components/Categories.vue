@@ -50,6 +50,7 @@
         align-items: center;
         font-size: 0.14rem;
         gap: 0.06rem;
+        cursor: pointer;
          :deep(.icon) {
             width: 0.4rem;
             height: 0.4rem;

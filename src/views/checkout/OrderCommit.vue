@@ -93,6 +93,7 @@ const handleClosePaymentMask = () => {
           right: 0.12rem;
           width: 0.14rem;
           height: 0.14rem;
+          cursor: pointer;
           // border: 0.01rem solid red;
 
           &::after, &::before {
@@ -169,6 +170,7 @@ const handleClosePaymentMask = () => {
             padding: 0.06rem 0.12rem;
             border-radius: 0.16rem;
             border: 0.01rem solid $light-blue;
+            cursor: pointer;
           }
 
           button:nth-of-type(1) {

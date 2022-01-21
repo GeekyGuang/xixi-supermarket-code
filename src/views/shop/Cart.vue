@@ -186,6 +186,7 @@ const useCartEffect = () => {
       .checkAll {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         span{
           margin-left: -0.1rem;
@@ -207,6 +208,7 @@ const useCartEffect = () => {
       :deep(.icon) {
         width: 0.23rem;
         height: 0.23rem;
+        cursor: pointer;
       }
 
       :deep(.check-circle) {
@@ -245,6 +247,7 @@ const useCartEffect = () => {
             margin-left: auto;
             :deep(.add) {
               color: $blue-button-color;
+              cursor: pointer;
               // background: white;
               > .icon {
                 width: 0.2rem;
@@ -254,6 +257,7 @@ const useCartEffect = () => {
 
             :deep(.minus) {
               color: $grey-icon-color;
+              cursor: pointer;
               > .icon {
                 width: 0.2rem;
                 height: 0.2rem;
@@ -348,6 +352,7 @@ const useCartEffect = () => {
     position: relative;
     margin-left: 0.24rem;
     margin-right: 0.32rem;
+    cursor: pointer;
     .notice {
       min-width: 0.2rem;
       height: 0.2rem;

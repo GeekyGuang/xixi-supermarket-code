@@ -137,6 +137,7 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
             margin-left: auto;
             :deep(.add) {
               color: $blue-button-color;
+              cursor: pointer;
               // background: white;
               > .icon {
                 width: 0.2rem;
@@ -146,6 +147,7 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
 
             :deep(.minus) {
               color: $grey-icon-color;
+              cursor: pointer;
               > .icon {
                 width: 0.2rem;
                 height: 0.2rem;
@@ -222,6 +224,7 @@ const { cartList,handleChangeCartItemInfo } = useCommonCartEffect()
         font-size: 0.14rem;
         padding: 0.12rem 0;
         text-align: center;
+        cursor: pointer;
       }
     }
   }

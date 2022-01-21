@@ -78,6 +78,7 @@ const handleBackClick = useBackRouterEffect()
       justify-content: space-between;
       margin-bottom: 0.22rem;
       .left {
+        cursor: pointer;
         :deep(.icon) {
           height: 0.22rem;
           width: 0.22rem;

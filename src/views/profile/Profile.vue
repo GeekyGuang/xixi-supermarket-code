@@ -77,6 +77,7 @@ const handleLogout = () => {
     line-height: 0.2rem;
     padding: 0.08rem 0;
     margin: 0.16rem 0.18rem 0;
+    cursor: pointer;
   }
 
   .others {
