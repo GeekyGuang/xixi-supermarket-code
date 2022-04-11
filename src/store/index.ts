@@ -31,21 +31,21 @@ export default createStore({
     // {1 : {
     //   shopName: '',
     //   products: {
-      //   1: {
-      //   _id: 1,
-      //   name: '',
-      //   price: '',
-      //   count: ''
-      //   },
-      //   2: {
-      //     _id: 1,
-      //     name: '',
-      //     price: '',
-      //     count: ''
-      //   },
-      //  }
-      // }
-      // }
+    //   1: {
+    //   _id: 1,
+    //   name: '',
+    //   price: '',
+    //   count: ''
+    //   },
+    //   2: {
+    //     _id: 1,
+    //     name: '',
+    //     price: '',
+    //     count: ''
+    //   },
+    //  }
+    // }
+    // }
     orderList: getOrderListFromLocalStorage(),
     // [{
     //  orderId: '',
@@ -60,8 +60,12 @@ export default createStore({
     //     }
     // }
     // }],
+    hidden: true,
   },
   mutations: {
+    changeHidden(state, payload) {
+      state.hidden = payload.hidden
+    },
     changeCartItemInfo(state, payload) {
       const { shopId, productId, productInfo, num, shopName } = payload
       const shopInfo = state.cartList[shopId] || {}
@@ -82,14 +86,14 @@ export default createStore({
       shopInfo.shopName = shopName
       state.cartList[shopId] = shopInfo
 
-      if(Object.keys(products).length === 0) {
+      if (Object.keys(products).length === 0) {
         delete state.cartList[shopId]
       }
       saveCartListToLocalStorage(state)
     },
     changeCartItemChecked(state, payload) {
       const { shopId, productId } = payload
-      const {products} = state.cartList[shopId]
+      const { products } = state.cartList[shopId]
       const product = products[productId]
       product.checked = !product.checked
       saveCartListToLocalStorage(state)
@@ -101,7 +105,7 @@ export default createStore({
     },
     setCartItemsAllChecked(state, payload) {
       const { shopId, allChecked } = payload
-      const {products} = state.cartList[shopId]
+      const { products } = state.cartList[shopId]
       for (const i in products) {
         const product = products[i]
         if (product.count > 0) {
@@ -114,7 +118,7 @@ export default createStore({
       const { shopId, shopName } = payload
       const orderId = Math.floor(Math.random() * 1000000000)
       const { orderList } = state
-      const {products} = state.cartList[shopId]
+      const { products } = state.cartList[shopId]
       const order: OrderItem = {
         orderId,
         createDate: new Date(),
@@ -132,11 +136,10 @@ export default createStore({
       for (const i of checkedKeys) {
         order.products.push(products[i])
         delete products[i]
-        if(Object.keys(products).length === 0) {
+        if (Object.keys(products).length === 0) {
           delete state.cartList[shopId]
         }
       }
-
 
       orderList.push(order)
       saveCartListToLocalStorage(state)

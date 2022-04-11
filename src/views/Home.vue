@@ -5,7 +5,7 @@
     <Search placeholder="山姆商店会员优惠" />
     <div class="main">
       <div class="banner">
-        <img src="https://s4.ax1x.com/2022/01/20/7cIkan.jpg" alt="">
+        <img :src="banner" alt="banner">
       </div>
       <Categories />
       <div class="gap">
@@ -23,6 +23,7 @@ import Position from '@/components/Position.vue'
 import Categories from '@/components/Categories.vue'
 import Nearby from '@/components/Nearby.vue'
 import Layout from '@/components/Layout.vue'
+const banner = require('@/assets/images/banner.png')
 </script>
 
 <style lang="scss" scoped>
@@ -65,7 +66,7 @@ import Layout from '@/components/Layout.vue'
         width: 100%;
         height: 0.86rem;
         object-fit: cover;
-        object-position:center 25%;
+        object-position:center 75%;
       }
     }
 

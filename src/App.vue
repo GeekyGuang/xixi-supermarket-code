@@ -1,10 +1,25 @@
 <template>
   <router-view />
 </template>
-<script lang="ts">
+<script lang="ts" setup>
+import { onMounted, watchEffect,ref } from 'vue';
+import { useStore } from 'vuex';
+const store = useStore()
+const showHeight = ref(window.document.documentElement.clientHeight)
+const docHeight = window.document.documentElement.clientHeight
+onMounted(()=>{
+  window.onresize = () => {
+    showHeight.value = window.document.documentElement.clientHeight
+  }
+})
 
-export default {
-}
+watchEffect(() => {
+  if(showHeight.value < docHeight) {
+    store.commit('changeHidden', {hidden: false})
+  } else {
+    store.commit('changeHidden', {hidden: true})
+  }
+})
 </script>
 
 <style lang="scss">
