@@ -1,29 +1,19 @@
 # 西西超市
 
-## Project setup
+## 安装依赖
 
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 开发
 
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### 打包
 
 ```
 yarn build
 ```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
